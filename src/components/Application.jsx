@@ -6,11 +6,9 @@ module.exports = React.createClass({
 
   render() {
     return (
-      <DocumentTitle title={title}>
         <div>
           <RouteHandler />
         </div>
-      </DocumentTitle>
     );
   }
 });
