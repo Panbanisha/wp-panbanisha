@@ -1,0 +1,13 @@
+@charset 'UTF-8';
+
+// Settings
+@import './styles/clearfix';
+@import './styles/variables';
+@import './styles/mobile-settings';
+
+// Base and Modules
+@import './styles/base';
+@import './styles/modules';
+
+// Page main
+@import './styles/home.scss';

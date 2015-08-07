@@ -1,0 +1,340 @@
+.header {
+  margin: 0 auto;
+  padding: 0;
+  width: $main-width;
+  position: relative;
+  @include below-tablet {
+    padding-top: 50px;
+    width: 100%;
+  }
+  .header__trigger {
+    @include phone {
+      width: 44px;
+      position: fixed;
+      height: 44px;
+      display: block;
+      white-space: nowrap;
+      z-index: 100;
+      top: 10px;
+      right: 10px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 1px 1px #eee;
+      &.active {
+        span {
+          &:before, &:after {
+            width: 12px;
+            left: 0;
+          }
+          &:before {
+            top: -5px;
+            transform: rotate(-45deg);
+          }
+          &:after {
+            top: 5px;
+            transform: rotate(45deg);
+          }
+        }
+      }
+      span {
+        display: inline-block;
+        height: 3px;
+        width: 24px;
+        background: #fed4d4;
+        position: absolute;
+        right: 10px;
+        top: 20px;
+        transition: all .15s;
+        &:before, &:after {
+          display: inline-block;
+          height: 3px;
+          width: 24px;
+          background: #fed4d4;
+          content: '';
+          position: absolute;
+          right: 0;
+        }
+        &:before {
+          top: -6px;
+        }
+        &:after {
+          top: 6px;
+        }
+      }
+    }
+  }
+  .header__logo {
+    text-align: center;
+    @include phone {
+      width: 80%;
+      margin: 0 auto;
+    }
+    .header__logo__title {
+      font-size: 0px;
+      margin: 0;
+      padding: 0;
+    }
+    .logo__figure {
+      display: block;
+      max-width: 330px;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      margin: 0 auto;
+      margin-top: 30px;
+      @include phone {
+        margin-top: 0;
+      }
+      .logo__figure__img {
+        max-width: 330px;
+        width: 100%;
+        height: 100%;
+      }
+      .logo__figure__caption {
+        font-size: 0;
+      }
+    }
+  }
+  .header__inquiry {
+    position: absolute;
+    top: 0;
+    right: 0;
+    @include phone {
+      display: none;
+    }
+    .header__inquiry__img {
+      max-width: 178px;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .header__nav {
+    @include phone {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      padding-top: 64px;
+      margin: 0;
+      background: #fefffa;
+      overflow: scroll;
+      z-index: 1;
+      transform: translate(100%, 0);
+      transition: transform .15s;
+      &.nav-open {
+        transform: translate(0, 0);
+      }
+    }
+    .header__nav__list {
+      margin-top: 30px;
+      @include phone {
+        margin-top: 0;
+      }
+      @mixin headerNavItem($inst, $color) {
+        .header__nav__item--#{$inst} {
+          @if $inst == inquiry { display: none; } @else { display: block; }
+          @if $inst == school { width: 18%; } @else { width: 11.7142%; }
+          float: left;
+          background: rgba(#fffefe, .7);
+          transition: .15s all;
+          background-clip: padding-box;
+          position: relative;
+          @include phone {
+            width: 100%;
+          }
+          &.active .header__nav__sub__list--inst { display: block; }
+          &:hover, &.active {
+            color: #fff;
+            &.has-child > a {
+              &:before, &:after {
+                background: #fff;
+              }
+            }
+          }
+          &:hover, &.active,
+          .header__nav__sub__list .header__nav__sub__item:hover > a,
+          .header__nav__sub__list--inst .header__nav__sub__item--inst:hover > a {
+            background-color: $color;
+            transition: all .15s;
+          }
+          &:hover .header__nav__sub__list,
+          &:hover .header__nav__sub__list--inst {
+            border: 2px solid $color;
+            border-bottom: 0;
+            visibility: visible;
+            opacity: 1;
+            @include phone {
+              border: 0;
+            }
+            a { color: $main-font-color; }
+          }
+          &:hover .header__nav__sub__list--inst {
+            border-bottom: 2px solid $color;
+            @include phone {
+              border: 0;
+            }
+          }
+          a {
+            border-top-width: 3px;
+            border-top-style: solid;
+            border-bottom-width: 3px;
+            border-bottom-style: solid;
+            border-color: $color;
+            font-weight: $NotoMedium;
+            display: block;
+            width: 100%;
+            height: 56px;
+            line-height: 50px;
+            text-align: center;
+            @include phone {
+              text-align: left;
+              padding-left: 40px;
+              padding-right: 40px;
+              border-top: 0;
+            }
+          }
+          &.has-child {
+            @include phone {
+              & > a {
+                position: relative;
+                &:before, &:after {
+                  content: '';
+                  position: absolute;
+                  width: 10px;
+                  height: 2px;
+                  right: 20px;
+                  top: 50%;
+                  margin-top: -1px;
+                  display: inline-block;
+                  background: $color;
+                  transform-origin: 9px 50%;
+                }
+                &:before { transform: rotate(45deg); }
+                &:after { transform: rotate(-45deg); }
+              }
+              &.active > a {
+                &:before, &:after { top: 60%; }
+                &:before { transform: rotate(135deg); }
+                &:after { transform: rotate(45deg); }
+              }
+              &.active .header__nav__sub__list {
+                display: block;
+                background: lighten($color, 10%);
+              }
+            }
+          }
+          .header__nav__sub__list {
+            width: 100%;
+            display: block;
+            position: absolute;
+            z-index: 9999;
+            top: 100%;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            visibility: hidden;
+            opacity: 0;
+            transition: all .15s;
+            background-color: #fff;
+            @include phone {
+              position: relative;
+              visibility: visible;
+              opacity: 1;
+              display: none;
+            }
+            .header__nav__sub__item {
+              display: block;
+              width: 100%;
+              font-size: .85em;
+              &:hover a { color: #fff; }
+              a {
+                color: $main-font-color;
+                border-top: 1px solid $color;
+                &:first-child {
+                  border-top: 0;
+                  @include phone {
+                    padding-left: 70px;
+                  }
+                }
+              }
+            }
+            &--inst {
+              visibility: hidden;
+              opacity: 0;
+              width: 100%;
+              display: block;
+              position: absolute;
+              z-index: 9999;
+              top: 100%;
+              left: -200%;
+              width: $main-width;
+              background-color: #fff;
+              @include below-tablet {
+                width: 100vw;
+              }
+              @include phone {
+                opacity: 1;
+                visibility: visible;
+                position: relative;
+                left: 0;
+                display: none;
+
+              }
+              .header__nav__sub__item--inst {
+                width: 20%;
+                float: left;
+                color: $main-font-color;
+                background-color: #fff;
+                transition: background-color .15s;
+                @include phone {
+                  width: 100%;
+                }
+                &:hover {
+                  background-color: rgba(#f2ae2e, .1);
+                }
+                .inst__item__content {
+                  display: block;
+                  height: auto;
+                  padding: 20px 10px;
+                  @include phone {
+                    padding: 10px;
+                  }
+                }
+                .inst__item__img {
+                  margin: 0;
+                  padding: 0;
+                  img {
+                    width: 100%;
+                    @include phone {
+                      width: 30%;
+                    }
+                  }
+                }
+                .inst__item__name {
+                  line-height: 1.7;
+                  padding-bottom: 10px;
+                  @include phone {
+                    float: left;
+                    width: 60%;
+                    padding-left: 20px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      @include headerNavItem(home, #eba9a1);
+      @include headerNavItem(greeting, #f1d2da);
+      @include headerNavItem(institutes, #fae7bc);
+      @include headerNavItem(careplan, #fbf8bd);
+      @include headerNavItem(fee, #e9ecb0);
+      @include headerNavItem(school, #9acbce);
+      @include headerNavItem(recruit, #c7d0f2);
+      @include headerNavItem(news, #d4c0de);
+      @include headerNavItem(inquiry, #f9edb3);
+    }
+  }
+}

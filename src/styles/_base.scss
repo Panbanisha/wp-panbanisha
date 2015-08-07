@@ -1,0 +1,61 @@
+*, *:after, *:before {
+	box-sizing: border-box;
+}
+html {
+	height: 100%;
+	width: 100%;
+	line-height: 1.7;
+	font-weight: normal;
+}
+body {
+	margin: 0 auto;
+	font-family: $main-font;
+	font-weight: $NotoLight;
+	color: $main-font-color;
+	background: $main-bg;
+}
+h1, h2, h3, ul, li, a, img, form, input, label, select,  p, div, header, nav, section, article, main {
+	margin: 0;
+	padding: 0;
+}
+img {
+  max-width: 100%;
+}
+ul {
+	padding-left: 0;
+}
+ul li {
+	list-style: none;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+}
+button, input, textarea {
+	outline: none;
+	border: none;
+}
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+img {
+	vertical-align: middle;
+}
+
+/* // Placeholder
+::-webkit-input-placeholder {
+	color: $filter-form-font-color;
+}
+:-moz-placeholder { Firefox 18-
+	color: $filter-form-font-color;
+}
+
+::-moz-placeholder {  Firefox 19+
+	color: $filter-form-font-color;
+}
+
+:-ms-input-placeholder {
+	color: $filter-form-font-color;
+} */

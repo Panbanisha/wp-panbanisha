@@ -1,0 +1,100 @@
+.footer {
+  background-color: $footer-bg;
+  background-image: url(/assets/images/footer-wave.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  padding-top: 224px;
+  margin-top: 110px;
+  color: $footer-font-color;
+  @include phone {
+    padding-top: 100px;
+    margin-top: 70px;
+  }
+  .footer__inner {
+    padding: 25px;
+    border: 5px solid #f28177;
+    border-radius: 5px;
+    background: #fffafa;
+    width: $main-width;
+    margin: 0 auto;
+    position: relative;
+    background-image: url(/assets/images/footer-flower.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    @include below-tablet {
+      width: 95%;
+      margin: 0 auto;
+    }
+  }
+  .footer__left, .footer__right {
+    float: left;
+  }
+  .footer__left {
+    width: 40%;
+    @include phone {
+      width: 100%;
+      float: right;
+    }
+    .footer__company-name {
+      font-weight: $NotoLight;
+    }
+    .company__detail {
+      font-style: normal;
+      font-size: 18px;
+      background: rgba(#fff, .9);
+      border-radius: 3px;
+      padding: 15px;
+      margin-top: 10px;
+      p {
+        margin: 5px 0;
+        @include phone {
+          font-size: .8em;
+        }
+      }
+      .company__detail__inquiry {
+        display: inline-block;
+        a {
+          display: block;
+          border-bottom: 1px solid #f28177;
+        }
+      }
+      .separator {
+        padding: 0 4px;
+      }
+    }
+  }
+  .footer__right {
+    width: 60%;
+    padding-left: 30px;
+    @include phone {
+      display: none;
+    }
+    .footer__sitemap {
+      font-size: 14px;
+      .footer__sitemap__item {
+        display: inline-block;
+        float: left;
+        margin: 10px;
+        a {
+          display: block;
+          width: 100%;
+          padding-bottom: 1px;
+          .bullet {
+            padding-right: 5px;
+          }
+          &:hover {
+            padding-bottom: 0;
+            border-bottom: 1px solid #f28177;
+          }
+        }
+      }
+    }
+  }
+  .copyright {
+    text-align: center;
+    padding: 30px 0;
+    .copyright__company-name {
+      font-weight: bold;
+    }
+  }
+}
