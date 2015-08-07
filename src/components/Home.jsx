@@ -6,7 +6,7 @@ var DocumentTitle = require('react-document-title');
 module.exports = React.createClass({
 
   render() {
-    var title = "Panbanisha";
+    var title = "Panbanisha Inc.";
 
     return (
       <DocumentTitle title={title}>

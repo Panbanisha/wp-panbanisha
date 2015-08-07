@@ -6,14 +6,11 @@ var DocumentTitle = require('react-document-title');
 module.exports = React.createClass({
 
   render() {
-    var title = "Sorry :( but it's under construction";
+    var title = "お探しのページがみつかりませんでした";
 
     return (
       <DocumentTitle title={title}>
-        <figure class="logo">
-          <img src="/assets/images/logo.png" />
-        </figure>
-        <p>The website is under construction...</p>
+        <p>お探しのページがみつかりませんでした。</p>
       </DocumentTitle>
     );
   }
