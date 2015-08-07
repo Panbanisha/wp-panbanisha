@@ -1,0 +1,6 @@
+node_modules
+.sass-cache
+dist/assets/bundle.js
+dist/assets/main.css
+wordpress
+wordpress/assets
