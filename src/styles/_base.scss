@@ -12,7 +12,7 @@ body {
 	font-family: $main-font;
 	font-weight: $NotoLight;
 	color: $main-font-color;
-	background: $main-bg;
+	background: $main-bg-color;
 }
 h1, h2, h3, ul, li, a, img, form, input, label, select,  p, div, header, nav, section, article, main {
 	margin: 0;
@@ -43,7 +43,6 @@ select {
 img {
 	vertical-align: middle;
 }
-
 /* // Placeholder
 ::-webkit-input-placeholder {
 	color: $filter-form-font-color;

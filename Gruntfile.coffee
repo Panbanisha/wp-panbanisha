@@ -6,7 +6,7 @@ module.exports = (grunt) ->
       all:
         expand: true
         flatten: true
-        src: ['src/*.scss']
+        src: ['src/**/*.scss']
         dest: 'dist/assets'
         ext: '.css'
       options:

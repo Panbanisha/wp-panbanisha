@@ -9,11 +9,11 @@ module.exports = React.createClass({
 
   render() {
     return (
-        <div>
+        <div className="wrapper">
           <Header />
-          <div className="page-main">
+          <main className="page-main">
             <RouteHandler />
-          </div>
+          </main>
           <Footer />
         </div>
     );

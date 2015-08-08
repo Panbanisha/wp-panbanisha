@@ -3,7 +3,9 @@ var React = require('react');
 module.exports = React.createClass({
   render() {
     return (
-      <div>people</div>
+      <section className="">
+        <h1></h1>
+      </section>
     )
   }
 });

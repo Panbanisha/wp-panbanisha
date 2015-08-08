@@ -9,5 +9,13 @@
 @import './styles/base';
 @import './styles/modules';
 
+// Header
+@import './styles/header';
+
+// Footer
+@import './styles/footer';
+@import './styles/fixed-footer';
+
 // Page main
-@import './styles/home.scss';
+@import './styles/home';
+@import './styles/contact';

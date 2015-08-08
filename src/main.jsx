@@ -17,10 +17,10 @@ var routes = (
         <Route name="PeopleList" path="people/" handler={PeopleList}>
           <Route name="PeopleDetail" path=":people/" handler={PeopleDetail} />
         </Route>
-        <Route name="WorkList" handler={WorkList}>
+        <Route name="WorkList" path="works/" handler={WorkList}>
           <Route name="WorkDetail" path=":work/" handler={WorkDetail} />
         </Route>
-        <Route name="Contact" path="contact/" />
+        <Route name="Contact" path="contact/" handler={Contact} />
         <NotFoundRoute handler={NotFound} />
     </Route>
 );

@@ -1,0 +1,179 @@
+.contact {
+  .contact-form {
+    margin-top: 90px;
+    .contact-form__title {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 100px;
+      &:after {
+        content: '';
+        display: block;
+        height: 0px;
+        width: 70%;
+        border-bottom: 1px solid #fff;
+      }
+    }
+    .contact-form__form {
+      width: 65%;
+      margin: 0 auto;
+      @include clearfix;
+      .contact-form__form__block {
+        width: 50%;
+        float: left;
+        margin-bottom: 70px;
+        &:first-child {
+          width: 45%;
+          margin-right: 5%;
+        }
+        .input {
+          margin-top: 20px;
+          position: relative;
+          &:first-child { margin-top: 0; }
+          label, input, textarea {
+            display: block;
+            width: 100%;
+          }
+          label {
+            font-size: 24px;
+            margin-bottom: 5px;
+          }
+          input {
+            height: 50px;
+            line-height: 50px;
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+            background-color: $form-bg-color;
+            padding: 0 25px;
+            font-size: 20px;
+            box-shadow: 1.5px 2.598px 5px 0px rgba(0, 12, 20, 0.3);
+          }
+          textarea {
+            width: 100%;
+            margin: 0 auto;
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+            background-color: $form-bg-color;
+            padding: 20px;
+          }
+          .message__bg {
+            box-shadow: 1.5px 2.598px 5px 0px rgba(0, 12, 20, 0.3);
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+            background-color: $form-bg-color;
+            .message__bg__input {
+              position: relative;
+              padding: 20px;
+              padding-bottom: 0;
+              label, input {
+                border: 0;
+                display: inline-block;
+                background-color: transparent;
+              }
+              label {
+                position: absolute;
+                width: auto;
+                margin: 0;
+                line-height: 50px;
+              }
+              input {
+                box-shadow: 0px 0px 0px;
+                padding-left: 70px;
+                border-bottom: 1px solid #fff;
+              }
+            }
+            textarea {
+              border: 0;
+              background-color: transparent;
+            }
+          }
+        }
+      }
+      .contact-form__form__submit-btn {
+        clear: both;
+        text-align: center;
+        margin-top: 70px;
+        margin-bottom: 130px;
+        input {
+          width: 300px;
+          height: 55px;
+          line-height: 55px;
+          background: #fff;
+          color: #242424;
+          font-size: 24px;
+          box-shadow: 1.5px 2.598px 5px 0px rgba(0, 12, 20, 0.3);
+          display: inline-block;
+          border-radius: 40px;
+        }
+      }
+    }
+  }
+  .access {
+    margin-bottom: 60px;
+    .access__title {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 100px;
+      &:after {
+        content: '';
+        display: block;
+        height: 0px;
+        width: 70%;
+        margin-left: 30%;
+        border-bottom: 1px solid #fff;
+      }
+    }
+    .access__inner {
+      @include clearfix;
+      width: 80%;
+      margin: 0 auto;
+      .access__map, .access__info {
+        float: left;
+      }
+      .access__map {
+        width: 50%;
+        margin: 0;
+        margin-right: 5%;
+        background-color: $form-bg-color;
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        box-shadow: 1.5px 2.598px 5px 0px rgba(0, 12, 20, 0.3);
+      }
+      .access__info {
+        width: 45%;
+        font-size: 24px;
+      }
+      .access__info__name {
+        h2 {
+          font-size: 30px;
+        }
+      }
+      .access__info__addr {
+        display: inline-block;
+        border-top: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+        padding: 15px 0;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        .access__info__gmap {
+          margin-top: 10px;
+          display: block;
+          width: 100%;
+          background-color: #fff;
+          border-radius: 20px;
+          color: #242424;
+          text-align: center;
+          &:before {
+            content: '';
+            background-image: url(/assets/images/map-pin.png);
+            width: 15px;
+            height: 26px;
+            margin-right: 15px;
+            display: inline-block;
+            position: relative;
+            top: 3px;
+          }
+        }
+      }
+    }
+  }
+}
