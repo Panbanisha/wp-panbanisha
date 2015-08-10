@@ -2,8 +2,37 @@
  * Media Queries
  */
 
- $tablet-screen-width: 64em;
- $phone-screen-width: 30em;
+@mixin phone {
+  @media only screen and (max-width: $phone-screen-width) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media only screen and (min-width: $phone-screen-width + 0.063em) and (max-width: $tablet-screen-width) {
+    @content;
+  }
+}
+@mixin below-tablet {
+  @media only screen and (max-width: $tablet-screen-width) {
+    @content;
+  }
+}
+
+@mixin up-tablet {
+  @media only screen and (min-width: $phone-screen-width + 0.063em) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media only screen and (min-width: $tablet-screen-width + 0.063em) {
+    @content;
+  }
+}
+
+$tablet-screen-width: 64em;
+$phone-screen-width: 30em;
+
 
 /*
  * Colors
