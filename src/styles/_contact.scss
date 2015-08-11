@@ -11,12 +11,18 @@
         height: 0px;
         width: 70%;
         border-bottom: 1px solid #fff;
+        @include below-tablet {
+          width: 80%;
+        }
       }
     }
     .contact-form__form {
+      @include clearfix;
       width: 65%;
       margin: 0 auto;
-      @include clearfix;
+      @include below-tablet {
+        width: 85%;
+      }
       .contact-form__form__block {
         width: 50%;
         float: left;
@@ -62,7 +68,7 @@
             background-color: $form-bg-color;
             .message__bg__input {
               position: relative;
-              padding: 20px;
+              padding: 0 20px;
               padding-bottom: 0;
               label, input {
                 border: 0;
@@ -126,6 +132,9 @@
       @include clearfix;
       width: 80%;
       margin: 0 auto;
+      @include below-tablet {
+        width: 90%;
+      }
       .access__map, .access__info {
         float: left;
       }

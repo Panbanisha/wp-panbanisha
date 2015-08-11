@@ -3,8 +3,8 @@ app = express()
 path = require('path')
 request = require('request')
 
-app.get /^\/?json_route=\/.*$/, (req, res) ->
-  request('http://wordpress.local' + req.originalUrl).pipe(res)
+app.get /^\/wp-json.*$/, (req, res) ->
+  request('http://vccw-panbanisha.dev' + req.originalUrl).pipe(res)
   console.log(res)
 
 app.get /^[\w\-\/]*$/, (req, res) ->

@@ -3,14 +3,22 @@
   height: 180px;
   background: #000;
   padding: 0 5%;
+  @include below-tablet {
+    height: 140px;
+  }
   .header__logo, .header__nav__list {
     width: 50%;
     float: left;
   }
   .header__logo {
+    @include clearfix;
     margin: 0;
     position: relative;
     height: 180px;
+    @include below-tablet {
+      height: 140px;
+      width: 35%;
+    }
     img {
       position: absolute;
       top: 50%;
@@ -18,9 +26,14 @@
     }
   }
   .header__nav {
+    @include clearfix;
     .header__nav__list {
       @include clearfix;
       line-height: 180px;
+      @include below-tablet {
+        line-height: 140px;
+        width: 65%;
+      }
       li {
         display: block;
         float: right;
