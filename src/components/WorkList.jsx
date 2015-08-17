@@ -13,14 +13,14 @@ var WorkItem = React.createClass({
     var work = this.props;
 
     return (
-      <figure className="works__item">
+      <figure className="works__item" key={this.props.key}>
         <Link to="Post" params={{post: work.slug}}>
           <img src={work.featured_image.guid} />
           <figcaption className="works__item__caption">
             <h2 className="works__item__caption__title">{work.title}</h2>
             <div className="works__item__caption__member">
               {work.acf.all_member !== "0" || work.acf.all_member !== undefined ?
-                work.acf.all_member.map((member) => <p key={member.all_member_name}>{member.all_member_role}<span>:</span>{member.all_member_name}</p>)
+                work.acf.all_member.map((member) => <p key={member.all_member_role}>{member.all_member_role}<span>:</span>{member.all_member_name}</p>)
               : ''}
             </div>
           </figcaption>

@@ -103,7 +103,7 @@ var SpecialThanks = React.createClass({
     var stItem = this.props.stItem;
 
     return (
-      <div className="special-thanks__block" key={stItem.st_name}>
+      <div className="special-thanks__block" key={this.props.key}>
         <figure className="special-thanks__img">
           <img src={stItem.st_top_image} />
         </figure>
@@ -124,7 +124,7 @@ var CrewMember = React.createClass({
     var crewMember = this.props.crewMember;
 
     return (
-      <div className="crew__list" key={member.guid}>
+      <div className="crew__list" key={this.props.key}>
         <Link to="PeopleDetail" params={{people: member.slug}}>
           <div className="crew__item">
             <div className="crew__item__inner">
@@ -135,7 +135,7 @@ var CrewMember = React.createClass({
                 {
                   this.props.crewMember.length ?
                     this.props.crewMember.map((crewMember) => {
-                      return crewMember.name == member.slug ? <p className="crew__item__desc__role">{crewMember.role}</p> : '';
+                      return crewMember.name == member.slug ? <p key={crewMember.name} className="crew__item__desc__role">{crewMember.role}</p> : '';
                     })
                   : ''
                 }

@@ -48,7 +48,7 @@ Member = React.createClass({
     var member = this.props.member;
 
     return (
-        <article className={'member__item ' + member.mode} onClick={member.mode == 'list' ? this._onClick : null}>
+        <article key={member.name} className={'member__item ' + member.mode} onClick={member.mode == 'list' ? this._onClick : null}>
           <div className="member__item__inner">
             <div className="member__item__all">
               <div className="member__item__block">

@@ -7,7 +7,7 @@ module.exports =
       occupation: 'video artist'
       company: 'Panbanisha, CEO'
       company_url: 'http://panbanisha.com'
-      prof_img: '/assets/imgages/prof-shohei-suwa.jpg'
+      prof_img: '/assets/images/prof-shohei-suwa.jpg'
       name_img: '/assets/images/name-shohei-suwa.png'
 
     gaku_takeda:
@@ -16,7 +16,7 @@ module.exports =
       occupation: 'Photographer'
       company: 'Freelance'
       company_url: ''
-      prof_img: '/assets/imgages/prof-shohei-suwa.jpg'
+      prof_img: '/assets/images/prof-shohei-suwa.jpg'
       name_img: '/assets/images/name-shohei-suwa.png'
 
     ryo_ikarashi:
@@ -25,7 +25,7 @@ module.exports =
       occupation: 'video artist'
       company: 'Student @ University of Mount Union'
       company_url: 'http://mountunion.edu'
-      prof_img: '/assets/imgages/prof-shohei-suwa.jpg'
+      prof_img: '/assets/images/prof-shohei-suwa.jpg'
       name_img: '/assets/images/name-shohei-suwa.png'
 
     ryo_sanaka:
@@ -34,7 +34,7 @@ module.exports =
       occupation: 'Musician'
       company: 'NamaNamaKing'
       company_url: ''
-      prof_img: '/assets/imgages/prof-shohei-suwa.jpg'
+      prof_img: '/assets/images/prof-shohei-suwa.jpg'
       name_img: '/assets/images/name-shohei-suwa.png'
 
     takuto_kudo:
@@ -43,7 +43,7 @@ module.exports =
       occupation: 'Shockaku'
       company: 'Ahunrupar, CEO'
       company_url: 'http://ahunrupar.com'
-      prof_img: '/assets/imgages/prof-shohei-suwa.jpg'
+      prof_img: '/assets/images/prof-shohei-suwa.jpg'
       name_img: '/assets/images/name-shohei-suwa.png'
 
     hajime_koizumi:
@@ -52,7 +52,7 @@ module.exports =
       occupation: 'Cameraman'
       company: 'SHIBUYA CAMER'
       company_url: 'http://ahunrupar.com'
-      prof_img: '/assets/imgages/prof-shohei-suwa.jpg'
+      prof_img: '/assets/images/prof-shohei-suwa.jpg'
       name_img: '/assets/images/name-shohei-suwa.png'
 
     ryota_fujinaka:
@@ -61,5 +61,5 @@ module.exports =
       occupation: 'Cameraman'
       company: 'SHIBUYA CAMER'
       company_url: 'http://ahunrupar.com'
-      prof_img: '/assets/imgages/prof-shohei-suwa.jpg'
+      prof_img: '/assets/images/prof-shohei-suwa.jpg'
       name_img: '/assets/images/name-shohei-suwa.png'

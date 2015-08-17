@@ -74,15 +74,15 @@ module.exports = React.createClass({
       var getWorks = $.getJSON('/wp-json/posts', {'filter[tag]': member,  'filter[posts_per_page]': 200}).done((result) => {
         if(result.length) {
           result.map((entry) => {
-              if (state[entry.terms.category[0].slug]) {
-                  state[entry.terms.category[0].slug].push(entry);
-              }
+            if (state[entry.terms.category[0].slug]) {
+                state[entry.terms.category[0].slug].push(entry);
+            }
           });
         }
       });
 
       var getLinks = $.getJSON(`/wp-json/pages/people/${member}`).done((result) => {
-        if(result.length) {
+        if(result.acf.link !== '0') {
           var links = result.acf.link;
           state['link'] = links;
         }
@@ -107,8 +107,8 @@ module.exports = React.createClass({
 
   render() {
 
-    var works = this.state.work.map((work) => <WorkItem key={work.guid} {...work} />);
-    var links = this.state.link.map((link) => <LinkItem key={link.link_title} {...link} />);
+    var works = this.state.work.length ? this.state.work.map((work) => <WorkItem key={work.guid} {...work} />) : '';
+    var links = this.state.link.length ? this.state.link.map((link) => <LinkItem key={link.link_title} {...link} />) : '';
 
     return (
       <div>
