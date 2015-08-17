@@ -1,6 +1,6 @@
 var React = require('react');
 var Router = require('react-router');
-var {State, Navigation} = Router;
+var {State, Navigation, Link} = Router;
 
 var $ = require('jquery');
 var _ = require('underscore');
@@ -20,18 +20,20 @@ var WorkItem = React.createClass({
     });
 
     return (
-      <div className="project__item">
-        <fugure className="project__item__img">
-          <img src={work.featured_image.guid} />
-          <figcaption className="project__item__caption">
-            <h2 className="project__item__caption__title">{work.title}</h2>
-            <div className="project__item__caption__title__sub">
-              <p>{productionTeam}</p>
-              <p className="project__item__caption__date">{work.modified}</p>
-            </div>
-          </figcaption>
-        </fugure>
-      </div>
+      <Link to="Post" params={{post: work.slug}}>
+        <div className="project__item">
+          <fugure className="project__item__img">
+            <img src={work.featured_image.guid} />
+            <figcaption className="project__item__caption">
+              <h2 className="project__item__caption__title">{work.title}</h2>
+              <div className="project__item__caption__title__sub">
+                <p>{productionTeam}</p>
+                <p className="project__item__caption__date">{work.modified}</p>
+              </div>
+            </figcaption>
+          </fugure>
+        </div>
+      </Link>
     )
   }
 });
