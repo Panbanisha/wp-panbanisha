@@ -21,12 +21,11 @@ var routes = (
           <Route name="PeopleDetail" path=":people/" handler={PeopleDetail} />
         </Route>
 
-        <Route name="WorkList" path="works/" handler={WorkList}>
-          <Route name="WorkListMovie" path="movie/" handler={WorkCategorizedList} />
-          <Route name="WorkListPhotography" path="photograph/" handler={WorkCategorizedList} />
-          <Route name="WorkListGraphic" path="graphic/" handler={WorkCategorizedList} />
-          <Route name="WorkListProduct" path="product/" handler={WorkCategorizedList} />
-        </Route>
+        <Route name="WorkList" path="works/" handler={WorkList} />
+        <Route name="WorkListMovie" path="works/movie/" handler={WorkList} />
+        <Route name="WorkListPhotograph" path="works/photograph/" handler={WorkList} />
+        <Route name="WorkListGraphic" path="works/graphic/" handler={WorkList} />
+        <Route name="WorkListProduct" path="works/product/" handler={WorkList} />
 
         <Route name="Post" path="post/:post/" handler={Single} />
 

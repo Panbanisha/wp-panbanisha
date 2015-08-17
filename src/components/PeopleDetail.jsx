@@ -13,9 +13,9 @@ var WorkItem = React.createClass({
 
     var productionTeam = work.acf.production_team.map((team, index) => {
       if(index+1 === work.acf.production_team.length){
-        return ( <span>{` ${team.pt_name}`}</span> )
+        return ( <span key={index}>{` ${team.pt_name}`}</span> )
       } else {
-        return ( <span>{` ${team.pt_name} X`}</span> )
+        return ( <span key={index}>{` ${team.pt_name} `}<span>X</span></span> )
       }
     });
 
@@ -43,17 +43,15 @@ var LinkItem = React.createClass({
     var link = this.props;
 
     return (
-      <a href={link.link_url}>
-        <div className="links__item">
-          <figure className="links__item__img">
-            <img src={link.link_img} />
-          </figure>
-          <div className="links__item__desc">
-            <h2 className="links__item__desc__title">{link.link_title}</h2>
-            <a href={link.link_url}>{link.link_url}</a>
-          </div>
+      <div className="links__item">
+        <figure className="links__item__img">
+          <img src={link.link_img} />
+        </figure>
+        <div className="links__item__desc">
+          <h2 className="links__item__desc__title">{link.link_title}</h2>
+          <a href={link.link_url}>{link.link_url}</a>
         </div>
-      </a>
+      </div>
     )
   }
 
@@ -72,21 +70,23 @@ module.exports = React.createClass({
       var state = {member: member, work: [], link: []};
 
       var getWorks = $.getJSON('/wp-json/posts', {'filter[tag]': member,  'filter[posts_per_page]': 200}).done((result) => {
+        if(result.length) {
           result.map((entry) => {
               if (state[entry.terms.category[0].slug]) {
                   state[entry.terms.category[0].slug].push(entry);
               }
           });
+        }
       });
 
       var getLinks = $.getJSON(`/wp-json/pages/people/${member}`).done((result) => {
-        var links = result.acf.link;
-        state['link'] = links;
+        if(result.length) {
+          var links = result.acf.link;
+          state['link'] = links;
+        }
       });
 
       $.when(getWorks, getLinks).done(() => {
-        console.log('state');
-        console.log(state);
         this.setState(state);
       });
   },
@@ -105,8 +105,12 @@ module.exports = React.createClass({
 
   render() {
 
+    console.log(this.state.link);
+
     var works = this.state.work.map((work) => <WorkItem key={work.guid} {...work} />);
-    var links = this.state.link.map((link) => <LinkItem key={link.link_url} {...link} />);
+    var links = this.state.link.map((link) => <LinkItem key={link.link_title} {...link} />);
+
+    console.log(links);
 
     return (
       <div>

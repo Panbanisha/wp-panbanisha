@@ -45,3 +45,21 @@ module.exports =
       company_url: 'http://ahunrupar.com'
       prof_img: '/assets/imgages/prof-shohei-suwa.jpg'
       name_img: '/assets/images/name-shohei-suwa.png'
+
+    hajime_koizumi:
+      name: 'Hajime Koizumi'
+      birthday: '1990.05.09'
+      occupation: 'Cameraman'
+      company: 'SHIBUYA CAMER'
+      company_url: 'http://ahunrupar.com'
+      prof_img: '/assets/imgages/prof-shohei-suwa.jpg'
+      name_img: '/assets/images/name-shohei-suwa.png'
+
+    ryota_fujinaka:
+      name: 'Ryota Fujinaka'
+      birthday: '1990.05.09'
+      occupation: 'Cameraman'
+      company: 'SHIBUYA CAMER'
+      company_url: 'http://ahunrupar.com'
+      prof_img: '/assets/imgages/prof-shohei-suwa.jpg'
+      name_img: '/assets/images/name-shohei-suwa.png'
