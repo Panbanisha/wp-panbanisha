@@ -2,6 +2,19 @@
   .header,
   .footer { display: none; }
 
+  .home-bg-wrapper {
+    &:before, &:after {
+      content: '';
+      position: fixed;
+      height: 40px;
+      background-color: #000;
+      opacity: 1;
+      z-index: 100;
+      width: 100%;
+    }
+    &:before { top: 0; }
+    &:after { bottom: 0; }
+  }
   .bg-video {
     position: fixed;
     top: 0;
@@ -31,44 +44,33 @@
       min-width: 100%;
       min-height: 100%;
     }
-    &:before, &:after {
-      content: '';
-      position: fixed;
-      height: 50px;
-      background-color: #000;
-      opacity: 1;
-      z-index: 100;
-      width: 100%;
-    }
-    &:before {
-      top: 0;
-    }
-    &:after {
-      bottom: 0;
-    }
   }
 
   .home-nav {
     position: fixed;
     height: 50px;
+    width: 100%;
     line-height: 50px;
     top: 50%;
     left: 50%;
-    width: 35%;
     transform: translate(-50%, 150%);
     ul {
       @include clearfix;
+      float: left;
+      position: relative;
+      left: 50%;
+      transform: translate(-50%, 0);
       li {
         float: left;
-        width: 33.33333%;
         text-align: center;
         font-size: 25px;
         font-weight: 100;
         a {
+          margin: 0 20px;
+          padding: 0 25px;
           display: block;
-          width: auto;
           &:hover {
-            background: url('/assets/images/nav--active.png') no-repeat calc(50% + 35px) center;
+            background: url('/assets/images/nav--active.png') no-repeat right center;
           }
         }
       }
