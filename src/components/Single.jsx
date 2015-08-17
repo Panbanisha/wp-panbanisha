@@ -53,9 +53,6 @@ module.exports = React.createClass({
   render() {
 
     var post = this.state.post;
-    console.log(this.state.crew_member);
-    console.log('post');
-    console.log(post);
 
     return (
       <div className="single-post">

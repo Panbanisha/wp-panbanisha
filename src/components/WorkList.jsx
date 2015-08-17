@@ -12,8 +12,6 @@ var WorkItem = React.createClass({
 
     var work = this.props;
 
-    console.log(work);
-
     return (
       <figure className="works__item">
         <Link to="Post" params={{post: work.slug}}>

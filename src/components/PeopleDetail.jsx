@@ -105,12 +105,8 @@ module.exports = React.createClass({
 
   render() {
 
-    console.log(this.state.link);
-
     var works = this.state.work.map((work) => <WorkItem key={work.guid} {...work} />);
     var links = this.state.link.map((link) => <LinkItem key={link.link_title} {...link} />);
-
-    console.log(links);
 
     return (
       <div>
