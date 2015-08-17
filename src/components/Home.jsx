@@ -1,18 +1,54 @@
 var React = require('react');
 var Route = require('react-router');
-var {RouteHandler} = Route;
+var {RouteHandler, Link} = Route;
 var DocumentTitle = require('react-document-title');
 
+var $ = require('jquery');
+
 module.exports = React.createClass({
+
+  componentDidMount() {
+    $('.bg-video, .logo img').css({'height': $(window).outerHeight() + 'px'});
+    $(window).resize(() => {
+      $('.bg-video, .logo img').css({'height': $(window).outerHeight() + 'px'});
+    });
+  },
+
+  componentDidUpdate() {
+    $(window).resize(() => {
+      $('.bg-video, .logo img').css({'height': $(window).outerHeight() + 'px'});
+    });
+  },
 
   render() {
     var title = "Panbanisha Inc.";
 
     return (
       <DocumentTitle title={title}>
-        <figure className="logo">
-          <img src="/assets/images/logo.png" />
-        </figure>
+        <div>
+          <div className="home-bg-wrapper">
+            <div className="overlay"></div>
+            <div className="bg-video">
+              <div className="bg-video__inner">
+                <video className="bg-video__item" loop muted autoPlay>
+                  <source src="/assets/videos/panbanisha-home-video.mp4" type="video/mp4" />
+                  <source src="/assets/videos/panbanisha-home-video.webm" type="video/webm" />
+                  <source src="/assets/videos/panbanisha-home-video.ogv" type="video/ogg" />
+                </video>
+              </div>
+            </div>
+            <figure className="logo">
+              <img src="/assets/images/bg-video-cover.png" />
+            </figure>
+          </div>
+          <nav className="home-nav">
+            <ul>
+              <li><Link to="/works/">Works</Link></li>
+              <li><Link to="/works/">People</Link></li>
+              <li><Link to="/works/">Contact</Link></li>
+            </ul>
+          </nav>
+        </div>
       </DocumentTitle>
     );
   }
