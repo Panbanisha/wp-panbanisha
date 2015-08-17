@@ -1,0 +1,13 @@
+.member {
+  .member__list {
+    .member__item {
+      &.close { display: none; }
+      &.open {
+        .member__item__all { display: none; }
+      }
+      &.list {
+        .member__item__single { display: none; }
+      }
+    }
+  }
+}
