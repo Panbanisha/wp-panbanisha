@@ -44,8 +44,8 @@ module.exports = React.createClass({
           <nav className="home-nav">
             <ul>
               <li><Link to="/works/">Works</Link></li>
-              <li><Link to="/works/">People</Link></li>
-              <li><Link to="/works/">Contact</Link></li>
+              <li><Link to="/people/">People</Link></li>
+              <li><Link to="/contact/">Contact</Link></li>
             </ul>
           </nav>
         </div>
