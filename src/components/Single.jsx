@@ -100,7 +100,6 @@ module.exports = React.createClass({
               </div>
             </section>
 
-
             {this.state.crew_member.length ?
               <section className="crew">
                 <h2 className="crew__title">Production Crew</h2>
@@ -108,10 +107,16 @@ module.exports = React.createClass({
                   { this.state.crew_member.map((member, index) => <CrewMember index={index} key={member.guid} crewMember={post.acf.crew_member} member={assign(member, MEMBERS[member.slug])} />) }
                 </div>
               </section>
-            : '' }
+            : ''}
 
-            <section className="sound">
-            </section>
+            {post.acf.sound_track !== "0" ?
+              <section className="sound-track">
+                <h2 className="sound-track__title">Sound Track</h2>
+                <div className="sound-track__list">
+                  { post.acf.sound_track.map((track) => <SoundTrack key={track.name} track={track} />) }
+                </div>
+              </section>
+            : ''}
 
             {post.acf.st_list !== "0" ?
               <section className="special-thanks">
@@ -123,6 +128,33 @@ module.exports = React.createClass({
             : ''}
           </div>
         : ''}
+      </div>
+    )
+  }
+});
+
+var SoundTrack = React.createClass({
+
+  render() {
+
+    var track = this.props.track;
+
+    return (
+      <div className="sound-track__item">
+        <figure className="sound-track__item__img">
+          <img src={track.img} />
+        </figure>
+        <audio controls>
+          {track.sounds.map((sound) => {
+            return (
+              <source src={sound.source} type={`audio/${sound.type}`} />
+            )
+          })}
+        </audio>
+        <div className="sound-track__item__desc">
+          <h3 className="sound-track__item__desc__title">{track.title}</h3>
+          <p className="sound-track__item__desc__author">{track.author}</p>
+        </div>
       </div>
     )
   }
