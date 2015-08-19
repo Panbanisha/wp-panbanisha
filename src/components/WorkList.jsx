@@ -46,7 +46,9 @@ module.exports = React.createClass({
     var currentPath = this.getPathname();
     currentPath = currentPath.replace(/\/works/g, '').replace(/\//g, '').replace(/\//g, '');
 
-    var data = {'filter[category_name]': 'work', 'filter[tag]': currentPath, 'filter[posts_per_page]': 20};
+    var data = {'filter[category_name]': 'work', 'filter[posts_per_page]': 10};
+    currentPath !== '' ? data['filter[tag]'] = currentPath : '';
+
     $.getJSON('/wp-json/posts', data).done((result) => {
       this.setState({works: result});
     });
