@@ -19,6 +19,23 @@ module.exports = React.createClass({
     }
   },
 
+  responsiveIframe() {
+    $allIframes = $('iframe');
+    $allIframes.length ? $allIframes.removeAttr('width').removeAttr('height') : '';
+    $allIframes.parent('p').addClass('iframe');
+  },
+
+  trimDate(date) {
+    date = date.split('T');
+    trimedDate = date[0].replace(/-/g, '.');
+    return trimedDate;
+  },
+
+  createCrewMemberBlock() {
+    $('.crew__item:nth-child(4n-2), .crew__item:nth-child(4n-3)').addClass('odd');
+    $('.crew__item:nth-child(4n), .crew__item:nth-child(4n-1)').addClass('even');
+  },
+
   getInitData() {
     var data = {
       'filter[name]': this.getParams().post,
@@ -52,10 +69,17 @@ module.exports = React.createClass({
 
   componentDidMount() {
     this.getInitData();
+    this.responsiveIframe();
+    this.createCrewMemberBlock();
   },
 
   componentWillReceiveProps() {
     this.getInitData();
+  },
+
+  componentDidUpdate() {
+    this.responsiveIframe();
+    this.createCrewMemberBlock();
   },
 
   render() {
@@ -71,24 +95,32 @@ module.exports = React.createClass({
               <div className="product__main" dangerouslySetInnerHTML={{__html: post.content}}></div>
               <div className="product__desc">
                 <h1 className="product__desc__title">{post.title}</h1>
-                <time className="product__desc__date">{post.modified}</time>
+                <time className="product__desc__date">{this.trimDate(post.modified)}</time>
                 <div className="product__desc__caption" dangerouslySetInnerHTML={{__html: post.acf.caption}}></div>
               </div>
             </section>
 
-            <section className="crew">
-              {this.state.crew_member.length ? <h2 className="crew__title">Production Crew</h2> : '' }
-              {this.state.crew_member.length ? this.state.crew_member.map((member) => <CrewMember key={member.guid} crewMember={post.acf.crew_member} member={assign(member, MEMBERS[member.slug])} />) : '' }
-            </section>
+
+            {this.state.crew_member.length ?
+              <section className="crew">
+                <h2 className="crew__title">Production Crew</h2>
+                <div className="crew__list">
+                  { this.state.crew_member.map((member, index) => <CrewMember index={index} key={member.guid} crewMember={post.acf.crew_member} member={assign(member, MEMBERS[member.slug])} />) }
+                </div>
+              </section>
+            : '' }
 
             <section className="sound">
             </section>
 
-            <section className="special-thanks">
-              {post.acf.st_list !== "0" ? <h2 className="special-thanks__title">Special Thanks</h2> : ''}
-              {post.acf.st_list !== "0" ? post.acf.st_list.map((item) => <SpecialThanks key={item.st_url} stItem={item} />) : '' }
-            </section>
-
+            {post.acf.st_list !== "0" ?
+              <section className="special-thanks">
+                <h2 className="special-thanks__title">Special Thanks</h2>
+                <div className="special-thanks__list">
+                  { post.acf.st_list.map((item) => <SpecialThanks key={item.st_url} stItem={item} />) }
+                </div>
+              </section>
+            : ''}
           </div>
         : ''}
       </div>
@@ -103,12 +135,14 @@ var SpecialThanks = React.createClass({
     var stItem = this.props.stItem;
 
     return (
-      <div className="special-thanks__block" key={this.props.key}>
-        <figure className="special-thanks__img">
-          <img src={stItem.st_top_image} />
-        </figure>
-        <div className="special-thanks__desc">
-          <h2 className="special-thanks__title">{stItem.st_name}</h2>
+      <div className="special-thanks__item" key={this.props.key}>
+        <a href={stItem.st_url}>
+          <figure className="special-thanks__item__img">
+            <img src={stItem.st_top_image} />
+          </figure>
+        </a>
+        <div className="special-thanks__item__desc">
+          <h2 className="special-thanks__item__title">{stItem.st_name}</h2>
           <a href={stItem.st_url}>{stItem.st_url}</a>
         </div>
       </div>
@@ -118,34 +152,35 @@ var SpecialThanks = React.createClass({
 
 var CrewMember = React.createClass({
 
+  isOdd(num) {
+    return num % 2 !== 0;
+  },
+
   render() {
 
     var member = this.props.member;
     var crewMember = this.props.crewMember;
+    var index = this.props.index + 1;
 
     return (
-      <div className="crew__list" key={this.props.key}>
-        <Link to="PeopleDetail" params={{people: member.slug}}>
-          <div className="crew__item">
-            <div className="crew__item__inner">
-              <figure className="crew_item__img">
-                <img src={member.prof_img} />
-              </figure>
-              <div className="crew__item__desc">
-                {
-                  this.props.crewMember.length ?
-                    this.props.crewMember.map((crewMember) => {
-                      return crewMember.name == member.slug ? <p key={crewMember.name} className="crew__item__desc__role">{crewMember.role}</p> : '';
-                    })
-                  : ''
-                }
-                <h2 className="crew__item__desc__name">{member.name}</h2>
-                <p className="crew__item__desc__occupation">{member.occupation}</p>
-                <p className="crew__item__desc__company">{member.company}</p>
-              </div>
-            </div>
+      <div className="crew__item">
+        <div className="crew__item__inner">
+          <figure className="crew__item__img">
+            <img src={member.prof_img} />
+          </figure>
+          <div className="crew__item__desc">
+            {
+              this.props.crewMember.length ?
+                this.props.crewMember.map((crewMember) => {
+                  return crewMember.name == member.slug ? <p key={crewMember.name} className="crew__item__desc__role">{crewMember.role}</p> : '';
+                })
+              : ''
+            }
+            <h2 className="crew__item__desc__name"><Link to="PeopleDetail" params={{people: member.slug}}>{member.name}</Link></h2>
+            <p className="crew__item__desc__occupation">{member.occupation}</p>
+            <p className="crew__item__desc__company">{member.company}</p>
           </div>
-        </Link>
+        </div>
       </div>
     )
   }
