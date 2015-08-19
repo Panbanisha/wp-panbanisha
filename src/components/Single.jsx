@@ -140,7 +140,7 @@ var SoundTrack = React.createClass({
     var track = this.props.track;
 
     return (
-      <div className="sound-track__item">
+      <div className="sound-track__item" key={this.props.key}>
         <figure className="sound-track__item__img">
           <img src={track.img} />
         </figure>
