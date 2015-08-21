@@ -6,6 +6,12 @@ var $ = require('jquery');
 var _ = require('underscore');
 
 var WorkItem = React.createClass({
+
+  trimDate(date) {
+    date = date.split('T');
+    return date[0].replace(/-/g, '.');
+  },
+
   render() {
 
     var work = this.props;
@@ -20,20 +26,22 @@ var WorkItem = React.createClass({
     });
 
     return (
-      <Link to="Post" params={{post: work.slug}}>
-        <div className="project__item">
+      <div className="project__item">
+        <Link to="Post" params={{post: work.slug}}>
           <fugure className="project__item__img">
             <img src={work.featured_image.guid} />
             <figcaption className="project__item__caption">
-              <h2 className="project__item__caption__title">{work.title}</h2>
-              <div className="project__item__caption__title__sub">
-                <p>{productionTeam}</p>
-                <p className="project__item__caption__date">{work.modified}</p>
+              <div className="project__item__caption__inner">
+                <h2 className="project__item__caption__title">{work.title}</h2>
+                <div className="project__item__caption__title__sub">
+                  <p>{productionTeam}</p>
+                  <p className="project__item__caption__date">{this.trimDate(work.modified)}</p>
+                </div>
               </div>
             </figcaption>
           </fugure>
-        </div>
-      </Link>
+        </Link>
+      </div>
     )
   }
 });
@@ -46,12 +54,14 @@ var LinkItem = React.createClass({
 
     return (
       <div className="links__item">
-        <figure className="links__item__img">
-          <img src={link.link_img} />
-        </figure>
-        <div className="links__item__desc">
-          <h2 className="links__item__desc__title">{link.link_title}</h2>
-          <a href={link.link_url}>{link.link_url}</a>
+        <div className="links__item__inner">
+          <figure className="links__item__img">
+            <a href={link.link_url} target="_blank"><img src={link.link_img} /></a>
+          </figure>
+          <div className="links__item__desc">
+            <h2 className="links__item__desc__title">{link.link_title}</h2>
+            <a href={link.link_url} target="_blank">{link.link_url}</a>
+          </div>
         </div>
       </div>
     )

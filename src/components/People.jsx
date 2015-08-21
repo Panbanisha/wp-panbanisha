@@ -1,4 +1,5 @@
-var React = require('react');
+var React = require('react/addons');
+var cx = React.addons.classSet;
 var Router = require('react-router');
 var {RouteHandler, State, Navigation} = Router;
 
@@ -17,7 +18,7 @@ TopText = React.createClass({
         <div className="contanier">
           <div className="top-text__inner">
             <h1 className="top-text__title">タイトル</h1>
-            <p>
+            <p className="top-text__desc">
               Panabanishaはいろんな専門性をもった奴らが<br />
               何か素敵なことをするために集まるステーションです。<br />
               出会って、なんかして、また帰っていく。<br />
@@ -38,30 +39,54 @@ Member = React.createClass({
     this.transitionTo(`/people/${this.props.member.slug}/`);
   },
 
+  rotateDesc(e) {
+    var $elements = $('.member__item__block__img', this.getDOMNode());
+    $elements.hover(
+      (e) => { $(e.target).parents('.member__item').addClass('hover'); },
+      (e) => { $(e.target).parents('.member__item').removeClass('hover'); }
+    );
+  },
+
   componentDidMount() {
+    this.rotateDesc();
   },
 
   componentWillReceiveProps() {
   },
 
+  componentDidUpdate() {
+    this.rotateDesc();
+  },
+
   render() {
     var member = this.props.member;
+    var index = this.props.index;
+    var mode = member.mode;
+
+    var classes = {
+      'member__item': true,
+      'even': index % 2 === 0,
+      'odd': index % 2 !== 0
+    }
+    classes[mode] = true;
 
     return (
-        <article key={member.name} className={'member__item ' + member.mode} onClick={member.mode == 'list' ? this._onClick : null}>
+        <article key={member.name} className={cx(classes)}>
           <div className="member__item__inner">
             <div className="member__item__all">
-              <div className="member__item__block">
-                <h2 className="member__item__title">{member.name}</h2>
-                <p className="member__item__birthday">{member.birthday}</p>
-                <p className="member__item__occupation">{member.occupation}</p>
-                <p className="member__item__company"><a href={member.company_url}>{member.company}</a></p>
-              </div>
-              <div className="member__item__block">
-                <figure className="member__item__img">
+              <div className="member__item__block member__item__block--img">
+                <figure className="member__item__block__img" onClick={member.mode == 'list' ? this._onClick : null}>
                   <img src={member.prof_img} />
                 </figure>
               </div>
+              <div className="member__item__block member__item__block--desc">
+                <h2 className="member__item__block__title" onClick={member.mode == 'list' ? this._onClick : null}>{member.name}</h2>
+                <p className="member__item__blcok__birthday">{member.birthday}</p>
+                <p className="member__item__block__occupation">{member.occupation}</p>
+                <p className="member__item__block__company"><a href={member.company_url}>{member.company}</a></p>
+              </div>
+            </div>
+
             </div>
             <div className="member__item__single">
               <div className="member__item__single__prof">
@@ -70,12 +95,11 @@ Member = React.createClass({
                 </figure>
                 <div className="member__item__single__name">
                   <h1 className="member__item__single__name__main"><img src={member.name_img} /></h1>
-                  <p className="memner__item__single__name__sub">{member.name}</p>
+                  <p className="member__item__single__name__sub">{member.name}</p>
                 </div>
               </div>
               <div className="member__item__single__desc" dangerouslySetInnerHTML={{__html: member.acf.prof_desc}}></div>
             </div>
-          </div>
         </article>
     )
   }
@@ -127,7 +151,7 @@ module.exports = React.createClass({
               <div className="member__inner">
                 <did className="member__list">
                   {this.getParams().people === undefined ? <TopText /> : ''}
-                  {this.state.members.map(member => <Member key={member.guid} member={assign(member, MEMBERS[member.slug])} />)}
+                  {this.state.members.map((member, index) => <Member key={member.guid} member={assign(member, MEMBERS[member.slug])} index={index + 1} />)}
                   <RouteHandler member={params} />
                 </did>
               </div>

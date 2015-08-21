@@ -141,16 +141,18 @@ var SoundTrack = React.createClass({
 
     return (
       <div className="sound-track__item" key={this.props.key}>
-        <figure className="sound-track__item__img">
-          <img src={track.img} />
-        </figure>
-        <audio controls>
-          {track.sounds.map((sound) => {
-            return (
-              <source src={sound.source} type={`audio/${sound.type}`} />
-            )
-          })}
-        </audio>
+        <div className="sound-track__item__sound">
+          <figure className="sound-track__item__sound__img">
+            <img src={track.img} />
+          </figure>
+          <audio controls className="sound-track__item__sound__track">
+            {track.sounds.map((sound) => {
+              return (
+                <source key={sound.source} src={sound.source} type={`audio/${sound.type}`} />
+              )
+            })}
+          </audio>
+        </div>
         <div className="sound-track__item__desc">
           <h3 className="sound-track__item__desc__title">{track.title}</h3>
           <p className="sound-track__item__desc__author">{track.author}</p>
@@ -175,7 +177,7 @@ var SpecialThanks = React.createClass({
         </a>
         <div className="special-thanks__item__desc">
           <h2 className="special-thanks__item__title">{stItem.st_name}</h2>
-          <a href={stItem.st_url}>{stItem.st_url}</a>
+          <a href={stItem.st_url} target="_blank">{stItem.st_url}</a>
         </div>
       </div>
     )
@@ -195,7 +197,7 @@ var CrewMember = React.createClass({
     var index = this.props.index + 1;
 
     return (
-      <div className="crew__item">
+      <div className="crew__item" key={this.props.key}>
         <div className="crew__item__inner">
           <figure className="crew__item__img">
             <img src={member.prof_img} />
