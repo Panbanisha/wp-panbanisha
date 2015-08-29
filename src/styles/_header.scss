@@ -42,6 +42,9 @@
         a {
           padding: 0 25px;
           display: block;
+          @include below-tablet {
+            font-size: .8em;
+          }
           &.active {
             background-image: url(/assets/images/nav--active.png);
             background-position: right center;
