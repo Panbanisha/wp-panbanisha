@@ -56,8 +56,7 @@ module.exports = React.createClass({
 
   adjustWidthAndHeight() {
     $('.works__item').each((index, item) => {
-
-      var GridHeight = 350;
+      var GridHeight = 300;
       var $GridItem = $(item);
       var $GridItemImg = $GridItem.find('img');
 
