@@ -14,9 +14,9 @@ var WorkItem = React.createClass({
     var work = this.props;
 
     return (
-      <figure className="works__item" key={this.props.key}>
+      <figure className="works__item" key={this.props.key} ref="workItem">
         <Link to="Post" params={{post: work.slug}}>
-          <img src={work.featured_image.guid} />
+          <img ref="work" src={work.featured_image.guid} width={work.featured_image.attachment_meta.width} height={work.featured_image.attachment_meta.height} />
           <figcaption className="works__item__caption">
             <div className="works__item__caption__inner">
               <h2 className="works__item__caption__title">{work.title}</h2>
@@ -49,19 +49,49 @@ module.exports = React.createClass({
     var data = {'filter[category_name]': 'work', 'filter[posts_per_page]': 10};
     currentPath !== '' ? data['filter[tag]'] = currentPath : '';
 
-    $.getJSON('/wp-json/posts', data).done((result) => {
+    return $.getJSON('/wp-json/posts', data).done((result) => {
       this.setState({works: result});
     });
   },
 
+  adjustWidthAndHeight() {
+    $('.works__item').each((index, item) => {
+
+      var GridHeight = 350;
+      var $GridItem = $(item);
+      var $GridItemImg = $GridItem.find('img');
+
+      var w = $GridItemImg.width();
+      var h = $GridItemImg.height();
+
+      if(w > h) {
+        var ratio = w / h;
+        var newWidth = GridHeight * ratio;
+        $GridItem.css({width: `${newWidth}px`, height: `${GridHeight}px`});
+        $GridItemImg.attr('width', `${newWidth}px`).attr('height', `${GridHeight}px`);
+      } else {
+        var ratio = h / w;
+        var newWidth = GridHeight / ratio;
+        $GridItem.css({width: `${newWidth}px`, height: `${GridHeight}px`});
+        $GridItemImg.attr('width', `${newWidth}px`).attr('height', `${GridHeight}px`);
+      }
+    });
+  },
+
   rowGridInit() {
-    var options = {minMargin: 5, maxMargin: 15, itemSelector: ".works__item", firstItemClass: "works__item--first-item", resize: "true", };
-    $('.works__list').rowGrid(options);
+    var options = {minMargin: 10, maxMargin: 15, itemSelector: ".works__item", firstItemClass: "works__item--first-item", resize: "true", };
+    $(React.findDOMNode(this.refs.worksList)).rowGrid(options);
+  },
+
+  initPost() {
+    $.when(this.getWorks()).done(() => {
+      this.adjustWidthAndHeight();
+      this.rowGridInit();
+    });
   },
 
   componentDidMount() {
-    this.getWorks();
-    this.rowGridInit();
+    this.initPost();
   },
 
   componentWillReceiveProps() {
@@ -69,6 +99,7 @@ module.exports = React.createClass({
   },
 
   componentDidUpdate() {
+    this.adjustWidthAndHeight();
     this.rowGridInit();
   },
 
@@ -87,7 +118,7 @@ module.exports = React.createClass({
             <li className="works__filter__item"><Link to="WorkListProduct">Product</Link></li>
           </ul>
         </nav>
-        <section className="works__list">{works}</section>
+        <section className="works__list" ref="worksList">{works}</section>
       </div>
     )
   }
