@@ -8,6 +8,8 @@ var $ = require('jquery');
 module.exports = React.createClass({
 
   componentDidMount() {
+    this.videoLoaded();
+
     $('.bg-video, .logo img').css({'height': $(window).outerHeight() + 'px'});
     $(window).resize(() => {
       $('.bg-video, .logo img').css({'height': $(window).outerHeight() + 'px'});
@@ -17,6 +19,13 @@ module.exports = React.createClass({
   componentDidUpdate() {
     $(window).resize(() => {
       $('.bg-video, .logo img').css({'height': $(window).outerHeight() + 'px'});
+    });
+  },
+
+  videoLoaded() {
+    $('body').css('display', 'none');
+    $('.bg-video .bg-video__item').on('canplay', (e) => {
+      $(e.target).parents('body').fadeIn(500);
     });
   },
 
