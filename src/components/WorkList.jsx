@@ -78,7 +78,7 @@ module.exports = React.createClass({
   },
 
   rowGridInit() {
-    var options = {minMargin: 10, maxMargin: 15, itemSelector: ".works__item", firstItemClass: "works__item--first-item", resize: "true", };
+    var options = {minMargin: 15, maxMargin: 15, itemSelector: ".works__item", firstItemClass: "works__item--first-item", resize: true, };
     $(React.findDOMNode(this.refs.worksList)).rowGrid(options);
   },
 
