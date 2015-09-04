@@ -4,6 +4,7 @@ var {State, Link} = Route;
 
 var $ = require('jquery');
 require('row-grid/row-grid.min.js');
+var imagesLoaded = require('imagesloaded');
 
 var WorkItem = React.createClass({
 
@@ -56,26 +57,35 @@ module.exports = React.createClass({
 
   adjustWidthAndHeight() {
     $('.works__item').each((index, item) => {
-      var GridHeight = 300;
-      var $GridItem = $(item);
-      var $GridItemImg = $GridItem.find('img');
 
-      var w = $GridItemImg.width();
-      var h = $GridItemImg.height();
+      // hide item
+      $(item).removeClass('loaded');
 
-      if(w > h) {
-        var ratio = w / h;
-        var newWidth = GridHeight * ratio;
-        console.log(newWidth);
-        $GridItem.css({width: `${newWidth}px`, height: `${GridHeight}px`});
-        $GridItemImg.attr('width', `${newWidth}px`).attr('height', `${GridHeight}px`);
-      } else {
-        var ratio = h / w;
-        var newWidth = GridHeight / ratio;
-        console.log(newWidth);
-        $GridItem.css({width: `${newWidth}px`, height: `${GridHeight}px`});
-        $GridItemImg.attr('width', `${newWidth}px`).attr('height', `${GridHeight}px`);
-      }
+      // when images all loaded
+      imagesLoaded('.works__list', () => {
+        var GridHeight = 300;
+        var $GridItem = $(item);
+        var $GridItemImg = $GridItem.find('img');
+
+        var w = $GridItemImg.width();
+        var h = $GridItemImg.height();
+
+        if(w > h) {
+          var ratio = w / h;
+          var newWidth = GridHeight * ratio;
+          $GridItem.css({width: `${newWidth}px`, height: `${GridHeight}px`});
+          $GridItemImg.attr('width', `${newWidth}px`).attr('height', `${GridHeight}px`);
+        } else {
+          var ratio = h / w;
+          var newWidth = GridHeight / ratio;
+          $GridItem.css({width: `${newWidth}px`, height: `${GridHeight}px`});
+          $GridItemImg.attr('width', `${newWidth}px`).attr('height', `${GridHeight}px`);
+        }
+        this.rowGridInit();
+
+        // show item
+        $(item).addClass('loaded');
+      });
     });
   },
 
@@ -87,7 +97,6 @@ module.exports = React.createClass({
   initPost() {
     $.when(this.getWorks()).done(() => {
       this.adjustWidthAndHeight();
-      this.rowGridInit();
     });
   },
 
@@ -100,7 +109,7 @@ module.exports = React.createClass({
   },
 
   componentDidUpdate() {
-    this.rowGridInit();
+    this.adjustWidthAndHeight();
   },
 
   render() {
