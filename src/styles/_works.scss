@@ -61,7 +61,7 @@
       overflow: hidden;
       opacity: 0;
       // box-shadow: 2px 3px 3px 0px #888;
-      transition: all .15s linear;
+      transition: opacity .3s linear;
       border-radius: 2px;
       &.loaded { opacity: 1; }
       img {
