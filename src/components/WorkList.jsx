@@ -66,11 +66,13 @@ module.exports = React.createClass({
       if(w > h) {
         var ratio = w / h;
         var newWidth = GridHeight * ratio;
+        console.log(newWidth);
         $GridItem.css({width: `${newWidth}px`, height: `${GridHeight}px`});
         $GridItemImg.attr('width', `${newWidth}px`).attr('height', `${GridHeight}px`);
       } else {
         var ratio = h / w;
         var newWidth = GridHeight / ratio;
+        console.log(newWidth);
         $GridItem.css({width: `${newWidth}px`, height: `${GridHeight}px`});
         $GridItemImg.attr('width', `${newWidth}px`).attr('height', `${GridHeight}px`);
       }
@@ -98,7 +100,6 @@ module.exports = React.createClass({
   },
 
   componentDidUpdate() {
-    this.adjustWidthAndHeight();
     this.rowGridInit();
   },
 
