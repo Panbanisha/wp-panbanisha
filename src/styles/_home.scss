@@ -75,10 +75,14 @@ body {
         font-weight: 100;
         a {
           margin: 0 20px;
+          background: url(/assets/images/nav--active.png) right center no-repeat;
+          background-size: 66px 0px;
           padding: 0 25px;
           display: block;
+          transition: all .15s linear;
           &:hover {
             background: url('/assets/images/nav--active.png') no-repeat right center;
+            background-size: 66px 27px;
           }
         }
       }
