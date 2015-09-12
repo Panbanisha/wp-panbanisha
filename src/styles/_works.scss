@@ -98,14 +98,15 @@
           position: relative;
           top: 50%;
           left: -20px;
+          height: 100%;
           padding: 20px;
           transform: translate(0, -50%);
           opacity: 0;
           transition: .2s all linear;
         }
         .works__item__caption__title {
-          margin-bottom: 40px;
-          font-size: 32px;
+          margin-bottom: 15px;
+          font-size: 28px;
         }
         .works__item__caption__member {
           p {
