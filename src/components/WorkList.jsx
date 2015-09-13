@@ -1,6 +1,6 @@
 var React = require('react');
 var Route = require('react-router');
-var {State, Link} = Route;
+var {State, Link, Navigation} = Route;
 
 var $ = require('jquery');
 require('row-grid/row-grid.min.js');
@@ -37,29 +37,72 @@ var WorkItem = React.createClass({
 
 module.exports = React.createClass({
 
-  mixins: [State],
+  mixins: [State, Navigation],
 
   getInitialState() {
-    return {works: []}
+    return {
+      works: []
+    }
   },
 
   getWorks() {
-    var currentPath = this.getPathname();
+    currentPath = this.getPathname();
+
     currentPath = currentPath.replace(/\/works/g, '').replace(/\//g, '').replace(/\//g, '');
 
-    var data = {'filter[category_name]': 'work', 'filter[posts_per_page]': 10};
+    var CATEGORY_NAME = 'work';
+    var POSTS_PER_PAGE = 10;
+
+    var data = {
+        'filter[category_name]': CATEGORY_NAME,
+        'filter[posts_per_page]': POSTS_PER_PAGE,
+        page: this._currentPage
+    };
+
     currentPath !== '' ? data['filter[tag]'] = currentPath : '';
 
     return $.getJSON('/wp-json/posts', data).done((result) => {
+      this._loading = !result.length;
       this.setState({works: result});
+      this.adjustWidthAndHeight(result.length);
     });
   },
 
-  adjustWidthAndHeight() {
-    $('.works__item').each((index, item) => {
+  getMoreWorks() {
+    currentPath = this.getPathname();
 
+    currentPath = currentPath.replace(/\/works/g, '').replace(/\//g, '').replace(/\//g, '');
+
+    var CATEGORY_NAME = 'work';
+    var POSTS_PER_PAGE = 10;
+
+    var data = {
+        'filter[category_name]': CATEGORY_NAME,
+        'filter[posts_per_page]': POSTS_PER_PAGE,
+        page: this._currentPage
+    };
+
+    currentPath !== '' ? data['filter[tag]'] = currentPath : '';
+
+    return $.getJSON('/wp-json/posts', data).done((result) => {
+      this._loading = !result.length;
+      this.setState({works: this.state.works.concat(result)});
+      this.adjustWidthAndHeight(result.length);
+    });
+  },
+
+  // addClassToNewItem(numOfNewItems) {
+  //   $(`.works__item`).slice(0, numOfNewItems).addClass('new');
+  // },
+
+  adjustWidthAndHeight(numOfNewItems) {
+    // this.addClassToNewItem(numOfNewItems);
+
+    $('.works__item').each((index, item) => {
       // hide item
-      $(item).removeClass('loaded');
+      // if(!$(item).hasClass('new')) {
+      //   $(item).removeClass('loaded');
+      // }
 
       // when images all loaded
       imagesLoaded('.works__list', () => {
@@ -94,22 +137,60 @@ module.exports = React.createClass({
     $(React.findDOMNode(this.refs.worksList)).rowGrid(options);
   },
 
-  initPost() {
-    $.when(this.getWorks()).done(() => {
-      this.adjustWidthAndHeight();
-    });
+  _onScroll() {
+    if (!this._loading && this.state.works.length > 0) {
+      var win = $(window).height();
+      var scrollTop = $(window).scrollTop();
+      var bottom = win - $(window).scrollTop();
+      if (bottom < 300) {
+        this._loading = true;
+        this._currentPage++;
+        this.getMoreWorks();
+      }
+    }
+  },
+
+  resetWorks() {
+    this._loading = false;
+    this._currentPage = 1;
+    this._currentPath = this.getPathname();
+    this.setState({works: []});
+    this.getWorks();
   },
 
   componentDidMount() {
-    this.initPost();
+    this._loading = false;
+    this._currentPage = 1;
+    this.setState({works: []});
+    this.getWorks().then(() => {
+      $(window).on('scroll', this._onScroll);
+      this._onScroll();
+    });
+
+    // reset state when a button gets clicked
+    $('.works__filter__item > a').on('click', this.onNavClick);
+  },
+
+  onNavClick(e) {
+    var targetRoute = $(e.target).attr("href");
+    this.resetWorks();
+    this.transitionTo(targetRoute);
+  },
+
+  componentWillUnmount() {
+    $(window).off('scroll', this._onScroll);
   },
 
   componentWillReceiveProps() {
+    this._loading = false;
+    this._currentPage = 1;
+    this.setState({works: []});
     this.getWorks();
   },
 
   componentDidUpdate() {
-    this.adjustWidthAndHeight();
+    if(this.getPathname() === this._currentPath)
+    this._onScroll();
   },
 
   render() {
