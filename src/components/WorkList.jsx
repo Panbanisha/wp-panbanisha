@@ -189,7 +189,6 @@ module.exports = React.createClass({
   },
 
   componentDidUpdate() {
-    if(this.getPathname() === this._currentPath)
     this._onScroll();
   },
 
