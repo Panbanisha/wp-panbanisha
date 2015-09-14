@@ -162,8 +162,8 @@
               float: none;
             }
             img {
-              width: 400px;
-              height: 400px;
+              width: 350px;
+              height: 350px;
               border-radius: 50%;
               display: block;
               @include below-tablet {
@@ -247,13 +247,19 @@
   }
   .project__list {
     @include clearfix;
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
+    margin: 0 auto;
+    @include below-tablet {
+      width: 90%;
+    }
   }
   .project__item {
-    float: left;
-    width: 22%;
-    margin: 0 2%;
+    display: inline-block;
+    width: 24%;
+    margin: 0 .5%;
+    margin-bottom: 1%;
+    @include laptop { height: 180px; }
     @include below-tablet {
       width: 32%;
       margin: 0;
@@ -267,11 +273,9 @@
       margin-bottom: 20px;
     }
     &:first-child {
-      margin-left: 0;
       @include phone { margin-left: 2.5%; }
     }
     &:last-child {
-      margin-right: 0;
       margin-bottom: 0;
       @include phone { margin-right: 2.5%; }
     }
@@ -279,6 +283,7 @@
       position: relative;
       display: block;
       overflow: hidden;
+      @include laptop { height: 180px; }
       &:hover {
         img {
           filter: grayscale(0);
@@ -297,6 +302,10 @@
         filter: grayscale(100%);
         transform: scale(1);
         transition: all .15s linear;
+        @include laptop {
+          height: 100%;
+          width: 100%;
+        }
         @include below-tablet {
           height: 160px;
           width: 100%;
@@ -390,7 +399,7 @@
           @include phone { margin-top: 15px; }
           .links__item__desc__title {
             font-size: 1.2em;
-            font-weight: $NotoLight;
+            font-weight: 100;
           }
         }
         .links__item__img {
