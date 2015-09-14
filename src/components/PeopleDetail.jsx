@@ -17,13 +17,15 @@ var WorkItem = React.createClass({
     var work = this.props;
     var productionTeam = '';
 
-    var productionTeam = work.acf.production_team.map((team, index) => {
-      if(index+1 === work.acf.production_team.length){
-        return ( <span key={index}>{` ${team.pt_name}`}</span> )
-      } else {
-        return ( <span key={index}>{` ${team.pt_name} `}<span>X</span></span> )
-      }
-    });
+    // if(work.acf.production_team !== '0') {
+    //   var productionTeam = work.acf.production_team.map((team, index) => {
+    //     if(index+1 === work.acf.production_team.length){
+    //       return ( <span key={index}>{` ${team.pt_name}`}</span> )
+    //     } else {
+    //       return ( <span key={index}>{` ${team.pt_name} `}<span>X</span></span> )
+    //     }
+    //   });
+    // }
 
     return (
       <div className="project__item">
@@ -34,7 +36,6 @@ var WorkItem = React.createClass({
               <div className="project__item__caption__inner">
                 <h2 className="project__item__caption__title">{work.title}</h2>
                 <div className="project__item__caption__title__sub">
-                  <p>{productionTeam}</p>
                   <p className="project__item__caption__date">{this.trimDate(work.modified)}</p>
                 </div>
               </div>

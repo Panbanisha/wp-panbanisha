@@ -12,7 +12,7 @@ var WorkItem = React.createClass({
 
   trimDate(date) {
     date = date.split('T');
-    var trimDate = date[0].replace(/-/g, '/');
+    var trimDate = date[0].replace(/-/g, '.');
     return trimDate;
   },
 
