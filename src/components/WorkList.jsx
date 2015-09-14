@@ -60,6 +60,7 @@ module.exports = React.createClass({
     };
 
     currentPath !== '' ? data['filter[tag]'] = currentPath : '';
+    console.log('currentPath: ' + currentPath);
 
     return $.getJSON('/wp-json/posts', data).done((result) => {
       console.log(result);
@@ -173,9 +174,10 @@ module.exports = React.createClass({
   },
 
   onNavClick(e) {
+    e.preventDefault();
     var targetRoute = $(e.target).attr("href");
-    this.resetWorks();
-    // this.transitionTo(targetRoute);
+    this.transitionTo(targetRoute);
+    // this.resetWorks();
   },
 
   componentWillUnmount() {
@@ -183,13 +185,11 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps() {
-    this._loading = false;
-    this._currentPage = 1;
-    this.setState({works: []});
-    this.getWorks();
+    this.resetWorks();
   },
 
   componentDidUpdate() {
+
     this._onScroll();
   },
 
@@ -201,11 +201,11 @@ module.exports = React.createClass({
       <div className="works">
         <nav className="works__filter">
           <ul className="works__filter__list">
-            <li className="works__filter__item"><Link to="WorkList">All</Link></li>
-            <li className="works__filter__item"><Link to="WorkListMovie">Movie</Link></li>
-            <li className="works__filter__item"><Link to="WorkListPhotograph">Photograph</Link></li>
-            <li className="works__filter__item"><Link to="WorkListGraphic">Graphic</Link></li>
-            <li className="works__filter__item"><Link to="WorkListProduct">Product</Link></li>
+            <li className="works__filter__item"><a href="/works/">All</a></li>
+            <li className="works__filter__item"><a href="/works/movie/">Movie</a></li>
+            <li className="works__filter__item"><a href="/works/photograph/">Photograph</a></li>
+            <li className="works__filter__item"><a href="/works/graphic/">Graphic</a></li>
+            <li className="works__filter__item"><a href="/works/product/">Product</a></li>
           </ul>
         </nav>
         <section className="works__list" ref="worksList">{works}</section>
