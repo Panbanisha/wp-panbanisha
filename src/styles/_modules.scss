@@ -32,11 +32,17 @@
   font-size: 40px;
   margin-bottom: 130px;
   font-weight: $NotoDemiLight;
+  @include phone {
+    font-size: 1.8em;
+  }
   &:after {
     content: '';
     display: block;
     height: 0px;
     width: 70%;
     border-bottom: 1px solid #fff;
+    @include phone {
+      width: 92%;
+    }
   }
 }

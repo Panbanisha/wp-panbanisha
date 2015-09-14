@@ -7,11 +7,19 @@
     @content;
   }
 }
+
+@mixin tablet-vertical {
+  @media only screen and (max-width: $tablet-vertical-screen-width) {
+    @content;
+  }
+}
+
 @mixin tablet {
   @media only screen and (min-width: $phone-screen-width + 0.063em) and (max-width: $tablet-screen-width) {
     @content;
   }
 }
+
 @mixin below-tablet {
   @media only screen and (max-width: $tablet-screen-width) {
     @content;
@@ -31,6 +39,7 @@
 }
 
 $tablet-screen-width: 64em;
+$tablet-vertical-screen-width: 48em;
 $phone-screen-width: 30em;
 
 

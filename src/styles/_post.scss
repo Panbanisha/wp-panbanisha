@@ -1,10 +1,20 @@
 .single-post {
   .product {
-    width: 70%;
     margin: 0 auto;
+    @include laptop {
+      width: 960px;
+      padding: 0 3em;
+    }
+    @include below-tablet {
+      width: 80%;
+      padding: 0 1em;
+    }
+    @include tablet-vertical { width: 90%; }
+    @include phone { width: 95%; padding: 0; }
     .product__main {
       margin-top: 90px;
       margin-bottom: 100px;
+      @include phone { margin-bottom: 50px; }
       p {
         width: 100%;
         img {
@@ -31,17 +41,29 @@
       text-align: center;
       .product__desc__title {
         font-size: 40px;
-        font-weight: $NotoDemiLight;
+        font-weight: $NotoLight;
+        @include phone {
+          font-size: 2em;
+        }
       }
       .product__desc__date {
         font-size: 24px;
         font-weight: $NotoLight;
+        @include phone {
+          font-size: .7em;
+          font-weight: 100;
+        }
       }
       .product__desc__caption {
         width: 70%;
         margin: 0 auto;
         margin-top: 80px;
         margin-bottom: 200px;
+        @include phone {
+          width: 90%;
+          margin-top: 50px;
+          margin-bottom: 100px;
+        }
         p {
           text-align: left;
           font-weight: $NotoLight;
@@ -57,27 +79,97 @@
       @include clearfix;
       width: 80%;
       margin: 0 auto;
+      @include below-tablet { width: 95%; }
+      @include tablet-vertical { width: 80%; }
       .crew__item {
         float: left;
         width: 35%;
         margin-bottom: 130px;
-        &.odd { margin-right: 15%; }
-        &.even { margin-left: 15%; }
+        transition: all .15s linear;
+        @include below-tablet { width: 40%; }
+        @include tablet-vertical {
+          width: 100%;
+          margin-bottom: 70px;
+        }
+        @include phone {
+          width: 100%;
+          text-align: center;
+        }
+        &.odd {
+          margin-right: 15%;
+          @include below-tablet { margin-right: 5%; margin-left: 5%; }
+          @include tablet-vertical { margin-right: 0; margin-left: 0; }
+        }
+        &.even {
+          margin-left: 15%;
+          @include below-tablet { margin-left: 10%; }
+          @include tablet-vertical { margin-right: 0; margin-left: 0; }
+        }
+        &:nth-child(even) {
+          @include tablet-vertical {
+            .crew__item__inner {
+              .crew__item__img {
+                float: right;
+                @include phone {
+                  right: 0;
+                }
+              }
+              .crew__item__desc {
+                padding-left: 0;
+                padding-right: 160px;
+                text-align: right;
+                @include phone {
+                  padding: 0;
+                  text-align: center;
+                }
+              }
+            }
+          }
+        }
+        &:nth-child(odd) {
+          .crew__item__inner {
+            .crew__item__img {
+              @include phone {
+                left: 0;
+              }
+            }
+          }
+        }
         .crew__item__inner {
           @include clearfix;
+          position: relative;
           .crew__item__img {
             float: left;
             margin: 0;
+            @include phone {
+              position: absolute;
+              top: -20px;
+            }
             img {
               width: 140px;
               height: 140px;
               border-radius: 50%;
+              @include phone {
+                width: 50px;
+                height: 50px;
+              }
             }
           }
           .crew__item__desc {
             padding-left: 160px;
+            @include phone { padding: 0; }
+            .crew__item__desc__name {
+              font-weight: $NotoDemiLight;
+              @include phone {
+                margin: 15px 0;
+                font-size: $NotoLight;
+                padding-bottom: 1px;
+                border-bottom: 1px solid #fff;
+              }
+            }
             .crew__item__desc__role {
               margin-bottom: 15px;
+              @include phone { font-style: italic; }
             }
           }
         }
