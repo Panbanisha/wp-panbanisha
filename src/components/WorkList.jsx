@@ -62,6 +62,7 @@ module.exports = React.createClass({
     currentPath !== '' ? data['filter[tag]'] = currentPath : '';
 
     return $.getJSON('/wp-json/posts', data).done((result) => {
+      console.log(result);
       this._loading = !result.length;
       this.setState({works: result});
       this.adjustWidthAndHeight(result.length);
@@ -153,8 +154,8 @@ module.exports = React.createClass({
   resetWorks() {
     this._loading = false;
     this._currentPage = 1;
-    this._currentPath = this.getPathname();
-    this.setState({works: []});
+    // this._currentPath = this.getPathname();
+    this.setState({ works: [] });
     this.getWorks();
   },
 
@@ -174,7 +175,7 @@ module.exports = React.createClass({
   onNavClick(e) {
     var targetRoute = $(e.target).attr("href");
     this.resetWorks();
-    this.transitionTo(targetRoute);
+    // this.transitionTo(targetRoute);
   },
 
   componentWillUnmount() {
