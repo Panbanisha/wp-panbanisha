@@ -10,6 +10,12 @@ var WorkItem = React.createClass({
 
   mixins: [State],
 
+  trimDate(date) {
+    date = date.split('T');
+    var trimDate = date[0].replace(/-/g, '/');
+    return trimDate;
+  },
+
   render() {
 
     var work = this.props;
@@ -26,7 +32,7 @@ var WorkItem = React.createClass({
                   work.acf.all_member.map((member) => <p key={member.all_member_role}>{member.all_member_role}<span>:</span>{member.all_member_name}</p>)
                 : ''}
               </div>
-              <time className="works__item__caption__date">{work.modified}</time>
+              <time className="works__item__caption__date">{this.trimDate(work.modified)}</time>
             </div>
           </figcaption>
         </Link>
