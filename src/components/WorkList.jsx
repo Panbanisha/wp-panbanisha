@@ -60,10 +60,8 @@ module.exports = React.createClass({
     };
 
     currentPath !== '' ? data['filter[tag]'] = currentPath : '';
-    console.log('currentPath: ' + currentPath);
 
     return $.getJSON('/wp-json/posts', data).done((result) => {
-      console.log(result);
       this._loading = !result.length;
       this.setState({works: result});
       this.adjustWidthAndHeight(result.length);
@@ -155,7 +153,6 @@ module.exports = React.createClass({
   resetWorks() {
     this._loading = false;
     this._currentPage = 1;
-    // this._currentPath = this.getPathname();
     this.setState({ works: [] });
     this.getWorks();
   },
@@ -168,16 +165,6 @@ module.exports = React.createClass({
       $(window).on('scroll', this._onScroll);
       this._onScroll();
     });
-
-    // reset state when a button gets clicked
-    $('.works__filter__item > a').on('click', this.onNavClick);
-  },
-
-  onNavClick(e) {
-    e.preventDefault();
-    var targetRoute = $(e.target).attr("href");
-    this.transitionTo(targetRoute);
-    // this.resetWorks();
   },
 
   componentWillUnmount() {
@@ -201,11 +188,11 @@ module.exports = React.createClass({
       <div className="works">
         <nav className="works__filter">
           <ul className="works__filter__list">
-            <li className="works__filter__item"><a href="/works/">All</a></li>
-            <li className="works__filter__item"><a href="/works/movie/">Movie</a></li>
-            <li className="works__filter__item"><a href="/works/photograph/">Photograph</a></li>
-            <li className="works__filter__item"><a href="/works/graphic/">Graphic</a></li>
-            <li className="works__filter__item"><a href="/works/product/">Product</a></li>
+            <li className="works__filter__item"><Link to="WorkList">All</Link></li>
+            <li className="works__filter__item"><Link to="WorkListMovie">Movie</Link></li>
+            <li className="works__filter__item"><Link to="WorkListPhotograph">Photograph</Link></li>
+            <li className="works__filter__item"><Link to="WorkListGraphic">Graphic</Link></li>
+            <li className="works__filter__item"><Link to="WorkListProduct">Product</Link></li>
           </ul>
         </nav>
         <section className="works__list" ref="worksList">{works}</section>
