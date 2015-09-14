@@ -200,7 +200,9 @@ var CrewMember = React.createClass({
       <div className="crew__item" key={this.props.key}>
         <div className="crew__item__inner">
           <figure className="crew__item__img">
-            <img src={member.prof_img} />
+            <Link to="PeopleDetail" params={{people: member.slug}}>
+              <img src={member.prof_img} />
+            </Link>
           </figure>
           <div className="crew__item__desc">
             {

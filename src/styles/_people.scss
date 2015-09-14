@@ -255,9 +255,10 @@
     width: 22%;
     margin: 0 2%;
     @include below-tablet {
-      width: 30%;
+      width: 32%;
       margin: 0;
-      margin-left: 5%;
+      margin-left: 2%;
+      margin-bottom: 2%;
       &:nth-child(3n-2) { margin-left: 0; }
     }
     @include phone {
@@ -279,7 +280,10 @@
       display: block;
       overflow: hidden;
       &:hover {
-        img { filter: blur(1px); }
+        img {
+          filter: grayscale(0);
+          transform: scale(1.2);
+        }
         .project__item__caption {
           background-color: rgba(#fff, .3);
           opacity: 1;
@@ -290,11 +294,15 @@
         }
       }
       img {
-        filter: blur(0px);
+        filter: grayscale(100%);
+        transform: scale(1);
         transition: all .15s linear;
         @include below-tablet {
           height: 160px;
           width: 100%;
+        }
+        @include phone {
+          height: 100%;
         }
       }
       .project__item__caption {
@@ -330,6 +338,14 @@
           font-size: 16px;
           font-weight: $NotoLight;
           bottom: 0;
+          width: 100%;
+          .project__item__caption__date {
+            display: block;
+            text-align: right;
+            padding-right: 20px;
+            margin-right: 20px;
+            margin-bottom: 5px;
+          }
         }
       }
     }
