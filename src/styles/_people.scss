@@ -14,7 +14,7 @@
         font-size: 35px;
         font-weight: $NotoDemiLight;
         @include phone {
-          font-size: 1.3em;
+          font-size: 1.45em;
           margin-bottom: 20px;
         }
       }
@@ -24,18 +24,20 @@
         @include phone {
           width: 90%;
           margin: 0 auto;
-          font-size: .8em;
+          font-size: .95em;
         }
       }
     }
     .member__item {
       @include clearfix;
-      @include below-tablet {
-        margin-bottom: 50px;
+      @include below-tablet { margin-bottom: 50px; }
+      &:last-child {
+        @include phone { margin-bottom: 0; }
       }
       &.odd {
         .member__item__inner { float: left; }
         .member__item__block {
+          .member__item__block__title, p { padding-right: 10px; }
           &--img {
             float: right; padding-left: 50px;
             @include phone { padding-left: 30px; padding-right: 20px; }
@@ -46,11 +48,15 @@
       &.even {
         .member__item__inner { float: right; }
         .member__item__block {
+          .member__item__block__title, p { padding-left: 10px; }
           &--img {
             float: left; padding-right: 50px;
             @include phone { padding-right: 30px; padding-left: 20px; }
           }
-          &--desc { float: left; padding-left: 20px; }
+          &--desc {
+            float: left; padding-left: 20px;
+            @include phone { padding-left: 0; }
+          }
         }
       }
       &.close { display: none; }
@@ -100,12 +106,13 @@
             left: 0;
             transform: translate(0, -50%);
             transition: all .15s linear;
-            @include below-tablet {
-              top: 75px;
-            }
+            @include below-tablet { top: 75px; }
             @include phone {
               top: 50px;
               width: calc(100% - 150px);
+            }
+            p {
+              @include phone { font-weight: 100; }
             }
           }
           .member__item__block__title {
@@ -114,6 +121,7 @@
             padding-bottom: 5px;
             border-bottom: 1px solid #fff;
             cursor: pointer;
+            @include phone { font-size: 1.3em; }
           }
           .member__item__block__img {
             margin: 0;
@@ -171,8 +179,8 @@
                 height: 300px;
               }
               @include phone {
-                width: 200px;
-                height: 200px;
+                width: 170px;
+                height: 170px;
                 margin: 0 auto;
               }
             }
@@ -202,6 +210,7 @@
                 @include phone {
                   display: block;
                   margin: 0 auto;
+                  transform: scale(.85);
                 }
               }
             }
@@ -265,7 +274,12 @@
       margin: 0;
       margin-left: 2%;
       margin-bottom: 2%;
-      &:nth-child(3n-2) { margin-left: 0; }
+      &:nth-child(3n-2) {
+        margin-left: 0;
+        @include phone {
+          margin-left: 2.5%;
+        }
+      }
     }
     @include phone {
       width: 95%;
@@ -400,6 +414,10 @@
           .links__item__desc__title {
             font-size: 1.2em;
             font-weight: 100;
+            @include phone { border-bottom: 1px solid #fff; }
+          }
+          & > a {
+            @include phone { font-size: .7em; }
           }
         }
         .links__item__img {
