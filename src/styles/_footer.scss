@@ -7,11 +7,18 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    @include below-tablet {
+      width: 100%;
+      letter-spacing: .03em;
+    }
   }
   .footer__author {
     font-size: 12px;
     .footer__author__list {
       @include clearfix;
+      @include below-tablet {
+        display: none;
+      }
       li {
         display: inline-block;
         .separator {
@@ -22,6 +29,11 @@
   }
   .footer__copyright {
     font-size: 14px;
+    @include phone {
+      font-size: .65em;
+      letter-spacing: .05em;
+      line-height: 50px;
+    }
     .copyright-mark {
       margin: 0 3px;
     }

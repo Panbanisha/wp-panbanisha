@@ -3,20 +3,10 @@
     margin-top: 90px;
     .contact-form__title {
       @include title;
+      margin-bottom: 100px;
       @include phone {
         margin-bottom: 50px;
         font-size: 1.7em;
-      }
-      margin-bottom: 100px;
-      &:after {
-        content: '';
-        display: block;
-        height: 0px;
-        width: 70%;
-        border-bottom: 1px solid #fff;
-        @include below-tablet {
-          width: 80%;
-        }
       }
     }
     .contact-form__form {
@@ -26,17 +16,32 @@
       @include below-tablet {
         width: 85%;
       }
+      @include tablet-vertical {
+        width: 95%;
+      }
       .contact-form__form__block {
         width: 50%;
         float: left;
         margin-bottom: 70px;
+        @include phone {
+          width: 100%;
+          margin-left: 0;
+          margin-right: 0;
+        }
         &:first-child {
           width: 45%;
           margin-right: 5%;
+          @include phone {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 20px;
+          }
         }
         .input {
           margin-top: 20px;
           position: relative;
+          @include phone { margin-top: 15px; }
           &:first-child { margin-top: 0; }
           label, input, textarea {
             display: block;
@@ -45,6 +50,9 @@
           label {
             font-size: 24px;
             margin-bottom: 5px;
+            @include phone {
+              font-size: 1.05em;
+            }
           }
           input {
             height: 50px;
@@ -55,6 +63,11 @@
             padding: 0 25px;
             font-size: 20px;
             box-shadow: 1.5px 2.598px 5px 0px rgba(0, 12, 20, 0.3);
+            @include phone {
+              height: 40px;
+              line-height: 40px;
+              font-size: 1.05em;
+            }
           }
           textarea {
             width: 100%;
@@ -63,6 +76,8 @@
             border-bottom: 1px solid #fff;
             background-color: $form-bg-color;
             padding: 20px;
+            resize: vertical;
+            @include phone { height: 250px; }
           }
           .message__bg {
             box-shadow: 1.5px 2.598px 5px 0px rgba(0, 12, 20, 0.3);
@@ -83,6 +98,7 @@
                 width: auto;
                 margin: 0;
                 line-height: 50px;
+                @include phone { line-height: 40px; }
               }
               input {
                 box-shadow: 0px 0px 0px;
@@ -102,6 +118,10 @@
         text-align: center;
         margin-top: 70px;
         margin-bottom: 130px;
+        @include phone {
+          margin-top: 30px;
+          margin-bottom: 90px;
+        }
         input {
           width: 300px;
           height: 55px;
@@ -112,6 +132,7 @@
           box-shadow: 1.5px 2.598px 5px 0px rgba(0, 12, 20, 0.3);
           display: inline-block;
           border-radius: 40px;
+          @include phone { width: 85%; }
         }
       }
     }
@@ -120,18 +141,14 @@
     margin-bottom: 60px;
     .access__title {
       @include title;
+      margin-bottom: 100px;
       @include phone {
         margin-bottom: 50px;
         font-size: 1.7em;
       }
-      margin-bottom: 100px;
       &:after {
-        content: '';
-        display: block;
-        height: 0px;
-        width: 70%;
         margin-left: 30%;
-        border-bottom: 1px solid #fff;
+        @include phone { margin-left: 8%; }
       }
     }
     .access__inner {
@@ -152,17 +169,46 @@
         border-top: 1px solid #fff;
         border-bottom: 1px solid #fff;
         box-shadow: 1.5px 2.598px 5px 0px rgba(0, 12, 20, 0.3);
-        img {
-          width: 100%;
+        @include tablet-vertical {
+          width: 90%;
+          margin: 0 auto;
+          margin-left: 5%;
         }
+        @include phone {
+          width: 100%;
+          margin-left: 0;
+        }
+        img { width: 100%; }
       }
       .access__info {
         width: 45%;
         font-size: 24px;
+        @include tablet-vertical {
+          width: 90%;
+          margin-left: 5%;
+        }
+        @include phone {
+          width: 100%;
+          margin-left: 0;
+          margin-top: 40px;
+        }
       }
       .access__info__name {
+        @include tablet-vertical {
+          width: 50%;
+          float: left;
+          display: block;
+        }
+        @include phone {
+          width: 100%;
+          font-size: .7em;
+        }
         h2 {
           font-size: 30px;
+          font-weight: $NotoDemiLight;
+          @include phone {
+            font-size: 1.3em;
+          }
         }
       }
       .access__info__addr {
@@ -172,6 +218,15 @@
         padding: 15px 0;
         margin-top: 5px;
         margin-bottom: 20px;
+        @include tablet-vertical {
+          width: 50%;
+          float: left;
+          display: block;
+        }
+        @include phone {
+          width: 100%;
+          font-size: .7em;
+        }
         .access__info__gmap {
           margin-top: 10px;
           display: block;
@@ -190,6 +245,17 @@
             position: relative;
             top: 3px;
           }
+        }
+      }
+      .access__info__root {
+        @include tablet-vertical {
+          width: 50%;
+          float: left;
+          display: block;
+        }
+        @include phone {
+          width: 100%;
+          font-size: .7em;
         }
       }
     }

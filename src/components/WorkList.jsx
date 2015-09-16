@@ -1,6 +1,7 @@
 var React = require('react');
 var Route = require('react-router');
 var {State, Link, Navigation} = Route;
+var DocumentTitle = require('react-document-title');
 
 var $ = require('jquery');
 require('row-grid/row-grid.min.js');
@@ -189,20 +190,23 @@ module.exports = React.createClass({
   render() {
 
     var works = this.state.works.map((work) => <WorkItem key={work.guid} {...work} />);
+    var title = "Works";
 
     return (
-      <div className="works">
-        <nav className="works__filter">
-          <ul className="works__filter__list">
-            <li className="works__filter__item"><Link to="WorkList">All</Link></li>
-            <li className="works__filter__item"><Link to="WorkListMovie">Movie</Link></li>
-            <li className="works__filter__item"><Link to="WorkListPhotograph">Photograph</Link></li>
-            <li className="works__filter__item"><Link to="WorkListGraphic">Graphic</Link></li>
-            <li className="works__filter__item"><Link to="WorkListProduct">Product</Link></li>
-          </ul>
-        </nav>
-        <section className="works__list" ref="worksList">{works}</section>
-      </div>
+      <DocumentTitle title={`${title} | Panbanisha`}>
+        <div className="works">
+          <nav className="works__filter">
+            <ul className="works__filter__list">
+              <li className="works__filter__item"><Link to="WorkList">All</Link></li>
+              <li className="works__filter__item"><Link to="WorkListMovie">Movie</Link></li>
+              <li className="works__filter__item"><Link to="WorkListPhotograph">Photograph</Link></li>
+              <li className="works__filter__item"><Link to="WorkListGraphic">Graphic</Link></li>
+              <li className="works__filter__item"><Link to="WorkListProduct">Product</Link></li>
+            </ul>
+          </nav>
+          <section className="works__list" ref="worksList">{works}</section>
+        </div>
+      </DocumentTitle>
     )
   }
 });
