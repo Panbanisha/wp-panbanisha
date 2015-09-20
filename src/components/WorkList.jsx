@@ -71,7 +71,7 @@ module.exports = React.createClass({
     return $.getJSON('/wp-json/posts', data).done((result) => {
       this._loading = !result.length;
       this.setState({works: result});
-      this.adjustWidthAndHeight(result.length);
+      this.adjustWidthAndHeight();
     });
   },
 
@@ -94,23 +94,12 @@ module.exports = React.createClass({
     return $.getJSON('/wp-json/posts', data).done((result) => {
       this._loading = !result.length;
       this.setState({works: this.state.works.concat(result)});
-      this.adjustWidthAndHeight(result.length);
+      this.adjustWidthAndHeight();
     });
   },
 
-  // addClassToNewItem(numOfNewItems) {
-  //   $(`.works__item`).slice(0, numOfNewItems).addClass('new');
-  // },
-
-  adjustWidthAndHeight(numOfNewItems) {
-    // this.addClassToNewItem(numOfNewItems);
-
+  adjustWidthAndHeight() {
     $('.works__item').each((index, item) => {
-      // hide item
-      // if(!$(item).hasClass('new')) {
-      //   $(item).removeClass('loaded');
-      // }
-
       // when images all loaded
       imagesLoaded('.works__list', () => {
         var GridHeight = 300;

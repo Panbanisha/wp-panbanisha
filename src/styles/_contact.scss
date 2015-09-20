@@ -13,12 +13,9 @@
       @include clearfix;
       width: 65%;
       margin: 0 auto;
-      @include below-tablet {
-        width: 85%;
-      }
-      @include tablet-vertical {
-        width: 95%;
-      }
+      @include below-tablet { width: 85%; }
+      @include tablet-vertical { width: 95%; }
+      @include phone { width: 90%; }
       .contact-form__form__block {
         width: 50%;
         float: left;
