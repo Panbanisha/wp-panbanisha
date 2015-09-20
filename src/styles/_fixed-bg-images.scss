@@ -1,0 +1,28 @@
+body {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100%;
+  min-width: 100%;
+  width: 100%;
+  height: auto;
+
+  &#works {
+    @include laptop { background-image: url(/assets/images/works-bg.jpg); }
+    @include below-tablet { background-image: url(/assets/images/works-bg.jpg); }
+    @include phone { background-image: url(/assets/images/works-bg.jpg); }
+  }
+  &#contact {
+    @include laptop { background-image: url(/assets/images/contact-bg.jpg); }
+    @include below-tablet { background-image: url(/assets/images/contact-bg-tablet.jpg); }
+    @include phone { background-image: url(/assets/images/contact-bg-mobile.jpg); }
+  }
+  &#people {
+    @include laptop { background-image: url(/assets/images/people-bg.jpg); }
+    @include below-tablet { background-image: url(/assets/images/people-bg.jpg); }
+    @include phone { background-image: url(/assets/images/people-bg-mobile.jpg); }
+  }
+  // &#home { background-image: url(/assets/home-bg.jpg); }
+  // &#post { background-image: url(/assets/post-bg.jpg); }
+}
