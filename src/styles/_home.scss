@@ -30,12 +30,18 @@ body {
     .bg-video__inner {
       width: 100% !important;
       height: 100% !important;
+      @include below-tablet {
+        background: url(/assets/images/works-bg.jpg);
+      }
       .bg-video__item {
         min-height: 100%;
         min-width: 100%;
         position: fixed;
         right: 0;
         bottom: 0;
+        @include below-tablet {
+          display: none;
+        }
         // padding: 50px 0;
         // background-color: #000;
       }
@@ -62,17 +68,23 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, 150%);
+    @include phone { top: 60%; }
     ul {
       @include clearfix;
       float: left;
       position: relative;
       left: 50%;
       transform: translate(-50%, 0);
+      @include phone { width: 95%; }
       li {
         float: left;
         text-align: center;
         font-size: 25px;
         font-weight: 100;
+        @include phone {
+          width: 33.3333%;
+          font-size: 1.3em;
+        }
         a {
           margin: 0 20px;
           background: url(/assets/images/nav--active.png) right center no-repeat;
@@ -80,6 +92,7 @@ body {
           padding: 0 25px;
           display: block;
           transition: all .15s linear;
+          @include phone { margin: 0; }
           &:hover {
             background: url('/assets/images/nav--active.png') no-repeat right center;
             background-size: 66px 27px;
