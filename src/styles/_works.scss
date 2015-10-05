@@ -78,17 +78,20 @@
         transform: scale(1);
         transition: all .15s linear;
       }
-      &:hover, &.hover {
-        img {
-          transform: scale(1.2);
-          filter: grayscale(0);
-        }
-        .works__item__caption {
-          opacity: 1;
-          .works__item__caption__inner {
+      .inner {
+        display: block;
+        &:hover, &.hover {
+          img {
+            transform: scale(1.2);
+            filter: grayscale(0);
+          }
+          .works__item__caption {
             opacity: 1;
-            left: 0;
-            overflow: scroll;
+            .works__item__caption__inner {
+              opacity: 1;
+              left: 0;
+              overflow: scroll;
+            }
           }
         }
       }
