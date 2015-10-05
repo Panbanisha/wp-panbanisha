@@ -102,7 +102,8 @@ module.exports = React.createClass({
 
   adjustWidthAndHeight() {
     $('.works__item').each((index, item) => {
-      // when images all loaded
+
+      // when all images get loaded
       imagesLoaded('.works__list', () => {
         var GridHeight = 300;
         var $GridItem = $(item);
@@ -111,47 +112,30 @@ module.exports = React.createClass({
         var w = $GridItemImg.width();
         var h = $GridItemImg.height();
 
+        var ratio = 1;
+        var newWidth = 0;
+
         if(w > h) {
-          var ratio = w / h;
-          var newWidth = GridHeight * ratio;
-          $GridItem.css({width: `${newWidth}px`, height: `${GridHeight}px`});
-          $GridItemImg.attr('width', `${newWidth}px`).attr('height', `${GridHeight}px`);
+          ratio = w / h;
+          newWidth = GridHeight * ratio;
         } else {
-          var ratio = h / w;
-          var newWidth = GridHeight / ratio;
-          $GridItem.css({width: `${newWidth}px`, height: `${GridHeight}px`});
-          $GridItemImg.attr('width', `${newWidth}px`).attr('height', `${GridHeight}px`);
+          ratio = h / w;
+          newWidth = GridHeight / ratio;
         }
-        // when phone, then make images' width 100%
+        $GridItem.css({width: `${newWidth}px`, height: `${GridHeight}px`});
+        $GridItemImg.attr('width', `${newWidth}px`).attr('height', `${GridHeight}px`);
+
+        // when mobile, then make images' width and height 100%
         if(isMobile) {
           $GridItem.css({width: '100%', height: '100%'});
           $GridItemImg.attr('width', '100%').attr('height', '100%');
+        } else {
+          this.rowGridInit();
         }
-        else {
-          this.rowGridInit();          
-        }
-
-        this.resizeItem($GridItem, $GridItemImg);
 
         // show item
         $(item).addClass('loaded');
       });
-    });
-  },
-
-  resizeItem($GridItem, $GridItemImg) {
-    $(window).on('resize', () => {
-      // console.log('resize!');
-      if($(window).width() > 480) {
-        console.log('call rowGridJs!');
-        this.rowGridInit();
-      }
-      else {
-        console.log('call griditem');
-        $GridItem.css({width: '100%', height: '100%'});
-        console.log($GridItem.css('width'));
-        $GridItemImg.attr('width', '100%').attr('height', '100%');
-      }
     });
   },
 
