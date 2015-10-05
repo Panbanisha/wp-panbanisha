@@ -145,6 +145,10 @@ module.exports = React.createClass({
   },
 
   _onScroll() {
+    if (isMobile) {
+      this._setFocus();
+    }
+    
     if (!this._loading && this.state.works.length > 0) {
       var win = $(window).height();
       var scrollTop = $(window).scrollTop();
@@ -154,6 +158,35 @@ module.exports = React.createClass({
         this._currentPage++;
         this.getMoreWorks();
       }
+    }
+  },
+
+  _setFocus() {
+    var win = $(window).height();
+    var doc = $(document.body).outerHeight();
+    if (doc <= win) return;
+
+    var p = $(window).scrollTop() / (doc - win);
+    var y0 = 150;
+    var y1 = $(window).height() - 55;
+    var yy = y0 + (y1 - y0) * p;
+    var el = $(document.elementFromPoint(window.innerWidth / 2, yy));
+    var worksItem = null;
+    while (el.length && !inner) {
+      el = el.parent();
+      if (el.hasClass('.works__item')) {
+        worksItem = el;
+      }
+    }
+    if (!worksItem) return;
+    var list = $('.works__list', worksItem);
+    console.log(list.length);
+    if (list.length) {
+      if (this._current) {
+          this._current.removeClass('hover');
+      }
+      this._current = list;
+      this._current.addClass('hover');
     }
   },
 
