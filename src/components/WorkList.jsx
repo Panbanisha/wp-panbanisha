@@ -6,6 +6,8 @@ var DocumentTitle = require('react-document-title');
 var $ = require('jquery');
 require('row-grid/row-grid.min.js');
 var imagesLoaded = require('imagesloaded');
+var MobileDetect = require('mobile-detect');
+var isMobile = !!new MobileDetect(navigator.userAgent).mobile();
 
 var WorkItem = React.createClass({
 
@@ -120,7 +122,16 @@ module.exports = React.createClass({
           $GridItem.css({width: `${newWidth}px`, height: `${GridHeight}px`});
           $GridItemImg.attr('width', `${newWidth}px`).attr('height', `${GridHeight}px`);
         }
-        this.rowGridInit();
+        // when phone, then make images' width 100%
+        if(isMobile) {
+          $GridItem.css({width: '100%', height: '100%'});
+          $GridItemImg.attr('width', '100%').attr('height', '100%');
+        }
+        else {
+          this.rowGridInit();          
+        }
+
+        this.resizeItem($GridItem, $GridItemImg);
 
         // show item
         $(item).addClass('loaded');
@@ -128,8 +139,24 @@ module.exports = React.createClass({
     });
   },
 
+  resizeItem($GridItem, $GridItemImg) {
+    $(window).on('resize', () => {
+      // console.log('resize!');
+      if($(window).width() > 480) {
+        console.log('call rowGridJs!');
+        this.rowGridInit();
+      }
+      else {
+        console.log('call griditem');
+        $GridItem.css({width: '100%', height: '100%'});
+        console.log($GridItem.css('width'));
+        $GridItemImg.attr('width', '100%').attr('height', '100%');
+      }
+    });
+  },
+
   rowGridInit() {
-    var options = {minMargin: 15, maxMargin: 15, itemSelector: ".works__item", firstItemClass: "works__item--first-item", resize: true, };
+    var options = {minMargin: 15, maxMargin: 15, itemSelector: ".works__item", firstItemClass: "works__item--first-item", resize: true};
     $(React.findDOMNode(this.refs.worksList)).rowGrid(options);
   },
 
@@ -172,8 +199,10 @@ module.exports = React.createClass({
   },
 
   componentDidUpdate() {
-
     this._onScroll();
+    $.when(this._onScroll).done(() => {
+      this.adjustWidthAndHeight();
+    });
   },
 
   render() {
