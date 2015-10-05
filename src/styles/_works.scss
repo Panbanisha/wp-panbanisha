@@ -78,7 +78,7 @@
         transform: scale(1);
         transition: all .15s linear;
       }
-      &:hover {
+      &:hover, &.hover {
         img {
           transform: scale(1.2);
           filter: grayscale(0);
