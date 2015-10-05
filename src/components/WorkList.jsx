@@ -25,7 +25,7 @@ var WorkItem = React.createClass({
 
     return (
       <figure className="works__item" key={this.props.key} ref="workItem">
-        <Link to="Post" params={{post: work.slug}}>
+        <Link to="Post" params={{post: work.slug}} className="inner">
           <img ref="work" src={work.featured_image.guid} width={work.featured_image.attachment_meta.width} height={work.featured_image.attachment_meta.height} />
           <figcaption className="works__item__caption">
             <div className="works__item__caption__inner">
@@ -148,8 +148,11 @@ module.exports = React.createClass({
     if (isMobile) {
       this._setFocus();
     }
-    
+
     if (!this._loading && this.state.works.length > 0) {
+
+      if(isMobile) { $('body').css('height', 'auto'); }
+
       var win = $(window).height();
       var scrollTop = $(window).scrollTop();
       var bottom = win - $(window).scrollTop();
@@ -163,29 +166,31 @@ module.exports = React.createClass({
 
   _setFocus() {
     var win = $(window).height();
-    var doc = $(document.body).outerHeight();
+    var doc = $('.wrapper').outerHeight();
     if (doc <= win) return;
 
     var p = $(window).scrollTop() / (doc - win);
     var y0 = 150;
-    var y1 = $(window).height() - 55;
+    var y1 = $(window).height() - 200;
     var yy = y0 + (y1 - y0) * p;
     var el = $(document.elementFromPoint(window.innerWidth / 2, yy));
-    var worksItem = null;
-    while (el.length && !inner) {
-      el = el.parent();
-      if (el.hasClass('.works__item')) {
-        worksItem = el;
+    var entry = null;
+    while (el.length) {
+      el = el.parents('figure');
+      if (el.hasClass('works__item')) {
+        entry = el;
       }
     }
-    if (!worksItem) return;
-    var list = $('.works__list', worksItem);
-    console.log(list.length);
-    if (list.length) {
+
+    if (!entry) return;
+
+    var inner = $('.inner', entry);
+
+    if (inner.length) {
       if (this._current) {
           this._current.removeClass('hover');
       }
-      this._current = list;
+      this._current = inner;
       this._current.addClass('hover');
     }
   },
