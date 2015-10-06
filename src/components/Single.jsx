@@ -67,9 +67,28 @@ module.exports = React.createClass({
     });
   },
 
+  setLineOrder() {
+    var $sections = $('.single-post__inner').find('section');
+    var numOfSection = $sections.length - 1;
+    $sections.filter(':nth-child(2)').find('h2').addClass('odd');
+    switch (numOfSection) {
+      case 2:
+        $sections.filter(':last-of-type').find('h2').addClass('even');
+        break;
+      case 3:
+        $sections.filter(`:nth-child(${numOfSection})`).find('h2').addClass('even');
+        $sections.filter(':last-of-type').find('h2').addClass('odd');
+        break;
+      default:
+        $sections.filter(':first-of-type').find('h2').addClass('odd');
+        break;
+    }
+  },
+
   componentDidMount() {
     this.getInitData();
     this.responsiveIframe();
+    this.setLineOrder();
     this.createCrewMemberBlock();
   },
 
@@ -79,6 +98,7 @@ module.exports = React.createClass({
 
   componentDidUpdate() {
     this.responsiveIframe();
+    this.setLineOrder();
     this.createCrewMemberBlock();
   },
 
@@ -170,11 +190,11 @@ var SpecialThanks = React.createClass({
 
     return (
       <div className="special-thanks__item" key={this.props.key}>
-        <a href={stItem.st_url}>
-          <figure className="special-thanks__item__img">
+        <figure className="special-thanks__item__img">
+          <a href={stItem.st_url}>
             <img src={stItem.st_top_image} />
-          </figure>
-        </a>
+          </a>
+        </figure>
         <div className="special-thanks__item__desc">
           <h2 className="special-thanks__item__title">{stItem.st_name}</h2>
           <a href={stItem.st_url} target="_blank">{stItem.st_url}</a>
