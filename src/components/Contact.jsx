@@ -79,7 +79,7 @@ module.exports = React.createClass({
                 <div className="contact-form__form__block">
                   <div className="input">
                     <label htmlFor="name">Name</label>
-                    <input type="text" name="name" id="name" />
+                    <input type="text" name="name" id="name" required />
                   </div>
                   <div className="input">
                     <label htmlFor="company">Company</label>
@@ -87,7 +87,7 @@ module.exports = React.createClass({
                   </div>
                   <div className="input">
                     <label htmlFor="email">E-mail Address</label>
-                    <input type="email" name="email" id="email" />
+                    <input type="email" name="email" id="email" required />
                   </div>
                   <div className="input">
                     <label htmlFor="number">Phone Number</label>
@@ -100,10 +100,10 @@ module.exports = React.createClass({
                     <div className="message__bg">
                       <div className="message__bg__input">
                         <label htmlFor="title">Title</label>
-                        <input name="title" id="title" type="text" />
+                        <input name="title" id="title" type="text" required />
                         <input type="hidden" name="_subject" value="" />
                       </div>
-                      <textarea name="message" id="message" cols="60" rows="11"></textarea>
+                      <textarea name="message" id="message" cols="60" rows="11" required></textarea>
                     </div>
                   </div>
                 </div>
