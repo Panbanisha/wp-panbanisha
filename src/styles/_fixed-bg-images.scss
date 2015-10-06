@@ -1,12 +1,16 @@
 body {
   background-repeat: no-repeat;
   background-position: center center;
-  background-attachment: fixed;
   background-size: cover;
   min-height: 100%;
   min-width: 100%;
   width: 100%;
   height: auto;
+  backface-visibility: hidden;
+
+  @include laptop {
+    background-attachment: fixed;
+  }
 
   &#works {
     @include laptop { background-image: url(/assets/images/works-bg.jpg); }
