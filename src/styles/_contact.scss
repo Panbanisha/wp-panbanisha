@@ -10,126 +10,159 @@
       }
     }
     .contact-form__form {
-      @include clearfix;
-      width: 65%;
-      margin: 0 auto;
-      @include below-tablet { width: 85%; }
-      @include tablet-vertical { width: 95%; }
-      @include phone { width: 90%; }
-      .contact-form__form__block {
-        width: 50%;
-        float: left;
-        margin-bottom: 70px;
-        @include phone {
-          width: 100%;
-          margin-left: 0;
-          margin-right: 0;
+      position: relative;
+      .contact-form__form__overlay {
+        display: none;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(#00080c, .9);
+        background-image: url(/assets/images/sent-message-logo.png);
+        background-position: center center;
+        background-repeat: no-repeat;
+        .contact-form__form__overlay__message--beforeSend,
+        .contact-form__form__overlay__message--success,
+        .contact-form__form__overlay__message--error {
+          display: none;
+          text-align: center;
+          position: relative;
+          top: 50%;
+          transform: translate(0, -50%);
+          h2, p {
+            font-weight: $NotoDemiLight;
+          }
+          h2 {
+            font-size: 32px;
+          }
+          p {
+            font-size: 20px;
+          }
         }
-        &:first-child {
-          width: 45%;
-          margin-right: 5%;
+      }
+      .contact-form__form__content {
+        @include clearfix;
+        width: 65%;
+        margin: 0 auto;
+        @include below-tablet { width: 85%; }
+        @include tablet-vertical { width: 95%; }
+        @include phone { width: 90%; }
+        .contact-form__form__block {
+          width: 50%;
+          float: left;
+          margin-bottom: 70px;
           @include phone {
             width: 100%;
             margin-left: 0;
             margin-right: 0;
-            margin-bottom: 20px;
           }
-        }
-        .input {
-          margin-top: 20px;
-          position: relative;
-          @include phone { margin-top: 15px; }
-          &:first-child { margin-top: 0; }
-          label, input, textarea {
-            display: block;
-            width: 100%;
-          }
-          label {
-            font-size: 24px;
-            margin-bottom: 5px;
+          &:first-child {
+            width: 45%;
+            margin-right: 5%;
             @include phone {
-              font-size: 1.05em;
+              width: 100%;
+              margin-left: 0;
+              margin-right: 0;
+              margin-bottom: 20px;
             }
           }
-          input {
-            height: 50px;
-            line-height: 50px;
-            border-top: 1px solid #fff;
-            border-bottom: 1px solid #fff;
-            background-color: $form-bg-color;
-            padding: 0 25px;
-            font-size: 20px;
-            box-shadow: 1.5px 2.598px 5px 0px rgba(0, 12, 20, 0.3);
-            @include phone {
-              height: 40px;
-              line-height: 40px;
-              font-size: 1.05em;
+          .input {
+            margin-top: 20px;
+            position: relative;
+            @include phone { margin-top: 15px; }
+            &:first-child { margin-top: 0; }
+            label, input, textarea {
+              display: block;
+              width: 100%;
             }
-          }
-          textarea {
-            width: 100%;
-            margin: 0 auto;
-            border-top: 1px solid #fff;
-            border-bottom: 1px solid #fff;
-            background-color: $form-bg-color;
-            padding: 20px;
-            resize: vertical;
-            @include phone { height: 250px; }
-          }
-          .message__bg {
-            box-shadow: 1.5px 2.598px 5px 0px rgba(0, 12, 20, 0.3);
-            border-top: 1px solid #fff;
-            border-bottom: 1px solid #fff;
-            background-color: $form-bg-color;
-            .message__bg__input {
-              position: relative;
-              padding: 0 20px;
-              padding-bottom: 0;
-              label, input {
-                border: 0;
-                display: inline-block;
-                background-color: transparent;
+            label {
+              font-size: 24px;
+              margin-bottom: 5px;
+              @include phone {
+                font-size: 1.05em;
               }
-              label {
-                position: absolute;
-                width: auto;
-                margin: 0;
-                line-height: 50px;
-                @include phone { line-height: 40px; }
-              }
-              input {
-                box-shadow: 0px 0px 0px;
-                padding-left: 70px;
-                border-bottom: 1px solid #fff;
+            }
+            input {
+              height: 50px;
+              line-height: 50px;
+              border-top: 1px solid #fff;
+              border-bottom: 1px solid #fff;
+              background-color: $form-bg-color;
+              padding: 0 25px;
+              font-size: 20px;
+              box-shadow: 1.5px 2.598px 5px 0px rgba(0, 12, 20, 0.3);
+              @include phone {
+                height: 40px;
+                line-height: 40px;
+                font-size: 1.05em;
               }
             }
             textarea {
-              border: 0;
-              background-color: transparent;
+              width: 100%;
+              margin: 0 auto;
+              border-top: 1px solid #fff;
+              border-bottom: 1px solid #fff;
+              background-color: $form-bg-color;
+              padding: 20px;
+              resize: vertical;
+              @include phone { height: 250px; }
+            }
+            .message__bg {
+              box-shadow: 1.5px 2.598px 5px 0px rgba(0, 12, 20, 0.3);
+              border-top: 1px solid #fff;
+              border-bottom: 1px solid #fff;
+              background-color: $form-bg-color;
+              .message__bg__input {
+                position: relative;
+                padding: 0 20px;
+                padding-bottom: 0;
+                label, input {
+                  border: 0;
+                  display: inline-block;
+                  background-color: transparent;
+                }
+                label {
+                  position: absolute;
+                  width: auto;
+                  margin: 0;
+                  line-height: 50px;
+                  @include phone { line-height: 40px; }
+                }
+                input {
+                  box-shadow: 0px 0px 0px;
+                  padding-left: 70px;
+                  border-bottom: 1px solid #fff;
+                }
+              }
+              textarea {
+                border: 0;
+                background-color: transparent;
+              }
             }
           }
         }
-      }
-      .contact-form__form__submit-btn {
-        clear: both;
-        text-align: center;
-        margin-top: 70px;
-        margin-bottom: 130px;
-        @include phone {
-          margin-top: 30px;
-          margin-bottom: 90px;
-        }
-        input {
-          width: 300px;
-          height: 55px;
-          line-height: 55px;
-          background: #fff;
-          color: #242424;
-          font-size: 24px;
-          box-shadow: 1.5px 2.598px 5px 0px rgba(0, 12, 20, 0.3);
-          display: inline-block;
-          border-radius: 40px;
-          @include phone { width: 85%; }
+        .contact-form__form__submit-btn {
+          clear: both;
+          text-align: center;
+          margin-top: 70px;
+          margin-bottom: 130px;
+          @include phone {
+            margin-top: 30px;
+            margin-bottom: 90px;
+          }
+          input {
+            width: 300px;
+            height: 55px;
+            line-height: 55px;
+            background: #fff;
+            color: #242424;
+            font-size: 24px;
+            box-shadow: 1.5px 2.598px 5px 0px rgba(0, 12, 20, 0.3);
+            display: inline-block;
+            border-radius: 40px;
+            @include phone { width: 85%; }
+          }
         }
       }
     }

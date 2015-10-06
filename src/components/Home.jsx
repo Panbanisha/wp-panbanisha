@@ -28,7 +28,6 @@ module.exports = React.createClass({
 
   videoLoaded() {
     $('body').css('display', 'none');
-    console.log(isMobile);
     if(isMobile) {
       $('body').fadeIn(500);
     } else {
