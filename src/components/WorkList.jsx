@@ -200,7 +200,14 @@ module.exports = React.createClass({
     this.getWorks();
   },
 
+  switchNav() {
+    $('.works__filter__category-btn').on('click', (e) => {
+      $('.works__filter__list, .works__filter__category-btn > span').toggleClass('active');
+    });
+  },
+
   componentDidMount() {
+    this.switchNav();
     this._loading = false;
     this._currentPage = 1;
     this.setState({works: []});
@@ -219,6 +226,7 @@ module.exports = React.createClass({
   },
 
   componentDidUpdate() {
+    $('.works__filter__list').hasClass('active') ? $('.works__filter__list, .works__filter__category-btn span').removeClass('active') : '';
     this._onScroll();
     $.when(this._onScroll).done(() => {
       this.adjustWidthAndHeight();
@@ -230,10 +238,15 @@ module.exports = React.createClass({
     var works = this.state.works.map((work) => <WorkItem key={work.guid} {...work} />);
     var title = "Works";
 
+    var currentPathname = this.getPathname().replace('works', '').replace(/\//g, '');
+    var currentCategory = currentPathname.charAt(0).toUpperCase() + currentPathname.slice(1);
+    currentCategory = currentCategory == "" ? 'All' : currentCategory;
+
     return (
       <DocumentTitle title={`${title} | Panbanisha`}>
         <div className="works">
           <nav className="works__filter">
+            <div className="works__filter__category-btn"><span>{currentCategory}</span></div>
             <ul className="works__filter__list">
               <li className="works__filter__item"><Link to="WorkList">All</Link></li>
               <li className="works__filter__item"><Link to="WorkListMovie">Movie</Link></li>

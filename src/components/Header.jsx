@@ -3,6 +3,8 @@ var cx = React.addons.classSet;
 var Route = require('react-router');
 var {State, Link} = Route;
 
+var $ = require('jquery');
+
 module.exports = React.createClass({
 
   mixins: [State],
@@ -17,13 +19,35 @@ module.exports = React.createClass({
     this.setState({isWorks: isWorks});
   },
 
+  _onScroll() {
+    var scrollTop = $(window).scrollTop();
+    var headerH = $('.header').height();
+    var $navList = $('.header__nav__list');
+    var $worksFilter = $('.works__filter');
+
+    if(scrollTop >= headerH) {
+      $navList.addClass('sticky');
+      $worksFilter.addClass('sticky');
+    } else {
+      $navList.removeClass('sticky');
+      $worksFilter.removeClass('sticky');
+    }
+  },
+
   componentDidMount() {
+    $(window).on('scroll', this._onScroll);
     this.setCurrentWorksActive(this.getPathname());
+  },
+
+  componentWillUnmount() {
+    $(window).off('scroll', this._onScroll);
   },
 
   componentWillReceiveProps() {
     this.setCurrentWorksActive(this.getPathname());
   },
+
+  componendDidUpdate() {},
 
   render() {
     return (
