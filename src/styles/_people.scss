@@ -1,8 +1,6 @@
 .member {
   margin-bottom: 130px;
-  @include below-tablet {
-    margin-bottom: 50px;
-  }
+  @include below-tablet { margin-bottom: 0; }
   .member__list {
     @include clearfix;
     .top-text {
@@ -150,7 +148,7 @@
       }
       .member__item__single {
         margin-bottom: 190px;
-        @include below-tablet { margin-bottom: 100px; }
+        @include below-tablet { margin-bottom: 50px; }
         @include phone { margin-bottom: 0; }
         .member__item__single__prof {
           @include clearfix;
@@ -175,8 +173,8 @@
               border-radius: 50%;
               display: block;
               @include below-tablet {
-                width: 300px;
-                height: 300px;
+                width: 250px;
+                height: 250px;
               }
               @include phone {
                 width: 170px;
@@ -194,7 +192,7 @@
             transform: translate(0, -50%);
             @include below-tablet {
               width: calc(100% - 320px);
-              top: 150px;
+              top: 125px;
             }
             @include phone {
               width: 100%;
@@ -230,6 +228,9 @@
           font-size: 20px;
           font-weight: $NotoLight;
           line-height: 35px;
+          @include tablet {
+            margin: 50px 0;
+          }
           @include phone {
             width: 90%;
             line-height: 1.75;
@@ -246,9 +247,11 @@
 
 .project {
   margin-bottom: 150px;
+  @include tablet { margin-bottom: 100px; }
   @include phone { margin-bottom: 50px; }
   .project__title {
     @include title;
+    @include tablet { margin-bottom: 100px; }
     @include phone {
       margin-bottom: 50px;
       font-size: 1.7em;
@@ -256,12 +259,10 @@
   }
   .project__list {
     @include clearfix;
-    width: 80%;
     margin: 0 auto;
-    margin: 0 auto;
-    @include below-tablet {
-      width: 90%;
-    }
+    @include laptop { width: 960px; }
+    @include below-tablet { width: 90%; }
+    @include phone { width: 95%; }
   }
   .project__item {
     display: inline-block;
@@ -377,11 +378,11 @@
 
 .links {
   margin-bottom: 130px;
-  @include phone {
-    margin-bottom: 50px;
-  }
+  @include tablet { margin-bottom: 100px; }
+  @include phone { margin-bottom: 50px; }
   .links__title {
     @include title;
+    @include tablet { margin-bottom: 100px; }
     @include phone {
       margin-bottom: 50px;
       font-size: 1.7em;
@@ -391,6 +392,10 @@
     }
   }
   .links__list {
+    @include laptop {
+      width: 960px;
+      margin: 0 auto;
+    }
     @include phone {
       width: 90%;
       margin: 0 auto;
@@ -401,28 +406,42 @@
         margin-bottom: 30px;
       }
       .links__item__inner {
-        display: inline-block;
-        position: relative;
-        left: 50%;
-        transform: translate(-50%, 0);
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+        @include tablet { width: 80%; }
+        @include phone { width: 95%; }
         .links__item__img,
         .links__item__desc {
           display: inline-block;
         }
         .links__item__desc {
-          @include phone { margin-top: 15px; }
+          width: 45%;
+          @include phone {
+            margin-top: 15px;
+            width: 100%;
+          }
           .links__item__desc__title {
             font-size: 1.2em;
             font-weight: 100;
-            @include phone { border-bottom: 1px solid #fff; }
+            @include phone {
+              padding-right: 50px;
+              border-bottom: 1px solid #fff;
+              display: inline-block;
+            }
           }
           & > a {
-            @include phone { font-size: .7em; }
+            @include phone {
+              font-size: .8em;
+              display: block;
+              margin: 5px 0;
+            }
           }
         }
         .links__item__img {
           margin: 0;
           margin-right: 30px;
+          width: calc(55% - 30px);
           @include phone {
             display: block;
             margin-right: 0;
