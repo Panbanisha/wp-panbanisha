@@ -24,13 +24,17 @@ module.exports = React.createClass({
     var headerH = $('.header').height();
     var $navList = $('.header__nav__list');
     var $worksFilter = $('.works__filter');
+    var $worksFilterCategoryBtn = $worksFilter.find('.works__filter__category-btn');
+    var $worksFilterList = $worksFilter.find('.works__filter__list');
 
     if(scrollTop >= headerH) {
       $navList.addClass('sticky');
-      $worksFilter.addClass('sticky');
+      $worksFilterCategoryBtn.addClass('sticky');
+      $worksFilterList.addClass('sticky');
     } else {
       $navList.removeClass('sticky');
-      $worksFilter.removeClass('sticky');
+      $worksFilterCategoryBtn.removeClass('sticky');
+      $worksFilterList.removeClass('sticky');
     }
   },
 
