@@ -4,6 +4,8 @@ var {RouteHandler, Link} = Route;
 var DocumentTitle = require('react-document-title');
 
 var $ = require('jquery');
+var MobileDetect = require('mobile-detect');
+var isMobile = !!new MobileDetect(navigator.userAgent).mobile();
 
 module.exports = React.createClass({
 
@@ -26,9 +28,14 @@ module.exports = React.createClass({
 
   videoLoaded() {
     $('body').css('display', 'none');
-    $('.bg-video .bg-video__item').on('canplay', (e) => {
-      $(e.target).parents('body').fadeIn(500);
-    });
+    console.log(isMobile);
+    if(isMobile) {
+      $('body').fadeIn(500);
+    } else {
+      $('.bg-video .bg-video__item').on('canplay', (e) => {
+        $(e.target).parents('body').fadeIn(500);
+      });
+    }
   },
 
   render() {

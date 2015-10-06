@@ -32,6 +32,10 @@ body {
       height: 100% !important;
       @include below-tablet {
         background: url(/assets/images/bg-video-inner.jpg);
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
       }
       .bg-video__item {
         min-height: 100%;
