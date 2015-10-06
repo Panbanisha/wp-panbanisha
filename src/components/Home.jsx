@@ -10,15 +10,17 @@ module.exports = React.createClass({
   componentDidMount() {
     this.videoLoaded();
 
-    $('.bg-video, .logo img').css({'height': $(window).outerHeight() + 'px'});
-    $(window).resize(() => {
-      $('.bg-video, .logo img').css({'height': $(window).outerHeight() + 'px'});
-    });
+    $('.bg-video, .bg-video__inner, .logo img').css({'height': $(window).outerHeight() + 'px'});
+    this.videoResize();
   },
 
   componentDidUpdate() {
+    this.videoResize();
+  },
+
+  videoResize() {
     $(window).resize(() => {
-      $('.bg-video, .logo img').css({'height': $(window).outerHeight() + 'px'});
+      $('.bg-video, .bg-video__inner, .logo img').css({'height': $(window).outerHeight() + 'px'});
     });
   },
 
@@ -47,7 +49,8 @@ module.exports = React.createClass({
               </div>
             </div>
             <figure className="logo">
-              <img src="/assets/images/bg-video-cover.png" />
+              <img className="logo__cover--lg" src="/assets/images/bg-video-cover.png" />
+              <img className="logo__cover--sm" src="/assets/images/bg-video-cover--mobile.png" />
             </figure>
           </div>
           <nav className="home-nav">
