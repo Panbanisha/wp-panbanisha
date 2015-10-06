@@ -4,8 +4,50 @@
     margin-bottom: 70px;
     position: relative;
     @include below-tablet {
-      width: 95%;
+      width: 100%;
       margin: 50px auto;
+    }
+    @include phone {
+      position: absolute;
+      top: 120px;
+      margin: auto;
+      z-index: 100;
+      // sticky header
+      &.sticky {
+        position: fixed;
+        top: 50px;
+      }
+    }
+    .works__filter__category-btn {
+      display: none;
+      text-align: center;
+      padding: 10px 0;
+      @include below-tablet {
+        display: block;
+        background-color: rgba(#fff, .95);
+        color: #333;
+        cursor: pointer;
+        & > span {
+          &:after {
+            content: '';
+            position: relative;
+            top: -1px;
+            display: inline-block;
+            margin-left: 5px;
+            width: 10px;
+            height: 10px;
+            border-top: 1px solid #333;
+            border-right: 1px solid #333;
+            transform: rotate(45deg);
+            transition: all .15s linear;
+          }
+          &.active:after {
+            transform: rotate(135deg);
+            margin-left: 10px;
+            top: -3px;
+          }
+        }
+      }
     }
     .works__filter__list {
       @include clearfix;
@@ -13,6 +55,12 @@
       position: relative;
       left: 50%;
       transform: translate(-50%, 0);
+      transition: all .1s linear;
+      @include below-tablet {
+        width: 100%;
+        left: -50%;
+        &.active { left: 50%; }
+      }
       .works__filter__item {
         float: left;
         margin-left: 60px;
@@ -26,12 +74,23 @@
           display: block;
           width: 100%;
           margin: 0;
+          transition: all 1.5s linear;
+          background-color: rgba(#fff, .8);
+          color: #333;
           // text-align: center;
         }
         &:first-child { margin-left: 0; }
         a {
           display: block;
           width: 100%;
+          transition: all .15s linear;
+          @include phone {
+            text-align: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #fff;
+            &:active, &:hover { background-color: rgba(#fff, .9); color: #333; }
+            &.active { display: none; border-bottom: 0; }
+          }
           &:before {
             content: '';
             display: inline-block;
@@ -47,6 +106,7 @@
               width: 15px;
               height: 15px;
             }
+            @include phone { display: none; }
           }
           &:hover:before, &.active:before {
             background: #00c1c8;
@@ -59,6 +119,9 @@
   .works__list {
     @include clearfix;
     margin: 0 15px;
+    @include phone {
+      margin-top: 110px;
+    }
     .works__item {
       margin: 0;
       margin-bottom: 15px;
