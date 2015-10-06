@@ -151,8 +151,6 @@ module.exports = React.createClass({
 
     if (!this._loading && this.state.works.length > 0) {
 
-      if(isMobile) { $('body').css('height', 'auto'); }
-
       var win = $(window).height();
       var scrollTop = $(window).scrollTop();
       var bottom = win - $(window).scrollTop();
