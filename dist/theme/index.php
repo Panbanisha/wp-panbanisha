@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-<!--[if IE 8]>   <html lang="ja" class="ie ie8" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><![endif]-->
 <!--[if IE 9]>   <html lang="ja" class="ie ie9" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><![endif]-->
-<head>
 
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
   <meta name="name" content="">
@@ -25,17 +24,14 @@
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
   <!-- Main Css -->
   <link href="/assets/main.css" rel="stylesheet" type="text/css"/>
+  <!-- Modernizr -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
   <!-- IE Hacks -->
   <!--[if lt IE 9]>
-  <script src="./js/html5shiv.js"></script>
+    <script src="./js/css3-mediaqueries.js"></script>
+    <script src="./js/html5shiv.js"></script>
   <![endif]-->
-  <!--[if lt IE 9]>
-  <script src="./js/css3-mediaqueries.js"></script>
-  <![endif]-->
-
-  <!-- Modernizr -->
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 </head>
 
 <body>
