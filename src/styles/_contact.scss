@@ -35,9 +35,11 @@
           }
           h2 {
             font-size: 32px;
+            @include phone { font-size: 1.65em; }
           }
           p {
             font-size: 20px;
+            @include phone { font-size: 1.2em; }
           }
         }
       }
