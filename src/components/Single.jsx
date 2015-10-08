@@ -219,11 +219,9 @@ var CrewMember = React.createClass({
     return (
       <div className="crew__item" key={this.props.key}>
         <div className="crew__item__inner">
-          <figure className="crew__item__img">
-            <Link to="PeopleDetail" params={{people: member.slug}}>
-              <img src={member.prof_img} />
-            </Link>
-          </figure>
+          <Link to="PeopleDetail" params={{people: member.slug}}>
+            <figure className="crew__item__img" data-name={member.nick}></figure>
+          </Link>
           <div className="crew__item__desc">
             {
               this.props.crewMember.length ?

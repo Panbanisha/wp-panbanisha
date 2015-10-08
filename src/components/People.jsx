@@ -47,8 +47,20 @@ Member = React.createClass({
     );
   },
 
+  hoverProf() {
+    $profImage = $('.member__item__block__img').find('img');
+    $profImage.hover((e) => {
+      var $normalImage = $(e.target);
+      var $hoverImage = $normalImage.siblings('img');
+      console.log($hoverImage.length);
+      $profImage.removeClass('active');
+      $hoverImage.addClass('active');
+    });
+  },
+
   componentDidMount() {
     this.rotateDesc();
+    this.hoverProf();
   },
 
   componentWillReceiveProps() {
@@ -75,8 +87,9 @@ Member = React.createClass({
           <div className="member__item__inner">
             <div className="member__item__all">
               <div className="member__item__block member__item__block--img">
-                <figure className="member__item__block__img" onClick={member.mode == 'list' ? this._onClick : null}>
-                  <img src={member.prof_img} />
+                <figure className="member__item__block__img"
+                       onClick={member.mode == 'list' ? this._onClick : null}
+                       data-name={member.nick}>
                 </figure>
               </div>
               <div className="member__item__block member__item__block--desc">

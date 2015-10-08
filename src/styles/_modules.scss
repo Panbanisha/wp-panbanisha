@@ -47,3 +47,12 @@
     }
   }
 }
+
+@mixin profImg($nick) {
+  &[data-name='#{$nick}'] {
+    background-image: url(/assets/images/prof_#{$nick}.jpg);
+    &:hover {
+      background-image: url(/assets/images/prof_#{$nick}--hover.jpg);
+    }
+  }
+}

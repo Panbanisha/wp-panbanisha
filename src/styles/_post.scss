@@ -143,25 +143,49 @@
           .crew__item__img {
             float: left;
             margin: 0;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background-size: 140px;
+            transition: all .15s ease-in-out;
             @include phone {
               position: absolute;
               top: -20px;
+              width: 50px;
+              height: 50px;
+              background-size: 50px;
             }
-            img {
-              width: 140px;
-              height: 140px;
-              border-radius: 50%;
-              @include phone {
-                width: 50px;
-                height: 50px;
-              }
-            }
+            @include profImg(shohei_suwa);
+            @include profImg(gaku_takeda);
+            @include profImg(ryo_ikarashi);
+            @include profImg(ryota_fujinaka);
+            @include profImg(hajime_koizumi);
+            @include profImg(ryo_sanaka);
+            @include profImg(takuto_kudo);
           }
           .crew__item__desc {
             padding-left: 160px;
             @include phone { padding: 0; }
             .crew__item__desc__name {
               font-weight: $NotoDemiLight;
+              padding-bottom: 1px;
+              position: relative;
+              &:hover {
+                &:after {
+                  width: 100%;
+                }
+              }
+              &:after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                display: block;
+                width: 0;
+                height: 1px;
+                transition: all .1s ease-in-out;
+                background-color: #fff;
+              }
               @include phone {
                 margin: 15px 0;
                 font-weight: $NotoLight;

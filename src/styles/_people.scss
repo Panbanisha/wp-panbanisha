@@ -124,25 +124,29 @@
           .member__item__block__img {
             margin: 0;
             width: 200px;
+            height: 200px;
+            background-size: 200px;
+            border-radius: 50%;
             cursor: pointer;
+            display: block;
+            transition: all .15s ease-in-out;
+            @include below-tablet {
+              width: 150px;
+              height: 150px;
+              background-size: 150px;
+            }
             @include phone {
               width: 100px;
+              height: 100px;
+              background-size: 100px;
             }
-            img {
-              width: 200px;
-              height: 200px;
-              border-radius: 50%;
-              display: block;
-              margin: 0 auto;
-              @include below-tablet {
-                width: 150px;
-                height: 150px;
-              }
-              @include phone {
-                width: 100px;
-                height: 100px;
-              }
-            }
+            @include profImg(shohei_suwa);
+            @include profImg(gaku_takeda);
+            @include profImg(ryo_ikarashi);
+            @include profImg(ryota_fujinaka);
+            @include profImg(hajime_koizumi);
+            @include profImg(ryo_sanaka);
+            @include profImg(takuto_kudo);
           }
         }
       }
