@@ -14,22 +14,10 @@ module.exports = React.createClass({
   addCurrentClass(currentPath) {
     currentPath = currentPath.split('/');
     currentPath = currentPath[1] !== '' ? currentPath[1] : 'home';
-    switch(currentPath) {
-      case 'home':
-        $('body').attr('id', 'home');
-        break;
-      case 'works':
-        $('body').attr('id', 'works');
-        break;
-      case 'people':
-        $('body').attr('id', 'people');
-        break;
-      case 'post':
-        $('body').attr('id', 'post');
-        break;
-      default:
-        $('body').attr('id', 'contact');
-        break;
+    if(currentPath == 'home' || 'works' || 'people' || 'post' || 'contact') {
+      $('body').attr('id', currentPath);
+    } else {
+      $('body').attr('id', '404');
     }
   },
 

@@ -10,7 +10,9 @@ module.exports = React.createClass({
 
     return (
       <DocumentTitle title={title}>
-        <p>お探しのページがみつかりませんでした。</p>
+        <div className="not-found">
+          <p>お探しのページがみつかりませんでした。</p>
+        </div>
       </DocumentTitle>
     );
   }

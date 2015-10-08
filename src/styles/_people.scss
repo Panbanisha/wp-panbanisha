@@ -1,5 +1,4 @@
 .member {
-  margin-bottom: 130px;
   @include below-tablet { margin-bottom: 0; }
   .member__list {
     @include clearfix;
@@ -409,6 +408,7 @@
         display: block;
         width: 80%;
         margin: 0 auto;
+        @include clearfix;
         @include tablet { width: 80%; }
         @include phone { width: 95%; }
         .links__item__img,
@@ -431,6 +431,8 @@
             }
           }
           & > a {
+            white-space: nowrap;
+            &:hover { border-bottom: 1px solid #fff; }
             @include phone {
               font-size: .8em;
               display: block;
@@ -442,6 +444,7 @@
           margin: 0;
           margin-right: 30px;
           width: calc(55% - 30px);
+          float: left;
           @include phone {
             display: block;
             margin-right: 0;

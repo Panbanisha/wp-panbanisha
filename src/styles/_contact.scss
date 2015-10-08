@@ -227,9 +227,11 @@
       }
       .access__info__name {
         @include tablet-vertical {
-          width: 50%;
+          width: 100%;
           float: left;
           display: block;
+          font-size: .8em;
+          margin-top: 20px;
         }
         @include phone {
           width: 100%;
@@ -251,9 +253,11 @@
         margin-top: 5px;
         margin-bottom: 20px;
         @include tablet-vertical {
-          width: 50%;
+          width: 100%;
           float: left;
           display: block;
+          font-size: .8em;
+          margin: 25px 0;
         }
         @include phone {
           width: 100%;
@@ -267,6 +271,7 @@
           border-radius: 20px;
           color: #242424;
           text-align: center;
+          @include tablet-vertical { margin-top: 20px; }
           &:before {
             content: '';
             background-image: url(/assets/images/map-pin.png);
@@ -281,9 +286,10 @@
       }
       .access__info__root {
         @include tablet-vertical {
-          width: 50%;
+          width: 100%;
           float: left;
           display: block;
+          font-size: .8em;
         }
         @include phone {
           width: 100%;
