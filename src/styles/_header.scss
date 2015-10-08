@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  height: 180px;
+  height: $header-height;
   background: #000;
   padding: 0 5%;
   @include below-tablet { height: 140px; }
@@ -19,7 +19,7 @@
     @include clearfix;
     margin: 0;
     position: relative;
-    height: 180px;
+    height: $header-height;
     @include below-tablet {
       height: 140px;
       width: 35%;
@@ -40,7 +40,7 @@
     @include clearfix;
     .header__nav__list {
       @include clearfix;
-      line-height: 180px;
+      line-height: $header-height;
       z-index: 1000;
       @include below-tablet {
         line-height: 140px;
@@ -62,6 +62,7 @@
         float: right;
         color: #fff;
         font-size: 25px;
+        font-weight: $NotoThin;
         @include below-lg-phone {
           width: 33.3333%;
           text-align: center;
