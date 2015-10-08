@@ -9,8 +9,6 @@ var imagesLoaded = require('imagesloaded');
 var MobileDetect = require('mobile-detect');
 var isMobile = !!new MobileDetect(navigator.userAgent).phone();
 
-console.log(isMobile);
-
 var WorkItem = React.createClass({
 
   mixins: [State],
