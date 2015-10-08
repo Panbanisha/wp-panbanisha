@@ -154,7 +154,7 @@ module.exports = React.createClass({
       var win = $(window).height();
       var scrollTop = $(window).scrollTop();
       var bottom = win - $(window).scrollTop();
-      if (bottom < 300) {
+      if (bottom < 500) {
         this._loading = true;
         this._currentPage++;
         this.getMoreWorks();
