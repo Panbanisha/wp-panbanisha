@@ -164,9 +164,16 @@
               font-weight: $NotoDemiLight;
               @include phone {
                 margin: 15px 0;
-                font-size: $NotoLight;
+                font-weight: $NotoLight;
+                font-size: 1.3em;
                 padding-bottom: 1px;
                 border-bottom: 1px solid #fff;
+                a {
+                  @include phone {
+                    width: 100%;
+                    display: block;
+                  }
+                }
               }
             }
             .crew__item__desc__role {

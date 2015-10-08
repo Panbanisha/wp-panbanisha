@@ -19,6 +19,9 @@ body {
       opacity: 1;
       z-index: 100;
       width: 100%;
+      @include phone {
+        height: 40px;
+      }
     }
     &:before { top: 0; }
     &:after { bottom: 0; }
