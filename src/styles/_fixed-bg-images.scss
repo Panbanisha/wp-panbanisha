@@ -33,6 +33,20 @@ body {
     // @include below-tablet { background-image: url(/assets/images/people-bg.jpg); }
     // @include phone { background-image: url(/assets/images/people-bg-mobile.jpg); }
   }
+  &#contact {
+    @include laptop { background-image: url(/assets/images/contact-bg.jpg); }
+    @include below-tablet { background: transparent; }
+
+    // @include below-tablet { background-image: url(/assets/images/contact-bg-tablet.jpg); }
+    // @include phone { background-image: url(/assets/images/contact-bg-mobile.jpg); }
+  }
+  &#people {
+    @include laptop { background-image: url(/assets/images/people-bg.jpg); }
+    @include below-tablet { background: transparent; }
+
+    // @include below-tablet { background-image: url(/assets/images/people-bg.jpg); }
+    // @include phone { background-image: url(/assets/images/people-bg-mobile.jpg); }
+  }
   // &#home { background-image: url(/assets/home-bg.jpg); }
   // &#post { background-image: url(/assets/post-bg.jpg); }
 }
