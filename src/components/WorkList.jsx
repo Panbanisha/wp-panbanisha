@@ -7,7 +7,9 @@ var $ = require('jquery');
 require('row-grid/row-grid.min.js');
 var imagesLoaded = require('imagesloaded');
 var MobileDetect = require('mobile-detect');
-var isMobile = !!new MobileDetect(navigator.userAgent).mobile();
+var isMobile = !!new MobileDetect(navigator.userAgent).phone();
+
+console.log(isMobile);
 
 var WorkItem = React.createClass({
 
