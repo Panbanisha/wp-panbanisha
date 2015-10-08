@@ -40,6 +40,7 @@
           p {
             font-size: 20px;
             @include phone { font-size: 1.2em; }
+          }
         }
       }
       .contact-form__form__content {
