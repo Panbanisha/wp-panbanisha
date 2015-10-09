@@ -3,6 +3,8 @@ var Route = require('react-router');
 var {RouteHandler, Link} = Route;
 var DocumentTitle = require('react-document-title');
 
+var Logo = require('../data').logo;
+
 var $ = require('jquery');
 var MobileDetect = require('mobile-detect');
 var isMobile = !!new MobileDetect(navigator.userAgent).mobile();
@@ -14,6 +16,7 @@ module.exports = React.createClass({
 
     $('.bg-video, .bg-video__inner, .logo img').css({'height': $(window).outerHeight() + 'px'});
     this.videoResize();
+    this.resizeSVGViewBox();
   },
 
   componentDidUpdate() {
@@ -24,6 +27,19 @@ module.exports = React.createClass({
     $(window).resize(() => {
       $('.bg-video, .bg-video__inner, .logo img').css({'height': $(window).outerHeight() + 'px'});
     });
+  },
+
+  resizeSVGViewBox() {
+    var screenH = $(window).height();
+    var screenW = $(window).width();
+    $('svg').attr('viewBox', `0 0 ${screenW} ${screenH}`);
+
+    $(window).on('resize', () => {
+      screenH = $(window).height();
+      screenW = $(window).width();
+      $('svg').attr('viewBox', `0 0 ${screenW} ${screenH}`);
+    });
+
   },
 
   videoLoaded() {
@@ -55,8 +71,17 @@ module.exports = React.createClass({
               </div>
             </div>
             <figure className="logo">
-              <img className="logo__cover--lg" src="/assets/images/bg-video-cover.png" />
-              <img className="logo__cover--sm" src="/assets/images/bg-video-cover--mobile.png" />
+              <svg viewBox="0 0 841.891 595.279" style={{'display': 'block'}}>
+                <g>
+                  <defs>
+                    <mask id="maskedText">
+                      <rect fill="#fff" width="100%" height="100%" />
+                      <path d={Logo.path} />
+                    </mask>
+                  </defs>
+                  <rect id="svgBg" width="100%" height="100%" fill="rgba(51, 51, 51, .7)" className="svgLogoMask" />
+                </g>
+              </svg>
             </figure>
           </div>
           <nav className="home-nav">

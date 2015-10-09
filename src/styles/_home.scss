@@ -60,7 +60,10 @@ body {
     width: 100%;
     height: 100%;
     margin: 0;
-    opacity: .8;
+    background-color: rgba(#000a0f, .6);
+    .svgLogoMask {
+      mask: url(#maskedText);
+    }
     img {
       position: fixed;
       min-width: 100%;
