@@ -1,12 +1,32 @@
+// when sticky
+body {
+  &#works { main { &.sticky { @include up-tablet { padding-top: 321px; } @include tablet { padding-top: 271px; } } } }
+  &#post { main { &.sticky { @include up-tablet { padding-top: 140px; } } } }
+  &#people { main { &.sticky { @include up-tablet { padding-top: 140px; } } } }
+  &#contact { main { &.sticky { @include up-tablet { padding-top: 140px; } } } }
+}
+
+
 .header {
   width: 100%;
   height: $header-height;
   background: #000;
   padding: 0 5%;
+  top: -70px;
+  transition: top .1s linear;
   @include below-tablet { height: 140px; }
   @include below-lg-phone {
     height: 70px;
     padding: 0;
+  }
+  // when sticky
+  &.sticky {
+    @include up-tablet {
+      position: fixed;
+      top: 0;
+      height: $sticky-header-height;
+      z-index: 1000;
+    }
   }
   .header__logo, .header__nav__list {
     width: 50%;
@@ -20,6 +40,18 @@
     margin: 0;
     position: relative;
     height: $header-height;
+    transition: height .27s linear;
+    // when sticky
+    &.sticky {
+      @include up-tablet {
+        height: $sticky-header-height;
+        width: 30%;
+      }
+      img {
+        @include laptop { transform: translate(0, -50%) scale(.7); }
+        @include tablet { transform: translate(0, -50%) scale(.85); }
+      }
+    }
     @include below-tablet {
       height: 140px;
       width: 35%;
@@ -42,6 +74,7 @@
       @include clearfix;
       line-height: $header-height;
       z-index: 1000;
+      // transition: all .15s linear;
       @include below-tablet {
         line-height: 140px;
         width: 65%;
@@ -52,10 +85,9 @@
         background-color: #000;
       }
       // Sticky Header
-      @include phone {
-        &.sticky {
-          position: fixed;
-        }
+      &.sticky {
+        @include up-tablet { line-height: $sticky-header-height; }
+        @include phone { position: fixed; }
       }
       li {
         display: block;

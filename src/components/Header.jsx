@@ -3,6 +3,8 @@ var cx = React.addons.classSet;
 var Route = require('react-router');
 var {State, Link} = Route;
 
+var MobileDetect = require('mobile-detect');
+var isMobile = !!new MobileDetect(navigator.userAgent).mobile();
 var $ = require('jquery');
 
 module.exports = React.createClass({
@@ -21,17 +23,29 @@ module.exports = React.createClass({
 
   _onScroll() {
     var scrollTop = $(window).scrollTop();
-    var headerH = $('.header').height();
+    var $header = $('.header');
+    var headerH = $header.height();
+    var $headerLogo = $header.find('.header__logo');
+    var $main = $('main');
     var $navList = $('.header__nav__list');
+
     var $worksFilter = $('.works__filter');
     var $worksFilterCategoryBtn = $worksFilter.find('.works__filter__category-btn');
     var $worksFilterList = $worksFilter.find('.works__filter__list');
 
     if(scrollTop >= headerH) {
+      $header.addClass('sticky');
       $navList.addClass('sticky');
+      $headerLogo.addClass('sticky');
+      $main.addClass('sticky');
+      $worksFilter.addClass('sticky');
       $worksFilterCategoryBtn.addClass('sticky');
       $worksFilterList.addClass('sticky');
     } else {
+      $header.removeClass('sticky');
+      $headerLogo.removeClass('sticky');
+      $main.removeClass('sticky');
+      $worksFilter.removeClass('sticky');
       $navList.removeClass('sticky');
       $worksFilterCategoryBtn.removeClass('sticky');
       $worksFilterList.removeClass('sticky');

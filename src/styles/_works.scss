@@ -2,7 +2,8 @@
   .works__filter {
     margin-top: 70px;
     margin-bottom: 50px;
-    position: relative;
+    top: 0px;
+    transition: top .1s linear;
     @include below-tablet {
       width: 100%;
       margin: 50px auto;
@@ -11,6 +12,24 @@
       position: absolute;
       top: 120px;
       margin: auto;
+    }
+    // when sticky
+    &.sticky {
+      @include up-tablet {
+        margin: 0;
+        width: 100%;
+        padding: 20px 0;
+        position: fixed;
+        top: $sticky-header-height;
+        z-index: 1000;
+        background-color: rgba(#fff, .8);
+        .works__filter__list {
+          .works__filter__item {
+            color: #333;
+            a:before { border-color: #333; }
+          }
+        }
+      }
     }
     .works__filter__category-btn {
       display: none;
@@ -57,15 +76,17 @@
       left: 50%;
       transform: translate(-50%, 0);
       transition: all .1s linear;
-      @include phone {
-        width: 100%;
-        left: -50%;
-        // sticky header
-        &.sticky {
+      // when sticky
+      &.sticky {
+        @include phone {
           position: fixed;
           top: 97px;
           z-index: 100;
         }
+      }
+      @include phone {
+        width: 100%;
+        left: -50%;
         &.active {
           left: 50%;
           z-index: 100;

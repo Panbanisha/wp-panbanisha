@@ -29,8 +29,6 @@ module.exports = React.createClass({
     var svgW = $svg.width();
     var svgH = $svg.height();
 
-    console.log(svgH);
-
     var $panelLR = $('.fill-space--l, .fill-space--r');
     var $panelTB = $('.fill-space--t, .fill-space--b');
 
