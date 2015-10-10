@@ -98,7 +98,7 @@ module.exports = React.createClass({
               <span className="fill-space fill-space--r" />
               <span className="fill-space fill-space--t" />
               <span className="fill-space fill-space--b" />
-              <svg className="logo__svg" viewBox="0 0 830 596" width="1200px" id="logoSVG">
+              <svg className="logo__svg" viewBox="0 0 830 590" width="1200px" id="logoSVG">
                 <g>
                   <defs>
                     <mask id="maskedText">
