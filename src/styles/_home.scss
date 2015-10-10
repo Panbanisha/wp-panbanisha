@@ -61,9 +61,27 @@ body {
     height: 100%;
     margin: 0;
     background-color: rgba(#000a0f, .6);
-    .svgLogoMask {
-      mask: url(#maskedText);
+    .fill-space {
+      display: block;
+      background-color: rgba(51, 51, 51, .6);
+      position: absolute;
+      &--t, &--b { width: 100%; }
+      &--t { top: 0; }
+      &--b { bottom: 0; }
+      &--l, &--r { height: 100%; }
+      &--l { left: 0; }
+      &--r { right: 0; }
     }
+    .logo__svg {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1200px;
+      @include phone { width: 650px; }
+    }
+    .svgLogoMask { mask: url(#maskedText); }
     img {
       position: fixed;
       min-width: 100%;
