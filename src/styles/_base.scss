@@ -14,7 +14,12 @@ body {
 	font-weight: $NotoLight;
 	color: $main-font-color;
 }
-.wrapper { background-color: $main-bg-color; }
+.wrapper {
+	background-color: $main-bg-color;
+	@include below-tablet {
+		background-color: $main-bg-color--mobile;
+	}
+}
 h1, h2, h3, ul, li, a, img, form, input, label, select,  p, div, header, nav, section, article, main {
 	margin: 0;
 	padding: 0;
