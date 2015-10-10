@@ -1,7 +1,7 @@
 // when sticky
 body {
   &#works { main { &.sticky { @include up-tablet { padding-top: 321px; } @include tablet { padding-top: 271px; } } } }
-  &#post { main { &.sticky { @include up-tablet { padding-top: 140px; } } } }
+  &#post { main { &.sticky { @include up-tablet { padding-top: 150px; } @include tablet { padding-top: 140px; } } } }
   &#people { main { &.sticky { @include up-tablet { padding-top: 140px; } } } }
   &#contact { main { &.sticky { @include up-tablet { padding-top: 140px; } } } }
 }
