@@ -104,7 +104,10 @@
             left: 0;
             transform: translate(0, -50%);
             transition: all .15s linear;
-            @include below-tablet { top: 75px; }
+            @include below-tablet {
+              top: 75px;
+              width: calc(100% - 200px);
+            }
             @include phone {
               top: 50px;
               width: calc(100% - 150px);
