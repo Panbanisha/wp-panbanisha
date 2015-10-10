@@ -59,11 +59,15 @@ $phone-screen-width: 30em;
 
   // Header
   $header-title-c: #333;
-  $header-bg-color: #fff;
+  $header-bg-color: #000;
   $header-bg-color--mobile: #3c4b5b;
+
+  // Footer
+  $footer-bg-color: #000;
 
   // Home
   $video-overlay-color: rgba(0, 23, 38, 0.7);
+  $video-up-down-line: #000;
 
   // Contact
   $form-bg-color: rgba(#000a0f, .6);

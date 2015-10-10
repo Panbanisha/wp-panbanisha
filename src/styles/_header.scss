@@ -82,7 +82,7 @@ body {
       @include below-lg-phone {
         line-height: 2;
         width: 100%;
-        background-color: #000;
+        background-color: $header-bg-color;
       }
       // Sticky Header
       &.sticky {
