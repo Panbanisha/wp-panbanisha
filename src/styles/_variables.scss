@@ -54,17 +54,20 @@ $phone-screen-width: 30em;
  * Colors
  */
 
- // body
- $main-bg: #fefffa;
+  // body
+  $main-bg-color: rgba(#001726, .7);
 
- // Header
- $header-title-c: #333;
- $header-bg-color: #fff;
- $header-bg-color--mobile: #3c4b5b;
+  // Header
+  $header-title-c: #333;
+  $header-bg-color: #fff;
+  $header-bg-color--mobile: #3c4b5b;
 
- // Contact
- $form-bg-color: rgba(#000a0f, .6);
- $form-bg-color--mobile: rgba(#fff, .9);
+  // Home
+  $video-overlay-color: rgba(0, 23, 38, 0.7);
+
+  // Contact
+  $form-bg-color: rgba(#000a0f, .6);
+  $form-bg-color--mobile: rgba(#fff, .9);
 
 /*
  * Fonts
@@ -83,32 +86,32 @@ $NotoMedium: 500;
 $NotoBold: 700;
 
 // font-color
-$main-bg-color: rgba(#001726, .7);
 $main-font-color: #fff;
-  // Footer
-  $footer-font-color: #f28177;
 
+// Footer
+$footer-font-color: #f28177;
 
- // Screen width
+/*
+ * Screen Width
+ */
 
-	// Default width setting
-	$width-lg: 1200;
- 	$width-md: 992;
- 	$width-sm: 768;
- 	$width-xs: 480;
+  // Default width setting
+  $width-lg: 1200;
+  $width-md: 992;
+  $width-sm: 768;
+  $width-xs: 480;
 
- 	// Max width
- 	$max-width-lg: $width-lg + 'px';
- 	$max-width-md: $width-md + 'px';
- 	$max-width-sm: $width-sm + 'px';
- 	$max-width-xs: $width-xs + 'px';
+	// Max width
+	$max-width-lg: $width-lg + 'px';
+	$max-width-md: $width-md + 'px';
+	$max-width-sm: $width-sm + 'px';
+	$max-width-xs: $width-xs + 'px';
 
-	// Min width
- 	$min-width-lg: $width-lg + 1 + 'px';
- 	$min-width-md: $width-md + 1 + 'px';
- 	$min-width-sm: $width-sm + 1 + 'px';
- 	$min-width-xs: $width-xs + 1 + 'px';
-
+  // Min width
+	$min-width-lg: $width-lg + 1 + 'px';
+	$min-width-md: $width-md + 1 + 'px';
+	$min-width-sm: $width-sm + 1 + 'px';
+	$min-width-xs: $width-xs + 1 + 'px';
 
   // Width and Height
   $main-width: 1025px;

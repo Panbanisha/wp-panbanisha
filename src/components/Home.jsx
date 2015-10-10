@@ -29,6 +29,8 @@ module.exports = React.createClass({
     var svgW = $svg.width();
     var svgH = $svg.height();
 
+    console.log(svgH);
+
     var $panelLR = $('.fill-space--l, .fill-space--r');
     var $panelTB = $('.fill-space--t, .fill-space--b');
 
@@ -104,7 +106,7 @@ module.exports = React.createClass({
                       <path d={Logo.path} />
                     </mask>
                   </defs>
-                  <rect id="svgBg" width="100%" height="100%" fill="rgba(51, 51, 51, .6)" className="svgLogoMask" />
+                  <rect id="svgBg" width="100%" height="100%" className="svgLogoMask" />
                 </g>
               </svg>
             </figure>
