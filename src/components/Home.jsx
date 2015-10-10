@@ -26,24 +26,19 @@ module.exports = React.createClass({
     var screenH = $(window).height();
     var $svg = $('.logo__svg');
 
-    // var svgW = document.getElementById('logoSVG').getBoundingClientRect().width;
-    // var svgH = document.getElementById('logoSVG').getBoundingClientRect().height;
     var svgW = $svg.width();
     var svgH = $svg.height();
 
     var $panelLR = $('.fill-space--l, .fill-space--r');
     var $panelTB = $('.fill-space--t, .fill-space--b');
 
-    // 横がはみ出る場合
+    // horizontal spaces overlap
     if(screenW > INITSVGWIDTH) {
-      console.log('横');
       var fillW = (screenW - svgW) / 2;
-      console.log(svgW);
-      console.log(svgH);
       $panelLR.width(fillW);
       $panelTB.height(0);
       var fillH = null;
-      // 縦がはみ出るかつ横もはみ出る場合
+      // and vertical spaces also overlap
       if(screenH > INITSVGHEIGHT) {
         fillH = (screenH - INITSVGHEIGHT) / 2;
         $panelTB.height(fillH);
@@ -51,8 +46,7 @@ module.exports = React.createClass({
         $panelLR.height(screenH - 2 * fillH);
       }
     } else {
-      console.log('縦');
-      // 縦のみがはみ出る場合
+      // verticall spaces overlap
       var fillH = (screenH - svgH) / 2;
       $panelTB.height(fillH);
       $panelLR.width(0);
@@ -76,7 +70,6 @@ module.exports = React.createClass({
     this.videoResize();
     $(window).resize(this.resizeSVGViewBox);
     imagesLoaded('.logo', () => {
-      console.log('hello');
       $(window).trigger('resize');
     });
   },
