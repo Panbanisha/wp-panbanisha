@@ -12,23 +12,6 @@ var imagesLoaded = require('imagesloaded');
 
 module.exports = React.createClass({
 
-  componentDidMount() {
-    this.videoLoaded();
-    $('.bg-video, .bg-video__inner, .logo img').css({'height': $(window).outerHeight() + 'px'});
-    this.videoResize();
-    $('svg').load((e) => {
-      console.log('finished loading');
-      console.log($(e.target).width());
-      this.resizeSVGViewBox();
-    });
-    $(window).trigger('resize');
-    $(window).resize(this.resizeSVGViewBox);
-  },
-
-  componentDidUpdate() {
-    this.videoResize();
-  },
-
   videoResize() {
     $(window).resize(() => {
       $('.bg-video, .bg-video__inner, .logo img').css({'height': $(window).outerHeight() + 'px'});
@@ -37,34 +20,38 @@ module.exports = React.createClass({
 
   resizeSVGViewBox() {
     const INITSVGWIDTH = 1200;
+    const INITSVGHEIGHT = 916;
+
     var screenW = $(window).width();
     var screenH = $(window).height();
     var $svg = $('.logo__svg');
 
+    // var svgW = document.getElementById('logoSVG').getBoundingClientRect().width;
+    // var svgH = document.getElementById('logoSVG').getBoundingClientRect().height;
     var svgW = $svg.width();
     var svgH = $svg.height();
-
-    console.log(svgH);
 
     var $panelLR = $('.fill-space--l, .fill-space--r');
     var $panelTB = $('.fill-space--t, .fill-space--b');
 
     // 横がはみ出る場合
     if(screenW > INITSVGWIDTH) {
-      var fillW = (screenW - svgW) / 2 + 1;
+      console.log('横');
+      var fillW = (screenW - svgW) / 2;
+      console.log(svgW);
+      console.log(svgH);
       $panelLR.width(fillW);
       $panelTB.height(0);
       var fillH = null;
       // 縦がはみ出るかつ横もはみ出る場合
-      if(screenH > svgH) {
-        console.log('縦も!');
-        fillH = (screenH - svgH) / 2;
-        console.log(fillH);
+      if(screenH > INITSVGHEIGHT) {
+        fillH = (screenH - INITSVGHEIGHT) / 2;
         $panelTB.height(fillH);
         $panelLR.css({'top': fillH});
         $panelLR.height(screenH - 2 * fillH);
       }
     } else {
+      console.log('縦');
       // 縦のみがはみ出る場合
       var fillH = (screenH - svgH) / 2;
       $panelTB.height(fillH);
@@ -81,6 +68,17 @@ module.exports = React.createClass({
         $(e.target).parents('body').fadeIn(500);
       });
     }
+  },
+
+  componentDidMount() {
+    this.videoLoaded();
+    $('.bg-video, .bg-video__inner, .logo img').css({'height': $(window).outerHeight() + 'px'});
+    this.videoResize();
+    $(window).resize(this.resizeSVGViewBox);
+    imagesLoaded('.logo', () => {
+      console.log('hello');
+      $(window).trigger('resize');
+    });
   },
 
   render() {
@@ -105,7 +103,7 @@ module.exports = React.createClass({
               <span className="fill-space fill-space--r" />
               <span className="fill-space fill-space--t" />
               <span className="fill-space fill-space--b" />
-              <svg className="logo__svg" viewBox="0 0 841.891 595.279">
+              <svg className="logo__svg" viewBox="0 0 780 596" width="1200px" id="logoSVG">
                 <g>
                   <defs>
                     <mask id="maskedText">
