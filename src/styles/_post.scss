@@ -243,7 +243,7 @@
     }
     .crew__list {
       @include clearfix;
-      width: 80%;
+      width: 1200px;
       margin: 0 auto;
       @include below-tablet { width: 95%; }
       @include tablet-vertical { width: 80%; }
@@ -384,7 +384,7 @@
       }
     }
     .sound-track__list {
-      width: 70%;
+      width: 1200px;
       margin: 0 auto;
       @include phone { width: 90%; }
       .sound-track__item {
