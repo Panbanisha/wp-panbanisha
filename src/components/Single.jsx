@@ -102,7 +102,8 @@ module.exports = React.createClass({
     this.responsiveIframe();
     this.setLineOrder();
     this.createCrewMemberBlock();
-    require('./image-slider.js');
+    $('script#script-image-slider').remove();
+    $('body').append('<script id="script-image-slider" src="/assets/lib/image-slider.js"></script>');
   },
 
   render() {
