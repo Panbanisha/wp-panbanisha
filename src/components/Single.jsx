@@ -1,10 +1,12 @@
-var React = require('react');
+var React = require('react/addons');
+var cx = React.addons.classSet;
 var Route = require('react-router');
 var {State, Link} = Route;
 
 var $ = require('jquery');
 var _ = require('underscore');
 var assign = require('object-assign');
+require('snapsvg');
 
 var MEMBERS = require('../data').members;
 
@@ -100,6 +102,7 @@ module.exports = React.createClass({
     this.responsiveIframe();
     this.setLineOrder();
     this.createCrewMemberBlock();
+    require('./image-slider.js');
   },
 
   render() {
@@ -115,39 +118,76 @@ module.exports = React.createClass({
 
               <div className="product__main" dangerouslySetInnerHTML={{__html: post.content}} />
 
-              {post.acf.videos !== '0' ?
-                <ul className="product__videos">
-                  { post.acf.videos.map((video, index) => {
-                    return (
-                      <li key={`video-item-${index}`} className="product__videos__item">
-                        <div className="product__videos__item__wrapper" dangerouslySetInnerHTML={{__html: video.works_video}} />
-                      </li>
-                    )}
-                  )}
-                </ul>
-              : ''}
+              <div className="procuct__all">
+                {post.acf.videos !== '0' ?
+                  <div className="product__videos">
+                    {
+                      post.acf.videos.length == 1 ? <h2 className="product__videos__title"><span className="init">V</span>ideo</h2> : <h2 className="product__videos__title"><span className="init">V</span>ideos</h2>
+                    }
+                    <ul className="product__videos__list">
+                      { post.acf.videos.map((video, index) => {
+                        index += 1;
+                        return (
+                          <li key={`video-item-${index}`}  className="product__videos__item">
+                            <div className="product__videos__item__wrapper" dangerouslySetInnerHTML={{__html: video.works_video}} />
+                          </li>
+                        )}
+                      )}
+                    </ul>
+                  </div>
+                : ''}
 
-              {post.acf.images !== '0' ?
-                <ul className="product__images">
-                  {post.acf.images.map((image, index) => {
-                    var imageTag = `
-                        <defs>
-                          <clipPath id="image-${index}">
-                            <path id="changing-path-${index}" d="M0,800C0,800,1400,800,1400,800C1400,800,1400,0,1400,0C1400,0,1,0,1,0C0.4,0,0,0.4,0,1C0,1,0,800,0,800C0,800,0,800,0,800" />
-                          </clipPath>
-                        </defs>
-                        <image height="800px" width="1400px" clip-path="url(#cd-image-${index})" xlink:href="${image.works_image}" />
-                    `;
-                    return(
-                      <li key={`item-image-${index}`} className="product__images__item">
-                        <div className="image-svg-item-wrapper">
-                          <svg viewBox="0 0 1400 800" dangerouslySetInnerHTML={{__html: imageTag}} />
-                        </div>
-                      </li>
-                    )}
-                  )}
-                </ul>
-              : ''}
+                {post.acf.images !== '0' ?
+                  <div className="product__images">
+                    {
+                      post.acf.images.length == 1 ? <h2 className="product__images__title"><span className="init">I</span>mage</h2> : <h2 className="product__images__title"><span className="init">I</span>mages</h2>
+                    }
+
+                    <div className="product__images__wrapper">
+
+                      <ul className="product__images__list"
+                         data-step1="M1402,800h-2c0,0,0-213,0-423s0-377,0-377h1c0.6,0,1,0.4,1,1V800z" data-step2="M1400,800H724c0,0-297-155-297-423C427,139,728,0,728,0h671c0.6,0,1,0.4,1,1V800z" data-step3="M1400,800H0c0,0,1-213,1-423S1,0,1,0h1398c0.6,0,1,0.4,1,1V800z" data-step4="M-2,800h2c0,0,0-213,0-423S0,0,0,0h-1c-0.6,0-1,0.4-1,1V800z" data-step5="M0,800h676c0,0,297-155,297-423C973,139,672,0,672,0L1,0C0.4,0,0,0.4,0,1L0,800z" data-step6="M0,800h1400c0,0-1-213-1-423s0-377,0-377L1,0C0.4,0,0,0.4,0,1L0,800z">
+                        {post.acf.images.map((image, index) => {
+                          index += 1;
+                          var imageTag = `
+                              <defs>
+                                <clipPath id="image-${index}">
+                                  <path id="changing-path-${index}" d="M0,800C0,800,1400,800,1400,800C1400,800,1400,0,1400,0C1400,0,1,0,1,0C0.4,0,0,0.4,0,1C0,1,0,800,0,800C0,800,0,800,0,800" />
+                                </clipPath>
+                              </defs>
+                              <image height="800px" width="1400px" clip-path="url(#image-${index})" xlink:href="${image.works_image}" />
+                          `;
+                          return(
+                            <li key={`item-image-${index}`} className={cx({product__images__item: true, visible: index == 1})}>
+                              <div className="image-svg-item-wrapper">
+                                <svg viewBox="0 0 1400 800" dangerouslySetInnerHTML={{__html: imageTag}} />
+                              </div>
+                            </li>
+                          )}
+                        )}
+                      </ul>
+
+                      <ul className="product__images__navigation">
+                        <li><a href="#0" className="next-slide">Next</a></li>
+                        <li><a href="#0" className="prev-slide">Prev</a></li>
+                    	 </ul>
+
+                    		<ol className="product__images__controls">
+                        {
+                          post.acf.images.map((image, index) => {
+                            index += 1;
+                            if (index == 1) {
+                              return ( <li key={`image-controls-${index}`} className="selected"><a href="#0"><em>Item {index}</em></a></li> )
+                            } else {
+                              return ( <li key={`image-controls-${index}`}><a href="#0"><em>Item {index}</em></a></li> )
+                            }
+                          })
+                        }
+                    		</ol>
+                    </div>
+                  </div>
+                : ''}
+              </div>
 
               <div className="product__desc">
                 <h1 className="product__desc__title">{post.title}</h1>

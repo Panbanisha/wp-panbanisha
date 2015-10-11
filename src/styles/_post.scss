@@ -37,6 +37,169 @@
         }
       }
     }
+    .product__videos {
+      margin-bottom: 50px;
+      .product__videos__title {
+        display: inline-block;
+        padding: 10px 10px 0px 2px;
+        border-bottom: 2px solid #fff;
+        font-size: 1.3em;
+        font-weight: $NotoLight;
+        margin-bottom: 20px;
+        .init {
+          font-size: 1.6em;
+          letter-spacing: .05em;
+        }
+        @include phone {
+          font-size: 1.1em;
+        }
+      }
+      .product__videos__item {
+        display: block;
+        margin-top: 30px;
+        .product__videos__item__wrapper {
+          display: block;
+          position: relative;
+          padding-bottom: 56.25%;
+          padding-top: 25px;
+          height: 0;
+          overflow: hidden;
+          box-shadow: 2px 2px 2px rgba(#333, .7);
+          iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+    .product__images {
+      margin-bottom: 100px;
+      @include phone { margin-bottom: 50px; }
+      .product__images__title {
+        display: inline-block;
+        padding: 10px 10px 0px 2px;
+        border-bottom: 2px solid #fff;
+        font-size: 1.3em;
+        font-weight: $NotoLight;
+        margin-bottom: 20px;
+        .init {
+          font-size: 1.6em;
+          letter-spacing: .05em;
+        }
+        @include phone {
+          font-size: 1.1em;
+        }
+      }
+      .product__images__wrapper {
+        position: relative;
+      }
+      .product__images__list {
+        position: relative;
+        max-width: 1024px;
+        margin: 2em auto;
+        overflow-x: hidden;
+        & > li {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          opacity: 0;
+          overflow: hidden;
+          &.visible {
+            position: relative;
+            z-index: 2;
+            opacity: 1;
+          }
+          &.is-animating {
+            z-index: 3;
+            opacity: 1;
+          }
+        }
+        .image-svg-item-wrapper {
+          height: 0;
+          padding-bottom: 57.15%;
+          svg {
+           position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+      .product__images__navigation {
+         li {
+        	position: absolute;
+        	z-index: 3;
+        	@include center(y);
+        	right: 10px;
+        	height: 48px;
+        	width: 48px;
+        	a {
+        		display: block;
+        		height: 100%;
+        		overflow: hidden;
+        		text-indent: 100%;
+        		white-space: nowrap;
+        		color: transparent;
+        		background: url(/assets/images/icon-arrows.svg) no-repeat 0 0;
+        		transition: transform .2s;
+           @include phone {
+           }
+        		.no-touch &:hover {
+        			transform: scale(1.1);
+        		}
+        	}
+        	&:last-of-type {
+        		left: 10px;
+        		right: auto;
+        		a {
+        			background-position: -48px 0;
+        		}
+        	}
+        }
+      }
+      .product__images__controls {
+        position: absolute;
+      	bottom: 20px;
+        padding: 0;
+      	@include center(x);
+      	z-index: 3;
+      	@include clearfix;
+      	text-align: center;
+      	width: 90%;
+       @include phone {
+         bottom: 0;
+       }
+      	li {
+      		display: inline-block;
+      		margin-right: 10px;
+      		&:last-of-type {
+      			margin-right: 0;
+      		}
+      		&.selected a {
+      			background-color: #fff;
+      		}
+      	}
+      	a {
+      		display: block;
+      		overflow: hidden;
+      		text-indent: 100%;
+      		white-space: nowrap;
+      		color: transparent;
+      		height: 10px;
+      		width: 10px;
+      		border-radius: 50%;
+      		border: 2px solid #fff;
+      		.no-touch &:hover {
+      			background-color: #fff;;
+      		}
+      	}
+      }
+    }
     .product__desc {
       text-align: center;
       .product__desc__title {
