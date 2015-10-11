@@ -74,7 +74,7 @@ module.exports = (grunt) ->
       theme:
         options:
           src: './dist/theme'
-          dest: './wordpress/wp-content/themes/ange'
+          dest: './wordpress/wp-content/themes/panbanisha'
       assets:
         options:
           src: './dist/assets'
