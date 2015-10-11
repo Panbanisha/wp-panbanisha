@@ -27,6 +27,18 @@ module.exports = (grunt) ->
         files:
           'dist/assets/main.css': 'dist/assets/main.css'
 
+    watchify:
+      options:
+        detectGlobals: true,
+        insertGlobals: false,
+        ignoreMissing: false,
+        debug: false,
+        standalone: false,
+        keepalive: false,
+      dev:
+        src: './src/**/*.jsx',
+        dest: './dist/assets/bundle.js'
+
     browserify:
       dev:
         files:
@@ -59,6 +71,9 @@ module.exports = (grunt) ->
       sass:
         files: ['src/**/*.scss']
         tasks: ['sass', 'autoprefixer']
+      browserify:
+        files: ['src/**/*.jsx']
+        tasks: 'browserify:dev'
       dist:
         files: ['dist/**/*']
         options:
