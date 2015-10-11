@@ -112,7 +112,43 @@ module.exports = React.createClass({
           <div className="single-post__inner">
 
             <section className="product">
-              <div className="product__main" dangerouslySetInnerHTML={{__html: post.content}}></div>
+              
+              <div className="product__main" dangerouslySetInnerHTML={{__html: post.content}} />
+
+              {post.acf.videos !== '0' ?
+                <ul className="products__videos">
+                  { post.acf.videos.map((video, index) => {
+                    return (
+                      <li key={`video-item-${index}`} className="product__videos__item">
+                        <div className="product__videos__item__wrapper" dangerouslySetInnerHTML={{__html: video.works_video}} />
+                      </li>
+                    )}
+                  )}
+                </ul>
+              : ''}
+
+              {post.acf.images !== '0' ?
+                <ul className="products__images">
+                  {post.acf.images.map((image, index) => {
+                    var imageTag = `
+                        <defs>
+                          <clipPath id="image-${index}">
+                            <path id="changing-path-${index}" d="M0,800C0,800,1400,800,1400,800C1400,800,1400,0,1400,0C1400,0,1,0,1,0C0.4,0,0,0.4,0,1C0,1,0,800,0,800C0,800,0,800,0,800" />
+                          </clipPath>
+                        </defs>
+                        <image height="800px" width="1400px" clip-path="url(#cd-image-${index})" xlink:href="${image.works_image}" />
+                    `;
+                    return(
+                      <li key={`item-image-${index}`} className="product__images__item">
+                        <div className="image-svg-item-wrapper">
+                          <svg viewBox="0 0 1400 800" dangerouslySetInnerHTML={{__html: imageTag}} />
+                        </div>
+                      </li>
+                    )}
+                  )}
+                </ul>
+              : ''}
+
               <div className="product__desc">
                 <h1 className="product__desc__title">{post.title}</h1>
                 <time className="product__desc__date">{this.trimDate(post.modified)}</time>
