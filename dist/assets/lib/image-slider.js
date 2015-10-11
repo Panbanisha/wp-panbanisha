@@ -21,8 +21,6 @@ jQuery(document).ready(function(){
 			sliderNav = sliderWrapper.find('.product__images__navigation'),
 			sliderControls = sliderWrapper.find('.product__images__controls').find('li');
 
-		console.log(slider.data('step1'));
-
 		//store path 'd' attribute values
 		var pathArray = [];
 		pathArray[0] = slider.data('step1');
@@ -31,8 +29,6 @@ jQuery(document).ready(function(){
 		pathArray[3] = slider.data('step5');
 		pathArray[4] = slider.data('step3');
 		pathArray[5] = slider.data('step6');
-
-		console.log(pathArray);
 
 		//update visible slide when user clicks next/prev arrows
 		sliderNav.on('click', '.next-slide', function(event){
