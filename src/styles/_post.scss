@@ -230,8 +230,9 @@
           font-size: .8em;
         }
         p {
-          text-align: left;
+          text-align: center;
           font-weight: $NotoLight;
+          @include phone { text-align: left; }
         }
       }
     }

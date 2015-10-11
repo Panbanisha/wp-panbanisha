@@ -232,8 +232,14 @@
           @include phone { display: none; }
           p {
             font-size: 18px;
+            padding-bottom: 2px;
+            font-weight: $NotoRegular;
             span {
               margin: 2px;
+              border-bottom: 1px solid #000;
+              &:nth-child(2) {
+                border-bottom: 0;
+              }
             }
           }
         }
