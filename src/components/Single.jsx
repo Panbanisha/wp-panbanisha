@@ -112,11 +112,11 @@ module.exports = React.createClass({
           <div className="single-post__inner">
 
             <section className="product">
-              
+
               <div className="product__main" dangerouslySetInnerHTML={{__html: post.content}} />
 
               {post.acf.videos !== '0' ?
-                <ul className="products__videos">
+                <ul className="product__videos">
                   { post.acf.videos.map((video, index) => {
                     return (
                       <li key={`video-item-${index}`} className="product__videos__item">
@@ -128,7 +128,7 @@ module.exports = React.createClass({
               : ''}
 
               {post.acf.images !== '0' ?
-                <ul className="products__images">
+                <ul className="product__images">
                   {post.acf.images.map((image, index) => {
                     var imageTag = `
                         <defs>
