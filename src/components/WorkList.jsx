@@ -151,10 +151,15 @@ module.exports = React.createClass({
 
     if (!this._loading && this.state.works.length > 0) {
 
-      var win = $(window).height();
+      var winH = $(window).height();
+      var winW = $(window).width();
       var scrollTop = $(window).scrollTop();
-      var bottom = win - $(window).scrollTop();
-      if (bottom < 500) {
+      var bottom = winH - $(window).scrollTop();
+      var loadingLine = 0;
+
+      loadingLine = winW > 1400 ? 800 : 500;
+
+      if (bottom < loadingLine) {
         this._loading = true;
         this._currentPage++;
         this.getMoreWorks();
