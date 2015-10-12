@@ -103,7 +103,15 @@ module.exports = React.createClass({
     this.setLineOrder();
     this.createCrewMemberBlock();
     $('script#script-image-slider').remove();
-    $('body').append('<script id="script-image-slider" src="/assets/lib/image-slider.js"></script>');
+    var images = this.state.post.acf.images;
+    if(images !== '0') {
+      if(images.length > 1) {
+        $('body').append('<script id="script-image-slider" src="/assets/lib/image-slider.js"></script>');
+        $('.product__images').removeClass('only-one');
+      } else {
+        $('.product__images').addClass('only-one');
+      }
+    }
   },
 
   render() {

@@ -130,6 +130,11 @@
           }
         }
       }
+      // when a post has only one image
+      &.only-one {
+        .product__images__navigation,
+        .product__images__controls { display: none; }
+      }
       .product__images__navigation {
          li {
         	position: absolute;
