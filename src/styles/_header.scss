@@ -86,8 +86,10 @@ body {
       }
       // Sticky Header
       &.sticky {
+        width: 70%;
         @include up-tablet { line-height: $sticky-header-height; }
-        @include phone { position: fixed; }
+        @include tablet { width: 65%; }
+        @include phone { position: fixed; width: 100%; }
       }
       li {
         display: block;

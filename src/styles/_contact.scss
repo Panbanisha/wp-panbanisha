@@ -135,11 +135,13 @@
                   box-shadow: 0px 0px 0px;
                   padding-left: 70px;
                   border-bottom: 1px solid #fff;
+                  @include phone { padding-left: 45px; }
                 }
               }
               textarea {
                 border: 0;
                 background-color: transparent;
+                letter-spacing: .05em;
               }
             }
           }

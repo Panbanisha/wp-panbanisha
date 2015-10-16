@@ -22,6 +22,17 @@ var WorkItem = React.createClass({
   render() {
 
     var work = this.props;
+    var productionTeam = '';
+
+    if(work.acf.production_team !== '0') {
+      var productionTeam = work.acf.production_team.map((team, index) => {
+        if(index+1 === work.acf.production_team.length){
+          return ( <span key={index}>{` ${team.pt_name}`}</span> )
+        } else {
+          return ( <span key={index}>{` ${team.pt_name} `}<span className="collabo">X</span></span> )
+        }
+      });
+    }
 
     return (
       <figure className="works__item" key={this.props.key} ref="workItem">
@@ -35,6 +46,11 @@ var WorkItem = React.createClass({
                   work.acf.all_member.map((member) => <p key={member.all_member_role}>{member.all_member_role.toUpperCase()}<span>:</span>{member.all_member_name.toUpperCase()}</p>)
                 : ''}
               </div>
+              {work.acf.production_team !== '0' ?
+                <div className="works__item__production-team">
+                  <p><span>Production Team</span><span>:</span>{productionTeam}</p>
+                </div>
+              : ''}
               <time className="works__item__caption__date">{this.trimDate(work.modified)}</time>
             </div>
           </figcaption>

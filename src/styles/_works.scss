@@ -193,6 +193,20 @@
         }
       }
       &--first-item { clear: both }
+      .works__item__production-team {
+        margin: 10px 0;
+        & > p {
+          padding: 5px;
+          font-size: 1em;
+          font-weight: $NotoRegular;
+          span {
+            border-bottom: 1px solid #333;
+            &:nth-child(2) { margin: 0 5px; }
+            &:nth-child(2), &.collabo { border-bottom: 0; }
+            &.collabo { font-size: .7em; }
+          }
+        }
+      }
       .works__item__caption {
         position: absolute;
         bottom: 0;

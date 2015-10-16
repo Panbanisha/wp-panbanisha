@@ -383,6 +383,33 @@
   }
 }
 
+@mixin titleLine() {
+  &:after.odd {
+    margin-left: 30%;
+  }
+}
+
+.background {
+  margin-bottom: 150px;
+  @include tablet { margin-bottom: 100px; }
+  @include phone { margin-bottom: 50px; }
+  .background__title {
+    @include title;
+    @include tablet { margin-bottom: 100px; }
+    @include phone {
+      margin-bottom: 50px;
+      font-size: 1.7em;
+    }
+  }
+  .background__list {
+    @include clearfix;
+    margin: 0 auto;
+    @include laptop { width: 960px; }
+    @include below-tablet { width: 90%; }
+    @include phone { width: 95%; }
+  }
+}
+
 .links {
   margin-bottom: 130px;
   @include tablet { margin-bottom: 100px; }

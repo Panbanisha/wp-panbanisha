@@ -36,6 +36,11 @@
     font-size: 1.8em;
     margin-bottom: 80px;
   }
+  &.odd {
+    &:after {
+      @include phone { margin-left: 8%; }
+    }
+  }
   &:after {
     content: '';
     display: block;

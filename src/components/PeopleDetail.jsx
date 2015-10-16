@@ -15,17 +15,6 @@ var WorkItem = React.createClass({
   render() {
 
     var work = this.props;
-    var productionTeam = '';
-
-    // if(work.acf.production_team !== '0') {
-    //   var productionTeam = work.acf.production_team.map((team, index) => {
-    //     if(index+1 === work.acf.production_team.length){
-    //       return ( <span key={index}>{` ${team.pt_name}`}</span> )
-    //     } else {
-    //       return ( <span key={index}>{` ${team.pt_name} `}<span>X</span></span> )
-    //     }
-    //   });
-    // }
 
     return (
       <div className="project__item">
@@ -45,6 +34,25 @@ var WorkItem = React.createClass({
       </div>
     )
   }
+});
+
+var BackgroundItem = React.createClass({
+
+  render() {
+
+    var bgItem = this.props;
+    var date = `${bgItem.bg_year}.${bgItem.bg_month}`;
+
+    return (
+      <div className="background__item">
+        <div className="background__item__inner">
+          <div className="background__item__date"><span>{{date}}</span></div>
+          <div className="background__item__message" dangerouslySetInnerHTML={{__html: bgItem.bg_message}}></div>
+        </div>
+      </div>
+    )
+  }
+
 });
 
 var LinkItem = React.createClass({
@@ -74,13 +82,18 @@ module.exports = React.createClass({
   mixins: [State, Navigation],
 
   getInitialState() {
-      return {member: null, work: [], link: []};
+      return {
+        member: null,
+        work: [],
+        background: [],
+        link: []
+      };
   },
 
   getDetail() {
       var member = this.getParams().people;
       if (member == this.state.member) return;
-      var state = {member: member, work: [], link: []};
+      var state = {member: member, work: [], background: [], link: []};
 
       var getWorks = $.getJSON('/wp-json/posts', {'filter[tag]': member,  'filter[posts_per_page]': 200}).done((result) => {
         if(result.length) {
@@ -92,37 +105,62 @@ module.exports = React.createClass({
         }
       });
 
-      var getLinks = $.getJSON(`/wp-json/pages/people/${member}`).done((result) => {
+      var getPeopleDetails = $.getJSON(`/wp-json/pages/people/${member}`).done((result) => {
         if(result.acf.link !== '0') {
           var links = result.acf.link;
           state['link'] = links;
         }
+        if(result.acf.background != '0') {
+          var background = result.acf.background;
+          state['background'] = background;
+        }
       });
 
-      $.when(getWorks, getLinks).done(() => {
+      $.when(getWorks, getPeopleDetails).done(() => {
         this.setState(state);
       });
   },
 
+  countMemberSection() {
+    var $sections = $('.member-info > div');
+    var numOfSection = $sections.length;
+
+    console.log(numOfSection);
+
+    $.each($sections, (index) => {
+      var mark = (index + 1) % 2 == 0 ? 'even' : 'odd';
+      $sections.eq(index).find('h1').addClass(mark);
+    });
+  },
+
   componentDidMount() {
-      this.getDetail();
+    this.getDetail();
+    this.countMemberSection();
   },
 
   componentWillReceiveProps() {
-      this.getDetail();
+    this.getDetail();
+  },
+
+  componentDidUpdate() {
+    this.countMemberSection();
   },
 
   _onClickItem(path) {
-      this.transitionTo(`/post/${path}/`);
+    this.transitionTo(`/post/${path}/`);
   },
 
   render() {
 
+    console.log('this.state.background');
+    console.log(this.state.background);
+
     var works = this.state.work.length ? this.state.work.map((work) => <WorkItem key={work.guid} {...work} />) : '';
     var links = this.state.link.length ? this.state.link.map((link) => <LinkItem key={link.link_title} {...link} />) : '';
+    var backgroundItems = this.state.background.length ? this.state.background.map((background) => <BackgroundItem key={background.guid} {...background} />) : '';
 
     return (
-      <div>
+      <div className="member-info">
         {this.state.work.length ?
           <div className="project">
             <h1 className="project__title">Project</h1>
@@ -130,10 +168,17 @@ module.exports = React.createClass({
           </div>
         : ''}
 
+        {this.state.background.length ?
+          <div className="background">
+            <h1 className="background__title">Background</h1>
+            <section className="background__list">{backgroundItems}</section>
+          </div>
+        : ''}
+
         {this.state.link.length ?
           <div className="links">
             <h1 className="links__title">Link</h1>
-            <div className="links__list">{links}</div>
+            <section className="links__list">{links}</section>
           </div>
         : ''}
       </div>
