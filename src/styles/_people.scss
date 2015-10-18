@@ -407,6 +407,17 @@
     @include laptop { width: 960px; }
     @include below-tablet { width: 90%; }
     @include phone { width: 95%; }
+    .background__item {
+      .background__item__date {
+        margin-bottom: 10px;
+      }
+      .background__item__message {
+        padding: 15px;
+        border-radius: 2px;
+        background-color: rgba(#fff, .1);
+        @include phone { padding: 10px; }
+      }
+    }
   }
 }
 

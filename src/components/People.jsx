@@ -52,7 +52,6 @@ Member = React.createClass({
     $profImage.hover((e) => {
       var $normalImage = $(e.target);
       var $hoverImage = $normalImage.siblings('img');
-      console.log($hoverImage.length);
       $profImage.removeClass('active');
       $hoverImage.addClass('active');
     });

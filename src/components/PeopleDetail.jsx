@@ -125,8 +125,6 @@ module.exports = React.createClass({
     var $sections = $('.member-info > div');
     var numOfSection = $sections.length;
 
-    console.log(numOfSection);
-
     $.each($sections, (index) => {
       var mark = (index + 1) % 2 == 0 ? 'even' : 'odd';
       $sections.eq(index).find('h1').addClass(mark);
@@ -151,9 +149,6 @@ module.exports = React.createClass({
   },
 
   render() {
-
-    console.log('this.state.background');
-    console.log(this.state.background);
 
     var works = this.state.work.length ? this.state.work.map((work) => <WorkItem key={work.guid} {...work} />) : '';
     var links = this.state.link.length ? this.state.link.map((link) => <LinkItem key={link.link_title} {...link} />) : '';
