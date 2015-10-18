@@ -195,6 +195,7 @@
       &--first-item { clear: both }
       .works__item__production-team {
         margin: 10px 0;
+        @include phone { display: none; }
         & > p {
           padding: 5px;
           font-size: 1em;
