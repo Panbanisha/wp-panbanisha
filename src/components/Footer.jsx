@@ -17,7 +17,7 @@ module.exports = React.createClass({
           <nav className="footer__author">
             <ul className="footer__author__list">
               <li>Produce<span className="separator">:</span><Link to="/people/shohei_suwa/">Shohei Suwa</Link><span className="separator">/</span></li>
-              <li>Graphic<span className="separator">:</span><Link to="/people/ryota_fujinaka/">Ryota Fujinaka</Link><span className="separator">/</span></li>
+              <li>Graphic<span className="separator">:</span>Ryota Fujinaka<span className="separator">/</span></li>
               <li>Engineering<span className="separator">:</span><Link to="/people/ryo_ikarashi/">Ryo Ikarashi</Link></li>
             </ul>
           </nav>
