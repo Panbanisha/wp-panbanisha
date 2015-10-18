@@ -36,19 +36,56 @@ var WorkItem = React.createClass({
   }
 });
 
-var BackgroundItem = React.createClass({
+var BgItemsInYear = React.createClass({
+  render() {
+    var itemsInYear = this.props.itemsInYear;
+    return (
+      <div>
+        { itemsInYear.map((item) => <div key={item.bg_message} className="background__item__message" dangerouslySetInnerHTML={{__html: item.bg_message}} />) }
+      </div>
+    )
+  }
+});
+
+var BackgroundItems = React.createClass({
+
+  sortBgItems(bgItems) {
+
+    var sortedBgItems = {};
+
+    function sortDescending(value) {
+      return value * 1;
+    }
+
+    var groupedBgItems = _.groupBy(bgItems, (obj) => {
+      return obj.bg_year;
+    });
+
+    var years = _.sortBy(_.keys(groupedBgItems), sortDescending);
+
+    years.map((year) => { sortedBgItems[year] = groupedBgItems[year]; })
+
+    return sortedBgItems;
+  },
 
   render() {
 
-    var bgItem = this.props;
-    var date = `${bgItem.bg_year}.${bgItem.bg_month}`;
+    var bgItems = this.sortBgItems(this.props.backgroundItems);
 
     return (
-      <div className="background__item">
-        <div className="background__item__inner">
-          <div className="background__item__date"><span>{{date}}</span></div>
-          <div className="background__item__message" dangerouslySetInnerHTML={{__html: bgItem.bg_message}}></div>
-        </div>
+      <div>
+        {
+          Object.keys(bgItems).map((year) => {
+            return (
+              <div key={year} className="background__item">
+                <div className="background__item__inner">
+                  <div className="background__item__date"><span>{{year}}</span></div>
+                  <BgItemsInYear itemsInYear={bgItems[year]} />
+                </div>
+              </div>
+            )
+          })
+        }
       </div>
     )
   }
@@ -152,7 +189,7 @@ module.exports = React.createClass({
 
     var works = this.state.work.length ? this.state.work.map((work) => <WorkItem key={work.guid} {...work} />) : '';
     var links = this.state.link.length ? this.state.link.map((link) => <LinkItem key={link.link_title} {...link} />) : '';
-    var backgroundItems = this.state.background.length ? this.state.background.map((background) => <BackgroundItem key={background.guid} {...background} />) : '';
+    var backgroundItems = this.state.background.length ? <BackgroundItems backgroundItems={this.state.background} /> : '';
 
     return (
       <div className="member-info">

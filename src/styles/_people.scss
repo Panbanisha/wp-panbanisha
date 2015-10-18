@@ -408,14 +408,17 @@
     @include below-tablet { width: 90%; }
     @include phone { width: 95%; }
     .background__item {
-      .background__item__date {
-        margin-bottom: 10px;
-      }
+      &:last-child { .background__item__inner { margin: 0; } }
+      .background__item__inner { margin-bottom: 10px; }
       .background__item__message {
         padding: 15px;
         border-radius: 2px;
-        background-color: rgba(#fff, .1);
+        // background-color: rgba(#fff, .1);
         @include phone { padding: 10px; }
+        a {
+          padding-bottom: 2px;
+          border-bottom: 1px solid #fff;
+        }
       }
     }
   }

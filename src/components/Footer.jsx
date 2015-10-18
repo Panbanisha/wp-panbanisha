@@ -2,8 +2,15 @@ var React = require('react');
 var Route = require('react-router');
 var { Link } = Route;
 
+require('date-utils');
+
 module.exports = React.createClass({
+
   render() {
+
+    var dt = new Date();
+    var year = dt.toFormat("YYYY");
+
     return (
       <footer className="footer">
         <div className="footer__inner">
@@ -14,7 +21,7 @@ module.exports = React.createClass({
               <li>Engineering<span className="separator">:</span><Link to="/people/ryo_ikarashi/">Ryo Ikarashi</Link></li>
             </ul>
           </nav>
-          <small className="footer__copyright">Copyright<span className="copyright-mark">&copy;</span>2015 Panbanisha inc. All Rights Reserved.</small>
+          <small className="footer__copyright">Copyright<span className="copyright-mark">&copy;</span>{year} Panbanisha inc. All Rights Reserved.</small>
         </div>
       </footer>
     )

@@ -17,12 +17,11 @@ TopText = React.createClass({
       <section className="top-text">
         <div className="contanier">
           <div className="top-text__inner">
-            <h1 className="top-text__title">タイトル</h1>
             <p className="top-text__desc">
               Panabanishaはいろんな専門性をもった奴らが<br />
               何か素敵なことをするために集まるステーションです。<br />
               出会って、なんかして、また帰っていく。<br />
-              そんな会社です。
+              そんな場所です。
             </p>
           </div>
         </div>
