@@ -212,6 +212,7 @@
               padding-bottom: 5px;
               border-bottom: 1px solid #fff;
               img {
+                width: 200px;
                 @include phone {
                   display: block;
                   margin: 0 auto;
