@@ -22,6 +22,8 @@
   <link rel="shortcut icon" href="" type="image/vnd.microsoft.ico"/>
   <!-- Normalize CSS -->
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+  <!-- Fontawesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!-- Main Css -->
   <link href="/assets/main.css" rel="stylesheet" type="text/css"/>
   <!-- jQuery -->

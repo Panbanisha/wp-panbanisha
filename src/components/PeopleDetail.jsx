@@ -123,7 +123,8 @@ module.exports = React.createClass({
         member: null,
         work: [],
         background: [],
-        link: []
+        link: [],
+        sns: []
       };
   },
 
@@ -151,6 +152,10 @@ module.exports = React.createClass({
           var background = result.acf.background;
           state['background'] = background;
         }
+        if(result.acf.sns != '0') {
+          var sns = result.acf.sns;
+          state['sns'] = sns;
+        }
       });
 
       $.when(getWorks, getPeopleDetails).done(() => {
@@ -168,6 +173,22 @@ module.exports = React.createClass({
     });
   },
 
+  addSNS() {
+    // remove already existed DOM
+    $('.member__item__single__sns').remove();
+
+    // add SNS list
+    if(this.state.sns !== '0') {
+      var parentDOM = `<ul class="member__item__single__sns"></ul>`;
+      $('.member__item__single__desc').append(parentDOM);
+
+      this.state.sns.map((item) => {
+        var childDOM = `<li class="sns__item"><a href="${item.sns_url}">${item.sns_media}</a></li>`;
+        $('.member__item__single__sns').append(childDOM);
+      });
+    }
+  },
+
   componentDidMount() {
     this.getDetail();
     this.countMemberSection();
@@ -179,6 +200,7 @@ module.exports = React.createClass({
 
   componentDidUpdate() {
     this.countMemberSection();
+    this.addSNS();
   },
 
   _onClickItem(path) {

@@ -248,6 +248,22 @@
             margin-left: auto;
           }
         }
+        .member__item__single__sns {
+          margin-top: 35px;
+          .sns__item {
+            display: inline-block;
+            margin: 0 15px;
+            a {
+              display: block;
+              width: 100%;
+              border-bottom: 1px dotted #fff;
+              transition: all .15s linear;
+              &:hover {
+                border-bottom: 1px solid #fff;
+              }
+            }
+          }
+        }
       }
     }
   }
