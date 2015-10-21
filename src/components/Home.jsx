@@ -20,7 +20,8 @@ module.exports = React.createClass({
 
   resizeSVGViewBox() {
     const INITSVGWIDTH = 1200;
-    const INITSVGHEIGHT = 916;
+    // const INITSVGHEIGHT = 916;
+    const INITSVGHEIGHT = 852;
 
     var screenW = $(window).width();
     var screenH = $(window).height();
@@ -99,7 +100,7 @@ module.exports = React.createClass({
                 <g>
                   <defs>
                     <mask id="maskedText">
-                      <rect fill="#fff" width="100%" height="100%" />
+                      <rect fill="white" width="100%" height="100%" />
                       <path d={Logo.path} />
                     </mask>
                   </defs>
