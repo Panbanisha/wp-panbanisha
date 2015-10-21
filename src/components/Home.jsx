@@ -87,7 +87,6 @@ module.exports = React.createClass({
                 <video className="bg-video__item" loop muted autoPlay>
                   <source src="/assets/videos/panbanisha-home-video.mp4" type="video/mp4" />
                   <source src="/assets/videos/panbanisha-home-video.webm" type="video/webm" />
-                  <source src="/assets/videos/panbanisha-home-video.ogv" type="video/ogg" />
                 </video>
               </div>
             </div>

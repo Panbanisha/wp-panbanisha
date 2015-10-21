@@ -245,7 +245,7 @@ var SoundTrack = React.createClass({
     var track = this.props.track;
 
     return (
-      <div className="sound-track__item" key={this.props.key}>
+      <div className="sound-track__item">
         <div className="sound-track__item__sound">
           <figure className="sound-track__item__sound__img">
             <img src={track.img} />
@@ -274,7 +274,7 @@ var SpecialThanks = React.createClass({
     var stItem = this.props.stItem;
 
     return (
-      <div className="special-thanks__item" key={this.props.key}>
+      <div className="special-thanks__item">
         <figure className="special-thanks__item__img">
           <a href={stItem.st_url}>
             <img src={stItem.st_top_image} />
@@ -302,7 +302,7 @@ var CrewMember = React.createClass({
     var index = this.props.index + 1;
 
     return (
-      <div className="crew__item" key={this.props.key}>
+      <div className="crew__item">
         <div className="crew__item__inner">
           <Link to="PeopleDetail" params={{people: member.slug}}>
             <figure className="crew__item__img" data-name={member.nick}></figure>
