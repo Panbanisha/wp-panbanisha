@@ -75,6 +75,45 @@
         }
       }
     }
+    .product__sounds {
+      margin-bottom: 50px;
+      .product__sounds__title {
+        display: inline-block;
+        padding: 10px 10px 0px 2px;
+        border-bottom: 2px solid #fff;
+        font-size: 1.3em;
+        font-weight: $NotoLight;
+        margin-bottom: 20px;
+        .init {
+          font-size: 1.6em;
+          letter-spacing: .05em;
+        }
+        @include phone {
+          font-size: 1.1em;
+        }
+      }
+      .product__sounds__item {
+        display: block;
+        margin-top: 30px;
+        .product__sounds__item__wrapper {
+          display: block;
+          position: relative;
+          padding-bottom: 25%;
+          padding-top: 25px;
+          height: 0;
+          overflow: hidden;
+          box-shadow: 2px 2px 2px rgba(#333, .7);
+          @include phone { padding-bottom: 50%; }
+          iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
     .product__images {
       margin-bottom: 100px;
       @include phone { margin-bottom: 50px; }

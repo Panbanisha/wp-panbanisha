@@ -87,6 +87,34 @@ module.exports = React.createClass({
     }
   },
 
+  imageSlider() {
+    $('script#script-image-slider').remove();
+    var images = this.state.post.acf.images;
+    if(images !== '0') {
+      if(images.length > 1) {
+        $('body').append('<script id="script-image-slider" src="/assets/lib/image-slider.js"></script>');
+        $('.product__images').removeClass('only-one');
+      } else {
+        $('.product__images').addClass('only-one');
+      }
+    }
+  },
+
+  designSC() {
+    var options = {
+      show_comments: false,
+      download: false,
+      sharing: false
+    };
+
+    var $soundsIframe = $('.product__sounds__item__wrapper').find('iframe');
+    $soundsIframe.each((index, item) => {
+      var iframeSrc = $(item).attr('src');
+      var newIframeSrc = iframeSrc + '&' + $.param(options);
+      $(item).attr('src', newIframeSrc);
+    });
+  },
+
   componentDidMount() {
     this.getInitData();
     this.responsiveIframe();
@@ -102,16 +130,8 @@ module.exports = React.createClass({
     this.responsiveIframe();
     this.setLineOrder();
     this.createCrewMemberBlock();
-    $('script#script-image-slider').remove();
-    var images = this.state.post.acf.images;
-    if(images !== '0') {
-      if(images.length > 1) {
-        $('body').append('<script id="script-image-slider" src="/assets/lib/image-slider.js"></script>');
-        $('.product__images').removeClass('only-one');
-      } else {
-        $('.product__images').addClass('only-one');
-      }
-    }
+    this.designSC();
+    this.imageSlider();
   },
 
   render() {
@@ -128,7 +148,7 @@ module.exports = React.createClass({
               <div className="product__main" dangerouslySetInnerHTML={{__html: post.content}} />
 
               <div className="procuct__all">
-                {post.acf.videos !== '0' ?
+                {post.acf.videos !== '0' && post.acf.videos !== undefined ?
                   <div className="product__videos">
                     {
                       post.acf.videos.length == 1 ? <h2 className="product__videos__title"><span className="init">V</span>ideo</h2> : <h2 className="product__videos__title"><span className="init">V</span>ideos</h2>
@@ -146,7 +166,24 @@ module.exports = React.createClass({
                   </div>
                 : ''}
 
-                {post.acf.images !== '0' ?
+                {post.acf.sounds !== '0' && post.acf.sounds !== undefined ?
+                  <div className="product__sounds">
+                    {
+                      post.acf.sounds.length == 1 ? <h2 className="product__sounds__title"><span className="init">S</span>ound Track</h2> : <h2 className="product__sounds__title"><span className="init">S</span>ound Tracks</h2>
+                    }
+                    <ul className="product__sounds__list">
+                      { post.acf.sounds.map((sound, index) => {
+                        return (
+                          <li key={`sound-item-${index}`} className="product__sounds__item">
+                            <div className="product__sounds__item__wrapper" dangerouslySetInnerHTML={{__html: sound.works_sound}} />
+                          </li>
+                        )}
+                      )}
+                    </ul>
+                  </div>
+                :''}
+
+                {post.acf.images !== '0' && post.acf.images !== undefined ?
                   <div className="product__images">
                     {
                       post.acf.images.length == 1 ? <h2 className="product__images__title"><span className="init">I</span>mage</h2> : <h2 className="product__images__title"><span className="init">I</span>mages</h2>
