@@ -20,7 +20,6 @@ module.exports = React.createClass({
 
   resizeSVGViewBox() {
     const INITSVGWIDTH = 1200;
-    // const INITSVGHEIGHT = 916;
     const INITSVGHEIGHT = 852;
 
     var screenW = $(window).width();
@@ -46,9 +45,14 @@ module.exports = React.createClass({
         $panelLR.css({'top': fillH});
         $panelLR.height(screenH - 2 * fillH);
       }
-    } else {
+    } else if(screenW > 480) {
       // verticall spaces overlap
-      var fillH = (screenH - svgH) / 2;
+      var fillH = (screenH - INITSVGHEIGHT) / 2;
+      $panelTB.height(fillH);
+      $panelLR.width(0);
+    } else {
+      const INITSVGHEIGHT_MOBILE = 462;
+      var fillH = (screenH - INITSVGHEIGHT_MOBILE) / 2;
       $panelTB.height(fillH);
       $panelLR.width(0);
     }
