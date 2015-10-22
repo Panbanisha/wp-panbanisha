@@ -178,7 +178,7 @@ module.exports = React.createClass({
     $('.member__item__single__sns').remove();
 
     // add SNS list
-    if(this.state.sns !== '0') {
+    if(this.state.sns !== '0' && this.state.sns !== undefined) {
       var parentDOM = `<ul class="member__item__single__sns"></ul>`;
       $('.member__item__single__desc').append(parentDOM);
 

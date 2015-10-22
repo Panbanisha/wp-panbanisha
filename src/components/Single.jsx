@@ -6,7 +6,6 @@ var {State, Link} = Route;
 var $ = require('jquery');
 var _ = require('underscore');
 var assign = require('object-assign');
-require('snapsvg');
 
 var MEMBERS = require('../data').members;
 

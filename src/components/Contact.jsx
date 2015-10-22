@@ -2,6 +2,8 @@ var React = require('react');
 var DocumentTitle = require('react-document-title');
 
 var $ = require('jquery');
+require('zoom/zoom.min.js');
+require('bootstrap-transition/transition.js');
 
 module.exports = React.createClass({
 
@@ -119,7 +121,7 @@ module.exports = React.createClass({
                 </div>
                 <div className="contact-form__form__overlay__message--success">
                   <h2>ありがとうございます。</h2>
-                  <p>〜のくらいで返信します。</p>
+                  <p>追ってご連絡差し上げます。しばらくお待ち下さい。</p>
                 </div><div className="contact-form__form__overlay__message--error">
                   <h2>エラーが発生しました。</h2>
                   <p>もう一度ページを読み込んで、再度送信しなおしてください。</p>
@@ -132,7 +134,7 @@ module.exports = React.createClass({
             <h1 className="access__title">Access</h1>
             <div className="access__inner">
               <figure className="access__map">
-                <img src="/assets/images/map.png" />
+                <img src="/assets/images/map.png" data-action="zoom" />
               </figure>
               <div className="access__info">
                 <div className="access__info__name">

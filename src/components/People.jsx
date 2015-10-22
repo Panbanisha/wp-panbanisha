@@ -9,6 +9,9 @@ var _ = require('underscore');
 var $ = require('jquery');
 var assign = require('object-assign');
 
+require('zoom/zoom.min.js');
+require('bootstrap-transition/transition.js');
+
 var MEMBERS = require('../data').members;
 
 TopText = React.createClass({
@@ -102,7 +105,7 @@ Member = React.createClass({
             <div className="member__item__single">
               <div className="member__item__single__prof">
                 <figure className="member__item__single__img">
-                  <img src={member.prof_img} />
+                  <img src={member.prof_img} data-action="zoom" />
                 </figure>
                 <div className="member__item__single__name">
                   <h1 className="member__item__single__name__main"><img src={member.name_img} /></h1>
