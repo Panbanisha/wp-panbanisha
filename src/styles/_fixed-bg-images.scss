@@ -10,7 +10,7 @@ body {
 
   @include laptop { background-attachment: fixed; }
 
-  &#works {
+  &#works, &#post {
     @include laptop { background-image: url(/assets/images/works-bg.jpg); }
     @include below-tablet { background: transparent; }
 
