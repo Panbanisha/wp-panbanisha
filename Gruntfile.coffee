@@ -52,7 +52,7 @@ module.exports = (grunt) ->
           'dist/assets/bundle.js': 'src/main.jsx'
         options:
           browserifyOptions:
-            debug: true
+            debug: false
             extensions: ['.jsx', '.coffee']
             fullPaths: false
       options:
