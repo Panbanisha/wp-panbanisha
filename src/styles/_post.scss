@@ -254,6 +254,9 @@
         }
       }
       .product__desc__date {
+        // temporarily unavailable
+        display: none;
+
         font-size: 24px;
         font-weight: $NotoLight;
         @include phone {
