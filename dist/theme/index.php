@@ -19,7 +19,7 @@
   <meta name="apple-mobile-web-app-title" content="">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="" type="image/vnd.microsoft.ico"/>
+  <link rel="shortcut icon" href="/assets/images/panbanisha.ico" type="image/vnd.microsoft.icon">
   <!-- Normalize CSS -->
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
   <!-- Fontawesome -->
