@@ -274,6 +274,7 @@ module.exports = React.createClass({
               <li className="works__filter__item"><Link to="WorkListPhotograph">Photograph</Link></li>
               <li className="works__filter__item"><Link to="WorkListGraphic">Graphic</Link></li>
               <li className="works__filter__item"><Link to="WorkListProduct">Product</Link></li>
+              <li className="works__filter__item"><Link to="WorkListSounds">Sounds</Link></li>
             </ul>
           </nav>
           <section className="works__list" ref="worksList">{works}</section>

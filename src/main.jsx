@@ -24,6 +24,7 @@ var routes = (
         <Route name="WorkListPhotograph" path="works/photograph/" handler={WorkList} />
         <Route name="WorkListGraphic" path="works/graphic/" handler={WorkList} />
         <Route name="WorkListProduct" path="works/product/" handler={WorkList} />
+        <Route name="WorkListSounds" path="works/sounds/" handler={WorkList} />
 
         <Route name="Post" path="post/:post/" handler={Single} />
 
