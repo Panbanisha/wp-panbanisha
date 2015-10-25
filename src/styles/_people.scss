@@ -452,9 +452,7 @@
       margin-bottom: 50px;
       font-size: 1.7em;
     }
-    &:after {
-      margin-left: 30%;
-    }
+    &:after { margin-left: 30%; }
   }
   .links__list {
     @include laptop {

@@ -15,7 +15,7 @@ module.exports =
     ryo_ikarashi:
       name: 'Ryo Ikarashi'
       nick: 'ryo_ikarashi'
-      birthday: '1990.05.09'
+      birthday: '1993.06.30'
       occupation: 'programmer'
       company: 'Panbanisha Inc.'
       company_url: 'http://mountunion.edu'

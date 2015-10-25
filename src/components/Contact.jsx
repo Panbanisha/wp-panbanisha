@@ -18,7 +18,7 @@ module.exports = React.createClass({
 
     $contactForm.submit((e) => {
       e.preventDefault();
-      var EMAIL = 'ryo.5630@gmail.com';
+      var EMAIL = 's-suwa@panbanisha.com';
       var jsonData = {};
       var data = $(e.target).serializeArray();
       var $overlay = $('.contact-form__form__overlay');
