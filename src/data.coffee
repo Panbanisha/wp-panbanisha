@@ -2,7 +2,7 @@ module.exports =
 
   members:
     shohei_suwa:
-      name: 'Shohei Suwa'
+      name: 'Syohei Suwa'
       nick: 'shohei_suwa'
       birthday: '1990.05.09'
       occupation: 'video artist'
