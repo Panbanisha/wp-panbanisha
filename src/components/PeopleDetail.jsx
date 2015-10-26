@@ -19,8 +19,8 @@ var WorkItem = React.createClass({
     return (
       <div className="project__item">
         <Link to="Post" params={{post: work.slug}}>
-          <fugure className="project__item__img">
-            <img src={work.featured_image.guid} />
+          <figure className="project__item__img">
+            <div className="project__item__img__bg"  style={{'background-image': `url(${work.featured_image.guid})`}} />
             <figcaption className="project__item__caption">
               <div className="project__item__caption__inner">
                 <h2 className="project__item__caption__title">{work.title}</h2>
@@ -29,7 +29,7 @@ var WorkItem = React.createClass({
                 </div>
               </div>
             </figcaption>
-          </fugure>
+          </figure>
         </Link>
       </div>
     )
