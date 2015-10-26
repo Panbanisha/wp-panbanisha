@@ -183,7 +183,7 @@ module.exports = React.createClass({
       $('.member__item__single__desc').append(parentDOM);
 
       this.state.sns.map((item) => {
-        var childDOM = `<li class="sns__item"><a href="${item.sns_url}">${item.sns_media}</a></li>`;
+        var childDOM = `<li class="sns__item"><a href="${item.sns_url}" class="fa fa-${item.sns_media}"></a></li>`;
         $('.member__item__single__sns').append(childDOM);
       });
     }

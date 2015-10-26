@@ -51,7 +51,7 @@ var WorkItem = React.createClass({
                   <p><span>Production Team</span><span>:</span>{productionTeam}</p>
                 </div>
               : ''}
-              <time className="works__item__caption__date">{this.trimDate(work.modified)}</time>
+              <time className="works__item__caption__date">{this.trimDate(work.date)}</time>
             </div>
           </figcaption>
         </Link>

@@ -254,13 +254,22 @@
             display: inline-block;
             margin: 0 15px;
             a {
+              font-size: 1.5em;
               display: block;
               width: 100%;
-              border-bottom: 1px dotted #fff;
               transition: all .15s linear;
-              &:hover {
-                border-bottom: 1px solid #fff;
+              color: #fff;
+              @mixin hoverSnsIcon($name, $color) {
+                &.fa-#{$name} {
+                  &:hover { color: $color }
+                }
               }
+              @include hoverSnsIcon(twitter, #5EA9DD);
+              @include hoverSnsIcon(facebook, #3765A3);
+              @include hoverSnsIcon(vimeo-square, #1AB7EA);
+              @include hoverSnsIcon(soundcloud, #FF4500);
+              @include hoverSnsIcon(tumblr, #34465D);
+              @include hoverSnsIcon(pinterest, #CB2027);
             }
           }
         }
