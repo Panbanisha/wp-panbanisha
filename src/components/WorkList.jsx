@@ -43,7 +43,7 @@ var WorkItem = React.createClass({
               <h2 className="works__item__caption__title">{work.title}</h2>
               <div className="works__item__caption__member">
                 {work.acf.all_member !== "0" || work.acf.all_member !== undefined ?
-                  work.acf.all_member.map((member) => <p key={member.all_member_role}>{member.all_member_role.toUpperCase()}<span>:</span>{member.all_member_name.toUpperCase()}</p>)
+                  work.acf.all_member.map((member) => <p key={member.all_member_role}>{member.all_member_role}<span>:</span>{member.all_member_name}</p>)
                 : ''}
               </div>
               {work.acf.production_team !== '0' ?
